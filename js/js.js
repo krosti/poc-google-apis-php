@@ -97,7 +97,7 @@ app = {
 	urlToXML: function(url, callback){
 
 		//works
-		$.ajax({
+		/*$.ajax({
 		  dataType: "jsonp",
 		  beforeSend: function(xhr){
 		  	xhr.overrideMimeType("Content-Type: text/html; charset=utf-8");
@@ -127,24 +127,29 @@ app = {
 		  	console.log(data);
 		  	callback(data);
 		  },
-		  error:function(){
+		  error:function(){*/
 		  	//for service down or use previous call from non secure mode
 		  	//issue: error Unexpected Token in xml_response in 1st call
 		  	$.ajax({
 		  		url:'/k12/gapi.php',
+		  		dataFilter: function(data){
+		  			console.log(data);
+		  			return data;
+		  		},
 		  		success:function(data){
+		  			console.log(data);
 		  			return callback(data);
 		  		}
 		  	});
-		  }
-		});
+		 /* }
+		});*/
 
 	},
 
 	callB:function(data){
 		//custom Callback
 		//return eval('(' + data + ')');
-		console.log(data);
+		//console.log(data);
 
 	}
 }

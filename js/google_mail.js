@@ -23,7 +23,7 @@ gmail = {
 		});
 
 		//continuous update every 20"
-		( gmail_response != 'undefined' && gmail.continuousUpdate(gmail_response,20000) )
+		( gmail_response != 'undefined' && gmail.continuousUpdate(gmail_response, 90000) )
 	},
 
 	showUserLoggedIn: function(data){
@@ -43,16 +43,31 @@ gmail = {
 			,	email = document.createElement('span')
 			, 	count = 1;
 		box.innerHTML = '';
+
 		if (emails && emails.length){
 			for (var i = emails.length - 1; i >= 0; i--) {
+				modifiedDate = new Date(emails[i].modified);
+				modifiedDate = modifiedDate.getMonth()+1 + '/' + modifiedDate.getDate() + '/' + modifiedDate.getFullYear();
 				email.innerHTML += 
 					count++ + '- From: ' + emails[i].author.name + 
-					'<br>' + emails[i].title + ' | ' + emails[i].summary + '<div class="divisor"></div>';
+					'<div class="title">' + emails[i].title + '</div>' + 
+					'<div class="email_date">'+modifiedDate+'</div>' + 
+					'<div class="divisor"></div>';
 				email.setAttribute('id',emails[i].id);
-				console.log();
 				box.appendChild(email);
 			};
-		};
+		}else if (data.fullcount > 0){
+			modifiedDate = new Date(emails.modified);
+			modifiedDate = modifiedDate.getMonth()+1 + '/' + modifiedDate.getDate() + '/' + modifiedDate.getFullYear();
+			email.innerHTML += 
+					count++ + '- From: ' + emails.author.name + 
+					'<div class="title">' + emails.title + '</div>' + 
+					'<div class="email_date">'+modifiedDate+'</div>' + 
+					'<div class="divisor"></div>';
+			email.setAttribute('id',emails.id);
+			box.appendChild(email);
+		}
+		
 	},
 
 	continuousUpdate:function(data,interval){
