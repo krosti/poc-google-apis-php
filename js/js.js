@@ -17,6 +17,10 @@ app = {
 		gdrive._init();
 		app.loadSpin();
 		gmail._init();
+
+		$('#LINKsendemail').on('click',function(){
+			gmail.showFormToSend();
+		});
 	},
 
 	authorizeApp: function() {
@@ -142,5 +146,10 @@ app = {
 		var target = document.getElementById('spin');
 		var spinner = new Spinner(opts).spin(target);
 		target.style.display = 'none';
+	},
+
+	openWin: function(data){
+		var myWindow = window.open(_SERVER+'send_form&to='+data,'_blank');
+		myWindow.focus();
 	}
 }

@@ -222,11 +222,16 @@ if (!isset($_SESSION['ACCESS_TOKEN'])) {
   }
 
   function change_folder($storage){
-    
+    $storage->selectFolder($_GET['folder']);
+    return all_messages($storage);
   }
 
   function test($storage){
-    return $storage->getFolders();
+    $n = $storage->countMessages();
+    echo '<pre>';
+    print_r($storage->getMessage($n));
+    echo '<pre>';
+    return $storage->getMessage($n);
   }
 
   switch($_GET['method']){
@@ -242,8 +247,14 @@ if (!isset($_SESSION['ACCESS_TOKEN'])) {
     case 'get_folders': 
       echo json_encode(get_folders($storage),JSON_FORCE_OBJECT);
       break;
+    case 'change_folder':
+      echo json_encode(change_folder($storage),JSON_FORCE_OBJECT);
+      break;
+    case 'send_form':
+       header('Location: '.'http://localhost:8888/k12/sendForm.php?to='.$_GET['to']);
+      break;
     case 'test':
-      echo json_encode(test($storage)),"\n";
+      echo json_encode(test($storage),JSON_FORCE_OBJECT);
       break;
 
   };

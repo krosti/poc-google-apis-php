@@ -9,14 +9,16 @@ a:visited, a:hover{ color:#333; text-decoration: none; }
 * SHARED CODE
 */
 .block{	float:left; }
-.blue{ color:#114D87; background:#114D87; }
+.blue{ color:#007CC2; background:#007CC2; }
 .grey{ color:#DDD; background:#DDD; }
 .divisor{ width:600px; height:1px; background:#fff; margin-bottom:15px; clear:both; }
-#spin{ margin-top:20px; }
+#spin{ margin-top:120px; margin-left:320px; position:absolute; }
 #error{ color:red; }
-.bar{ width:100%; }
-.bar ul{ list-style: none; }
-.bar li{ float:left; }
+.bar{ width: 100%; background: #444444; color:#AECE33; height: 25px; min-width: 700px; position: absolute; left: 0; top:0; font-size: 12px; font-weight: bold; }
+.bar ul{ list-style: none; margin:0; padding:0; }
+.bar li{ float:left; margin-left: 10px; margin-top: 5px; }
+.bar a:link, .bar a:visited{ color:#AECE33; }
+.bar a:hover{ color:#93C029; }
 
 
 /*
@@ -36,18 +38,19 @@ a:visited, a:hover{ color:#333; text-decoration: none; }
 	width:600px;
 	margin-top:20px;
 }
-.container a:link{ color:#114D87; }
+.container a:link{ color:#007CC2; }
 .container a:visited, .container a:hover{ color:#115E70;}
+#counters{ background: #d1d1d1; border-radius: 2px; padding:5px; }
 #results{
 	float:right;
 	color:#222;
-	margin:5px;
 }
+#emails a{ cursor:pointer; }
 #emails span{
 	margin-bottom:6px;
 	float: left;
 	width:600px;
-	color:#3B5998;
+	color:#007CC2;
 }
 #emails .title{
 	font-weight: normal;
@@ -82,12 +85,18 @@ a:visited, a:hover{ color:#333; text-decoration: none; }
 * Menu Code
 */
 .menu{
-	width: 200px;
-	height: 20px;
+	width: 140px;
 	position: absolute;
-	margin-left: -200px;
+	margin-left: -157px;
 	margin-top: 55px;
+	background: #007CC2;
+	color: white;
+	font-size: 12px;
+	padding: 5px;
+	border-radius: 2px;
 }
+.menu a:link, .menu a:visited{ color:#FFFFFF; }
+.menu a:hover{ color:#DDDDDD; }
 #foldersBox{
 	list-style-type: none;
 	padding: 0px;
