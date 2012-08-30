@@ -4,11 +4,6 @@ app = {
 		/*
 		* pre-load methods
 		*/
-		_SERVER = "http://localhost:8888/xoauth-php-samples/three-legged.php?method=";
-		// app validated
-		console.log('api loaded');
-
-		// OAuth
 		//app.authorizeApp();
 		app.loadActions();
 	},
@@ -116,6 +111,7 @@ app = {
 		  	console.log('Server is Down :(');
 		  }
 		});
+
 
 	},
 
