@@ -4,6 +4,7 @@ app = {
 		/*
 		* pre-load methods
 		*/
+		_SERVER = "http://localhost:8888/k12/xoauth-php/three-legged.php?method=";
 		//app.authorizeApp();
 		app.loadActions();
 	},
@@ -56,7 +57,7 @@ app = {
     	*/
 
 		// Create the return object
-		/*var obj = {};
+		var obj = {};
 
 		if (xml.nodeType == 1) { // element
 		// do attributes
@@ -88,7 +89,7 @@ app = {
 		  }
 		}
 		}
-		return obj;*/
+		return obj;
 	},
 
 	ajaxCall: function(url, callback){
@@ -112,14 +113,12 @@ app = {
 		  }
 		});
 
-
 	},
 
 	callB:function(data){
 		//custom Callback
 		return eval('(' + data + ')');
 		//console.log(data);
-
 	},
 
 	loadSpin:function(){
