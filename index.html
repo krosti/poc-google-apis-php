@@ -1,0 +1,82 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+	<title>K12 - google api's</title>
+	
+	<!-- This header mimics Internet Explorer 7 and uses 
+	     <!DOCTYPE> to determine how to display the webpage -->
+	<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" >    
+	<link href="css/style.css" rel="stylesheet" type="text/css" />
+	<script src="js/js.js" type="text/javascript"></script>
+</head>
+<body>
+	<div class="bar">
+		<ul>
+			<li>Home</li>
+			<li>Send Email</li>
+			<li>Status</li>
+		</ul>
+
+	</div>
+
+	<!--header-->
+	<div class="block header">
+		<span id="userLogged"></span>
+		<span id="error"></span>
+	</div>
+	<!--header-->
+
+	<!--menu-->
+	<div class="block menu">
+		<ul id="foldersBox"></ul>
+	</div>
+	<!--menu-->
+
+	<!--container-->
+	<div class="block container">
+		<div id="counters">
+			<div id="results">Total Inbox <span id="total_emails"></span></div>
+			<div id="unread">Unread Emails <span id="unread_emails"></span></div>
+		</div>
+		<div id="emails"></div>
+		<div id="formToSend">
+			<form>
+				<label>TO</label>
+				<input id="emailTO"/>
+				<label>Subject</label>
+				<input id="emailSUBJECT"/>
+				<textarea id="emailMESSAGE"></textarea>
+			</form>
+		</div>
+	    <div id="authInfo" style="display:none">
+	    	<div class="divisor"></div>
+	    </div>
+	</div>
+	<!--container-->
+
+	<div class="block menuRight">
+		<span>Drive Folders</span>
+		<div id="driveResults"></div>
+	</div>
+
+	<div id="spin"></div>
+
+	<script type="text/javascript">
+		function load(){
+			//personal API KEY
+			gapi.client.setApiKey('AIzaSyAcpP_7b9_F0Fvvwk5h9OQBGppKecvF220');
+		    gapi.client.load('drive', 'v2', app._init);
+		}
+	</script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
+    <script src="https://apis.google.com/js/client.js?onload=load"></script>
+    <script src="js/spin.js"></script>
+
+    <script src="js/js.js"></script>
+    <script src="js/dev_tool.js"></script>
+    <script src="js/google_mail.js"></script>
+    <script src="js/google_drive.js"></script>
+
+</body>
+</html>
