@@ -52,12 +52,13 @@ gmail = {
 	updateBox: function(data){
 		var emails = data
 			,	box = document.getElementById('emails')
-			,	email = document.createElement('span')
 			, 	count = 1;
 		box.innerHTML = '';
 
 		if (emails){
 			for (var i = Object.keys(emails).length - 1; i >= 0; i--) {
+				var email = document.createElement('span');
+
 				modifiedDate = new Date(emails[i].date);
 				modifiedDate = 
 					modifiedDate.getMonth()+1 + '/' + modifiedDate.getDate() + '/' + modifiedDate.getFullYear()+' '+
@@ -67,7 +68,7 @@ gmail = {
 					'<div class="title">' + emails[i].subject + '</div>' + 
 					'<div class="email_date">'+modifiedDate+'</div>' + 
 					'<div class="divisor"></div>';
-				email.setAttribute('id',emails[i]);
+				email.setAttribute('id',emails[i].id);
 				box.appendChild(email);
 			};
 		}else if (Object.keys(emails).length > 0){
@@ -104,14 +105,14 @@ gmail = {
 		box.innerHTML = '';
 		for (index in data){
 			var val = document.createElement('li');
-			val.innerHTML = '<li><a href="#" id="'+index+'" class="emailFolder">'+index+'</a></li>';
+			val.innerHTML = '<li><a href="#" name="'+index+'" id="'+index.toString().replace('[','').replace(']','')+'" class="emailFolder">'+index+'</a></li>';
 			box.appendChild(val);
 		}
 	},
 
 	BTNchangeFolder: function(){
 		$('.emailFolder').on('click',function(){
-			app.ajaxCall(_SERVER+'change_folder&id=19&folder='+$(this).text(),function(data){
+			app.ajaxCall(_SERVER+'change_folder&id=19&folder='+$(this).attr('name'),function(data){
 				gmail.updateBox(data);
 				gmail.BTNreplyMessage(data);
 			});

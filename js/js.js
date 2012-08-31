@@ -5,7 +5,7 @@ app = {
 		* pre-load methods
 		*/
 		_SERVER = "http://localhost:8888/k12/xoauth-php/three-legged.php?method=";
-		//app.authorizeApp();
+		
 		app.loadActions();
 	},
 
@@ -14,7 +14,8 @@ app = {
 		*	Load Actions
 		* resume: load methods/actions from other objects when api is ok
 		*/
-		gdrive._init();
+		app.authorizeApp();
+		
 		app.loadSpin();
 		gmail._init();
 
@@ -37,7 +38,7 @@ app = {
 
         gapi.auth.authorize(config, function() {
           	console.log('This APP was authorized to use for this user');
-			app.loadActions();
+			gdrive._init();
         });
     },
 
@@ -133,7 +134,7 @@ app = {
 		  radius: 10, // The radius of the inner circle
 		  corners: 0.4, // Corner roundness (0..1)
 		  rotate: 36, // The rotation offset
-		  color: '#000', // #rgb or #rrggbb
+		  color: '#93C029', // #rgb or #rrggbb
 		  speed: 1.5, // Rounds per second
 		  trail: 78, // Afterglow percentage
 		  shadow: false, // Whether to render a shadow

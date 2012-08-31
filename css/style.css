@@ -1,5 +1,5 @@
 /*###########OVERRIDE#######################*/
-body{ color:#999; font-size: 11px; font-family: Lucida Grande, Helvetica, serif; width:600px; margin:auto; background:#eee;}
+body{ color:#999; font-size: 11px; font-family: Lucida Grande, Helvetica, serif; width:600px; margin:auto; background:#fff;}
 span{ font-weight: bold; margin:auto; }
 a:link{ color:#999; }
 a:visited, a:hover{ color:#333; text-decoration: none; }
@@ -11,7 +11,7 @@ a:visited, a:hover{ color:#333; text-decoration: none; }
 .block{	float:left; }
 .blue{ color:#007CC2; background:#007CC2; }
 .grey{ color:#DDD; background:#DDD; }
-.divisor{ width:600px; height:1px; background:#fff; margin-bottom:15px; clear:both; }
+.divisor{ width:600px; height:1px; background:#ddd; margin-top:	5px; clear:both; }
 #spin{ margin-top:120px; margin-left:320px; position:absolute; }
 #error{ color:red; }
 .bar{ width: 100%; background: #444444; color:#AECE33; height: 25px; min-width: 700px; position: absolute; left: 0; top:0; font-size: 12px; font-weight: bold; }
@@ -39,7 +39,7 @@ a:visited, a:hover{ color:#333; text-decoration: none; }
 	margin-top:20px;
 }
 .container a:link{ color:#007CC2; }
-.container a:visited, .container a:hover{ color:#115E70;}
+.container a:visited, .container a:hover{ color:#115E70; opacity: 1; }
 #counters{ background: #d1d1d1; border-radius: 2px; padding:5px; }
 #results{
 	float:right;
@@ -47,11 +47,13 @@ a:visited, a:hover{ color:#333; text-decoration: none; }
 }
 #emails a{ cursor:pointer; }
 #emails span{
-	margin-bottom:6px;
+	margin-bottom:5px;
+	margin-top:5px;
 	float: left;
 	width:600px;
 	color:#007CC2;
 }
+#emails span:hover{ opacity:0.7; }
 #emails .title{
 	font-weight: normal;
 	color:#333;
@@ -107,3 +109,29 @@ a:visited, a:hover{ color:#333; text-decoration: none; }
 	margin-left: 640px;
 	margin-top: 55px;
 }
+
+
+/*
+* DRIVE
+*/
+#driveResultsFiles, #driveResultsFolders{
+	width: 250px;
+	height: 145px;
+	overflow: hidden;
+}
+.file{ 
+		padding:0;
+		
+		border:none;
+		background:url(../images/file.png) no-repeat 0 0;
+		padding-left: 20px;
+		padding-top:2px;
+		}
+.folder{
+		padding:0;
+		
+		border:none;
+		background:url(../images/folder.png) no-repeat 0 0;
+		padding-left: 20px;
+		padding-top:2px;
+		}
