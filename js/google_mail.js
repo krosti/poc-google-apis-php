@@ -57,7 +57,8 @@ gmail = {
 
 		if (emails){
 			for (var i = Object.keys(emails).length - 1; i >= 0; i--) {
-				var email = document.createElement('span');
+				var email = document.createElement('span')
+				,	subject = (emails[i].subject != null) ? emails[i].subject : '(no subject)';
 
 				modifiedDate = new Date(emails[i].date);
 				modifiedDate = 
@@ -65,7 +66,7 @@ gmail = {
 					modifiedDate.getHours() +':'+ modifiedDate.getMinutes() +':'+ modifiedDate.getSeconds() ;
 				email.innerHTML += 
 					'<div class="from">'+count++ +'- From: <a id="'+emails[i].id+'" email="'+emails[i].from+'" class="replyThis" target="_BLANK">' + emails[i].from + '</a></div>' +
-					'<div class="title">' + emails[i].subject + '</div>' + 
+					'<div class="title">' + subject + '</div>' + 
 					'<div class="email_date">'+modifiedDate+'</div>' + 
 					'<div class="divisor"></div>';
 				email.setAttribute('id',emails[i].id);

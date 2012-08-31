@@ -1,6 +1,7 @@
 /*###########OVERRIDE#######################*/
-body{ color:#999; font-size: 11px; font-family: Lucida Grande, Helvetica, serif; width:600px; margin:auto; background:#fff;}
+body{ color:#999; font-size: 11px; font-family: 'Open Sans', sans-serif; width:600px; margin:auto; background:#fff;}
 span{ font-weight: bold; margin:auto; }
+img{ border:none; }
 a:link{ color:#999; }
 a:visited, a:hover{ color:#333; text-decoration: none; }
 /*##########################################*/
@@ -16,9 +17,9 @@ a:visited, a:hover{ color:#333; text-decoration: none; }
 #error{ color:red; }
 .bar{ width: 100%; background: #444444; color:#AECE33; height: 25px; min-width: 700px; position: absolute; left: 0; top:0; font-size: 12px; font-weight: bold; }
 .bar ul{ list-style: none; margin:0; padding:0; }
-.bar li{ float:left; margin-left: 10px; margin-top: 5px; }
-.bar a:link, .bar a:visited{ color:#AECE33; }
-.bar a:hover{ color:#93C029; }
+.bar li{ float:left; margin-left: 10px; margin-top: 4px; }
+.bar a:link, .bar a:visited{ color:#AECE33; text-decoration: none; }
+.bar a:hover{ color:#93C029; text-decoration: none; }
 
 
 /*
@@ -97,12 +98,14 @@ a:visited, a:hover{ color:#333; text-decoration: none; }
 	padding: 5px;
 	border-radius: 2px;
 }
-.menu a:link, .menu a:visited{ color:#FFFFFF; }
-.menu a:hover{ color:#DDDDDD; }
+.menu a:link, .menu a:visited{ color:#FFFFFF; text-decoration: none; }
+.menu a:hover{ color:#DDDDDD; text-decoration: underline; }
 #foldersBox{
 	list-style-type: none;
 	padding: 0px;
 	margin: 0px;
+	font-weight: 300;
+
 }
 .menuRight{
 	position: absolute;
@@ -116,22 +119,31 @@ a:visited, a:hover{ color:#333; text-decoration: none; }
 */
 #driveResultsFiles, #driveResultsFolders{
 	width: 250px;
-	height: 145px;
+	height: 170px;
 	overflow: hidden;
 }
+#driveResultsFiles a:link, #driveResultsFolders a:link, #driveResultsFiles a:visited, #driveResultsFolders a:visited{ color:#999; text-decoration: none; }
+#driveResultsFiles a:hover, #driveResultsFolders a:hover{ color:#333; }
 .file{ 
-		padding:0;
-		
-		border:none;
-		background:url(../images/file.png) no-repeat 0 0;
-		padding-left: 20px;
-		padding-top:2px;
-		}
+	padding:0;
+	
+	border:none;
+	background:url(../images/file.png) no-repeat 0 0;
+	padding-left: 20px;
+	padding-top:2px;
+}
 .folder{
-		padding:0;
-		
-		border:none;
-		background:url(../images/folder.png) no-repeat 0 0;
-		padding-left: 20px;
-		padding-top:2px;
-		}
+	padding:0;
+	
+	border:none;
+	background:url(../images/folder.png) no-repeat 0 0;
+	padding-left: 20px;
+	padding-top:2px;
+}
+.updateFolderView{
+	width: 13px;
+	height: 15px;
+	border: none;
+	background: url(../images/view.png) no-repeat 0 0;
+	position: absolute;
+}
