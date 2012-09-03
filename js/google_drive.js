@@ -1,20 +1,21 @@
 gdrive = {
 
 	_init: function(){
-		gdrive.makeRequest();
+		gdrive.makeRequest(null);
 		gdrive.loadActions();
 	},
 
 	loadActions: function(){
-
+		gdrive.BTNviewOptionsFilters();
 	},
 
-	makeRequest: function() {
+	makeRequest: function(conditions) {
 		var request = gapi.client.drive.files.list();
 
 		request.execute(function(response) {
-			gdrive.updateList(response,'folder');
-			gdrive.updateList(response,'file');
+			if (conditions != null) { response = gdrive.applyFilters(response,conditions); }
+			gdrive.updateList(response,'folder',false);
+			gdrive.updateList(response,'file',false);
 			gdrive.BTNupdateFolders();
 		});
 	},
@@ -31,7 +32,7 @@ gdrive = {
 
 		if(!data.message){
 			var n = 8; //number of results
-			console.log(items);
+			
 			items.length = (items != 'undefined' && items.length != items.length > 0) ? items.length : 1;
 
 			for (var i = 0; i <= items.length - 1 && n>=0; i++) {
@@ -48,10 +49,13 @@ gdrive = {
 
 						divElement.setAttribute('class',fileType);
 						var optional = (fileType == 'file') 
-								? '<a class="sendFile '+fileTypeView+' " href="'+item.alternateLink+'" target="_BLANK">'+' >'+'</a>'
-								: '<a id="'+item.id+'" class="sendFile '+fileTypeView+' updateFolderView " href="'+'#'+'">'+' '+'</a>';
+								? 	'<a class="sendFile '+fileTypeView+' " href="'+item.alternateLink+'" target="_BLANK">'+ 
+											item.title + ' (' + modifiedDate + ')' +
+									'</a>'
+								: 	item.title + ' (' + modifiedDate + ')' + 
+									'<a id="'+item.id+'" class="sendFile '+fileTypeView+' updateFolderView " href="'+'#'+'">'+' '+'</a>';
 
-						divElement.innerHTML = item.title + ' (' + modifiedDate + ')' + optional;
+						divElement.innerHTML = optional;
 
 						results.appendChild(divElement);
 						n--;
@@ -101,6 +105,25 @@ gdrive = {
 		});
 	},
 
+	BTNviewOptionsFilters: function(){
+		/*
+		* Filter if clicked ONLY SHOW MY FILES or ALL FILES
+		*/
+		//owner - My Files
+		$('#ownerDriveFiles').on('click',function(){
+			gdrive.makeRequest(
+				{'userPermission':
+					{'role' : 'owner'}
+				}
+			);
+		});
+		//all files - Others
+		$('#othersDriveFiles').on('click',function(){
+			gdrive.makeRequest();
+		});
+		
+	},
+
 	getFolderList: function(folderId){
 		var request = gapi.client.drive.children.list({
 	      'folderId' : folderId,
@@ -122,8 +145,27 @@ gdrive = {
 		});
 	},
 
-	sortItems: function(obj,prop){
+	applyFilters: function(data,conditions,callback){
+		var 	items = data.items
+			,	count = 1
+			,	aResult = []
+			,	result = {
+					'etag':'customFiltered',
+					'filter':conditions,
+					'items':null
+				};
 
+		for (var i = 0; i < items.length; i++) {
+		    for (var condition in conditions) {
+		    	if( items[i].hasOwnProperty(condition) ){
+			    	for (var subCondition in conditions[condition]) {
+			    		if (items[i][condition][subCondition] == conditions[condition][subCondition]) { aResult.push(items[i]); };
+			    	};
+			    };
+		    };
+		};
+		result.items = aResult;
+		return result;
 	}
 	
 }

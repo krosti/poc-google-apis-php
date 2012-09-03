@@ -115,6 +115,7 @@ app = {
 		  	//for service down or use previous call from non secure mode
 		  	//issue: error Unexpected Token in xml_response in 1st call
 		  	console.log('Server is Down :(');
+		  	document.getElementById('spin').style.display = 'none';
 		  }
 		});
 

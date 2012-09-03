@@ -124,6 +124,7 @@ a:visited, a:hover{ color:#333; text-decoration: none; }
 }
 #driveResultsFiles a:link, #driveResultsFolders a:link, #driveResultsFiles a:visited, #driveResultsFolders a:visited{ color:#999; text-decoration: none; }
 #driveResultsFiles a:hover, #driveResultsFolders a:hover{ color:#333; }
+#ownerDriveFiles, #othersDriveFiles{ cursor:pointer; }
 .file{ 
 	padding:0;
 	
