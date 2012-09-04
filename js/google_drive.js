@@ -119,6 +119,14 @@ gdrive = {
 		});
 		//all files - Others
 		$('#othersDriveFiles').on('click',function(){
+			gdrive.makeRequest(
+				{'userPermission':
+					{'role' : 'writer'}
+				}
+			);
+		});
+		//all files - all
+		$('#allDriveFiles').on('click',function(){
 			gdrive.makeRequest();
 		});
 		

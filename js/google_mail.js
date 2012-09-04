@@ -33,6 +33,9 @@ gmail = {
 				gmail.getUnreadMails(data);
 			})
 			,1000);
+
+		gmail.BTNflagPopUp();
+		gmail.BTNcancel();
 	},
 
 	showUserLoggedIn: function(data){
@@ -52,23 +55,28 @@ gmail = {
 	updateBox: function(data){
 		var emails = data
 			,	box = document.getElementById('emails')
-			, 	count = 1;
+			, 	count = 1
+			,	header = document.createElement('tr');
 		box.innerHTML = '';
-
+		header.innerHTML = '<td class="fromColumn">From</td><td class="dateColumn">Date</td>';
+		box.appendChild(header);
 		if (emails){
-			for (var i = Object.keys(emails).length - 1; i >= 0; i--) {
-				var email = document.createElement('span')
+			emails.length = Object.keys(emails).length - 1;
+			for (var i = 0; i <= emails.length; i++) {
+				var email = document.createElement('tr')
 				,	subject = (emails[i].subject != null) ? emails[i].subject : '(no subject)';
-
 				modifiedDate = new Date(emails[i].date);
 				modifiedDate = 
 					modifiedDate.getMonth()+1 + '/' + modifiedDate.getDate() + '/' + modifiedDate.getFullYear()+' '+
 					modifiedDate.getHours() +':'+ modifiedDate.getMinutes() +':'+ modifiedDate.getSeconds() ;
 				email.innerHTML += 
-					'<div class="from">'+count++ +'- From: <a id="'+emails[i].id+'" email="'+emails[i].from+'" class="replyThis" target="_BLANK">' + emails[i].from + '</a></div>' +
-					'<div class="title">' + subject + '</div>' + 
-					'<div class="email_date">'+modifiedDate+'</div>' + 
-					'<div class="divisor"></div>';
+						'<td class="fromColumn">'+
+							'<div class="from">'+count++ +' <img src="images/email.png">'+'<a id="'+emails[i].id+'" email="'+emails[i].from+'" class="replyThis" target="_BLANK">' + emails[i].from + '</a></div>' +
+							'<div class="title">' + subject + '</div>' + 
+						'</td>'+
+						'<td class="dateColumn">'+
+							'<div class="email_date">'+modifiedDate+'</div>'+
+						'</td>';
 				email.setAttribute('id',emails[i].id);
 				box.appendChild(email);
 			};
@@ -76,10 +84,11 @@ gmail = {
 			modifiedDate = new Date(emails.modified);
 			modifiedDate = modifiedDate.getMonth()+1 + '/' + modifiedDate.getDate() + '/' + modifiedDate.getFullYear();
 			email.innerHTML += 
-					'<div class="from">'+count++ +'- From: <a id="'+emails.id+'" email="'+emails.from+'" class="replyThis" target="_BLANK">' + emails.from + '</a></div>' +
-					'<div class="title">' + emails.subject + '</div>' + 
-					'<div class="email_date">'+modifiedDate+'</div>' + 
-					'<div class="divisor"></div>';
+					'<tr>'+
+						'<div class="from">'+count++ +' <img src="images/email.png">'+'<a id="'+emails.id+'" email="'+emails.from+'" class="replyThis" target="_BLANK">' + emails.from + '</a></div>' +
+						'<div class="title">' + emails.subject + '</div>' + 
+						'<div class="email_date">'+modifiedDate+'</div>' + 
+					'</tr>';
 			email.setAttribute('id',1);
 			box.appendChild(email);
 		}else{
@@ -96,8 +105,11 @@ gmail = {
 
 	BTNreplyMessage: function(data){
 		$('.replyThis').on('click', function(){
-			var val = $(this).attr('email');
-			app.openWin(val);
+			var val = $(this).attr('email')
+			,	subject = $(this).closest('span').find('.title');
+			//app.openWin(val);
+
+			gmail.gmailPopUp(val,subject.text(),'');
 		});
 	},
 
@@ -106,7 +118,7 @@ gmail = {
 		box.innerHTML = '';
 		for (index in data){
 			var val = document.createElement('li');
-			val.innerHTML = '<li><a href="#" name="'+index+'" id="'+index.toString().replace('[','').replace(']','')+'" class="emailFolder">'+index+'</a></li>';
+			val.innerHTML = '<a href="#" name="'+index+'" id="'+index.toString().replace('[','').replace(']','')+'" class="emailFolder">'+index+'</a>';
 			box.appendChild(val);
 		}
 	},
@@ -131,5 +143,42 @@ gmail = {
 
 	sendForm: function(){
 
+	},
+
+	gmailPopUp: function(to,subject,message){
+		var myWindow = window.open('https://mail.google.com/mail/?view=cm&ui=2&tf=0&fs=1&to='+to+'&su='+subject+'&body='+message+'%0a%0aSent%20by%20K12%20Mail.','_blank');
+		myWindow.focus();
+	},
+
+	BTNflagPopUp: function(){
+		var form = $('#form3');
+		$('.flagPopUp').on('click',function(){
+			var 
+					to = form.find('#emailTO')
+				,	subject = form.find('#email_subject')
+				,	message = form.find('#emailMESSAGE');
+			gmail.gmailPopUp(to.val(),subject.val(),message.val());
+			to.val('');
+			subject.val('');
+			message.val('');
+			gmail.showFormToSend();
+		});
+	},
+
+	BTNcancel: function(){
+		/*
+		* cancel email
+		*/
+		var 	form = $('#form3')
+			,	to = form.find('#emailTO')
+			,	subject = form.find('#email_subject')
+			,	message = form.find('#emailMESSAGE');
+
+		$('#form3 #cancel').on('click',function(){
+			gmail.showFormToSend();
+			to.val('');
+			subject.val('');
+			message.val('');
+		});
 	}
 }

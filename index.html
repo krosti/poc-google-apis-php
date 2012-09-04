@@ -14,7 +14,8 @@
 	<div class="bar">
 		<ul>
 			<li><a href="#" id="LINKhome">Home</a></li>
-			<li><a href="#" id="LINKsendemail">Send Email</a></li>
+			<li>|</li>
+			<li><a href="#" id="LINKsendemail">Compose</a></li>
 			
 			<li style="float: right; font-size: 11px; margin-top: 3px; margin-right: 10px;">...</li>
 			<li style="float:right; font-weight:normal;">online</li>
@@ -41,14 +42,35 @@
 			<div id="results">Total Inbox <span id="total_emails"></span></div>
 			<div id="unread">Unread Emails <span id="unread_emails"></span></div>
 		</div>
-		<div id="emails"></div>
+		<table id="emails"></table>
 		<div id="formToSend">
-			<form>
-				<label>TO</label>
-				<input id="emailTO"/>
-				<label>Subject</label>
-				<input id="emailSUBJECT"/>
-				<textarea id="emailMESSAGE"></textarea>
+			<form id="form3" action="/" method="post">	
+		
+				<h3><span>Contact Us</span></h3>
+				<img class="flagPopUp" src="images/flag.png">
+			
+				<fieldset><legend>New Email</legend>
+					
+					<p>
+						<label for="email">To</label>
+						<input type="text" name="email" id="emailTO" size="30" value="">
+					</p>
+					<p>
+						<label for="web">Subject</label>
+						<input type="text" name="subject" id="email_subject" size="30">
+					</p>
+				</fieldset>
+				<fieldset class="last">																					
+					<p>
+						<label for="message">Message</label>
+						<textarea name="message" id="emailMESSAGE" cols="30" rows="10" placeholder="message here"></textarea>
+					</p>					
+								
+				</fieldset>					
+				
+				<p class="submit"><a type="submit">Send</a></p>			
+				<p class="cancel"><a id="cancel">Cancel</a></p>			
+							
 			</form>
 		</div>
 	    <div id="authInfo" style="display:none">
@@ -57,9 +79,12 @@
 	</div>
 	<!--container-->
 
-	<div class="block menuRight">
+	<div class="block menuLeft">
 		<span>Drive Folders</span>
-		[<span id="ownerDriveFiles"><img src="images/user.png" width="8"></span>/<span id="othersDriveFiles"><img src="images/users.png" width="12"></span>]
+		[	<span id="ownerDriveFiles"><img src="images/user.png" width="8"></span>
+			/<span id="othersDriveFiles"><img src="images/users.png" width="12"></span>
+			/<span id="allDriveFiles"><a>All</a></span>
+		]
 		<div id="driveResultsFolders"></div>
 		<br>
 		<span>Drive Files</span>
