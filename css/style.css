@@ -201,3 +201,36 @@ a:visited, a:hover{ color:#333; text-decoration: none; }
 	border-radius: 5px;
 	margin-top:10px;
 }
+
+
+/*
+* CALENDAR
+*/
+.calendar{
+	display:none;
+	margin-top: 60px;
+	margin-left:-168px;
+}
+
+
+/*
+* GROUPS
+*/
+.groups{
+	display: none;
+	margin-top: 45px;
+	width: 600px;
+}
+.groups .title{
+	background: #E81B71;
+	height:30px;
+	font-size: 16px;
+	font-weight: 100;
+	color: white;
+}
+.groups .title span{
+	margin-left: 15px;
+	font-weight: 100;
+	margin-top: 4px;
+	float: left;
+}

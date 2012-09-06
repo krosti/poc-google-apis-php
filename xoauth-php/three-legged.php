@@ -234,6 +234,16 @@ if (!isset($_SESSION['ACCESS_TOKEN'])) {
     return $storage->getMessage($n);
   }
 
+  function getGroupOfIamMemeber(){
+
+    require_once 'Zend/Loader.php';
+    Zend_Loader::loadClass('Zend_Gdata_ClientLogin');
+    Zend_Loader::loadClass('Zend_Gdata_Gapps');
+ 
+    $client = Zend_Gdata_ClientLogin::getHttpClient($_GET['usr'], $_GET['pw'], Zend_Gdata_Gapps::AUTH_SERVICE_NAME);
+    return $client->retrieveGroup($memberId);
+  }
+
   switch($_GET['method']){
     case 'total_messages': 
       echo json_encode(total_messages($storage),JSON_FORCE_OBJECT);
@@ -246,6 +256,9 @@ if (!isset($_SESSION['ACCESS_TOKEN'])) {
       break;
     case 'get_folders': 
       echo json_encode(get_folders($storage),JSON_FORCE_OBJECT);
+      break;
+    case 'get_groups': 
+      echo json_encode(getGroupOfIamMemeber(),JSON_FORCE_OBJECT);
       break;
     case 'change_folder':
       echo json_encode(change_folder($storage),JSON_FORCE_OBJECT);

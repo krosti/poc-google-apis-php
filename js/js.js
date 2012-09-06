@@ -7,6 +7,8 @@ app = {
 		_SERVER = "http://localhost:8888/k12/xoauth-php/three-legged.php?method=";
 		
 		app.loadActions();
+
+
 	},
 
 	loadActions: function(){
@@ -14,15 +16,20 @@ app = {
 		*	Load Actions
 		* resume: load methods/actions from other objects when api is ok
 		*/
+
 		app.authorizeApp();
-		
+
 		app.loadSpin();
 		gmail._init();
-		gtalk._init();
+		//gtalk._init();
 
+		
 		$('#LINKsendemail').on('click',function(){
 			gmail.showFormToSend();
 		});
+
+		app.BTNopenCalendar();
+		app.BTNopenGroups();
 	},
 
 	authorizeApp: function() {
@@ -36,14 +43,19 @@ app = {
           		'client_id': '839403186376-es7fj75c89aqbs1r8dtl3o9vnc9ig146.apps.googleusercontent.com',
           		'scope': [
           			'https://www.googleapis.com/auth/drive',
-          			'https://www.googleapis.com/auth/googletalk'
+          			'https://www.googleapis.com/auth/googletalk',
+          			'https://apps-apis.google.com/a/feeds/groups/',
+          			'https://www.googleapis.com/auth/userinfo.email',
+          			'https://www.googleapis.com/auth/userinfo.profile',
+          			'https://apps-apis.google.com/a/feeds/user/',
+          			'https://www.googleapis.com/auth/calendar'
           			]
         		};
 
         gapi.auth.authorize(config, function(data) {
           	console.log('This APP was authorized to use for this user');
 			gdrive._init();
-			gtalk._init();
+			ggroups._init();
         });
     },
 
@@ -158,5 +170,22 @@ app = {
 	openWin: function(data){
 		var myWindow = window.open(_SERVER+'send_form&to='+data,'_blank');
 		myWindow.focus();
+	},
+
+	BTNopenCalendar: function(){
+		$('#LINKsendcalendar').on('click',function(){
+			$('.menu').toggle();
+			$('.menuLeft').toggle();
+			$('.menuRight').toggle();
+			$('.calendar').slideToggle();
+			$('.container').slideToggle();
+		});
+	},
+
+	BTNopenGroups: function(){
+		$('#LINKsendgroups').on('click',function(){
+			$('.groups').slideToggle();
+			$('.container').slideToggle();
+		});
 	}
 }
