@@ -1,0 +1,6 @@
+guser = {
+	
+	_init:function(){
+	
+	}
+}

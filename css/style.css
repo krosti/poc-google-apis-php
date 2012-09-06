@@ -88,7 +88,6 @@ a:visited, a:hover{ color:#333; text-decoration: none; }
 }
 #formToSend{
 	display: none;
-	margin-top:20px;
 }
 #formToSend input,#formToSend textarea{
 	width:400px;
@@ -118,6 +117,9 @@ a:visited, a:hover{ color:#333; text-decoration: none; }
 	color: white;
 	font-size: 12px;
 	padding: 5px;
+	max-height: 287px;
+	min-height: 200px;
+	overflow: hidden;
 }
 .menu a:link, .menu a:visited{ color:#FFFFFF; text-decoration: none; }
 .menu a:hover{ color:#DDDDDD; text-decoration: underline; }
@@ -201,6 +203,19 @@ a:visited, a:hover{ color:#333; text-decoration: none; }
 	border-radius: 5px;
 	margin-top:10px;
 }
+#form3 .title{
+	background: #E81B71;
+	height:30px;
+	font-size: 16px;
+	font-weight: 100;
+	color: white;
+}
+#form3 .title span{
+	margin-left: 15px;
+	font-weight: 100;
+	margin-top: 4px;
+	float: left;
+}
 
 
 /*
@@ -210,6 +225,19 @@ a:visited, a:hover{ color:#333; text-decoration: none; }
 	display:none;
 	margin-top: 60px;
 	margin-left:-168px;
+}
+.calendar .title{
+	background: #E81B71;
+	height:30px;
+	font-size: 16px;
+	font-weight: 100;
+	color: white;
+}
+.calendar .title span{
+	margin-left: 15px;
+	font-weight: 100;
+	margin-top: 4px;
+	float: left;
 }
 
 

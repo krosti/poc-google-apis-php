@@ -13,6 +13,22 @@ gmail = {
 	_init: function(){
 		gmail.loadActions();
 		(document.URL.search('sendForm') != -1 && gmail.showFormToSend() && console.log('asd'))
+		/*$.ajax({
+		  dataType: "json",
+		  //data: 'access_token='+gapi.auth.getToken().access_token,
+		  beforeSend: function(xhr){
+		  },
+		  crossDomain: true,
+		  jsonpCallback: app.callB,
+		  url: 'https://apps-apis.google.com/a/feeds/emailsettings/2.0/globant.com/fernando.cea/label',
+		  success: function(data, status, xhr) {
+		  	callback(data);
+		  },
+		  error:function(){
+		  	console.log('Server is Down :(');
+		  }
+		});*/
+
 	},
 
 	loadActions: function(){

@@ -20,7 +20,7 @@ app = {
 		app.authorizeApp();
 
 		app.loadSpin();
-		gmail._init();
+		//gmail._init();
 		//gtalk._init();
 
 		
@@ -48,14 +48,17 @@ app = {
           			'https://www.googleapis.com/auth/userinfo.email',
           			'https://www.googleapis.com/auth/userinfo.profile',
           			'https://apps-apis.google.com/a/feeds/user/',
-          			'https://www.googleapis.com/auth/calendar'
+          			'https://www.googleapis.com/auth/calendar',
+          			'https://apps-apis.google.com/a/feeds/emailsettings/'
           			]
         		};
 
         gapi.auth.authorize(config, function(data) {
           	console.log('This APP was authorized to use for this user');
 			gdrive._init();
+			gmail._init();
 			ggroups._init();
+			gcalendar._init();
         });
     },
 
