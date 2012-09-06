@@ -4,7 +4,7 @@ app = {
 		/*
 		* pre-load methods
 		*/
-		_SERVER = "http://localhost:8888/k12/xoauth-php/three-legged.php?method=";
+		_SERVER = "http://localhost/k12/xoauth-php/three-legged.php?method=";
 		
 		app.loadActions();
 	},
@@ -22,6 +22,8 @@ app = {
 		$('#LINKsendemail').on('click',function(){
 			gmail.showFormToSend();
 		});
+
+		app.BTNopenCalendar();
 	},
 
 	authorizeApp: function() {
@@ -153,5 +155,16 @@ app = {
 	openWin: function(data){
 		var myWindow = window.open(_SERVER+'send_form&to='+data,'_blank');
 		myWindow.focus();
+	},
+
+	BTNopenCalendar: function(){
+		$('#LINKcalendar').on('click',function(){
+			$('.container').toggleClass('animationContainer');
+			$('.menu').toggle();
+			$('.menuLeft').toggle();
+			$('#counters').slideToggle();
+			$('#emails').slideToggle();
+			$('#googleCalendar').slideToggle();
+		});
 	}
 }
