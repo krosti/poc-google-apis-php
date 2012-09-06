@@ -32,8 +32,7 @@ gdrive = {
 
 		if(!data.message){
 			var n = 8; //number of results
-			
-			items.length = (items != 'undefined' && items.length != items.length > 0) ? items.length : 1;
+			items.length = (items != 'undefined' && items.length && items.length > 0) ? items.length : 1;
 
 			for (var i = 0; i <= items.length - 1 && n>=0; i++) {
 				if(!child){

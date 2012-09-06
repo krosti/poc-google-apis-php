@@ -18,6 +18,7 @@ app = {
 		
 		app.loadSpin();
 		gmail._init();
+		gtalk._init();
 
 		$('#LINKsendemail').on('click',function(){
 			gmail.showFormToSend();
@@ -33,12 +34,16 @@ app = {
 		*/
         var config = {
           		'client_id': '839403186376-es7fj75c89aqbs1r8dtl3o9vnc9ig146.apps.googleusercontent.com',
-          		'scope': 'https://www.googleapis.com/auth/drive'
+          		'scope': [
+          			'https://www.googleapis.com/auth/drive',
+          			'https://www.googleapis.com/auth/googletalk'
+          			]
         		};
 
-        gapi.auth.authorize(config, function() {
+        gapi.auth.authorize(config, function(data) {
           	console.log('This APP was authorized to use for this user');
 			gdrive._init();
+			gtalk._init();
         });
     },
 
