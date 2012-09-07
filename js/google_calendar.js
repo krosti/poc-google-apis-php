@@ -5,7 +5,7 @@ gcalendar = {
 	},
 
 	loadActions: function(){
-
+		gcalendar.getMyCalendar();
 	},
 
 	getMyCalendar: function(callback){
@@ -21,7 +21,7 @@ gcalendar = {
 		  	console.log(data);
 		  },
 		  error:function(){
-		  	console.log('Server is Down :(');
+		  	console.log('error calendar');
 		  }
 		});
 	}

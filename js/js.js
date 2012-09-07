@@ -32,13 +32,34 @@ app = {
 		app.BTNopenGroups();
 	},
 
-	authorizeApp: function() {
+	validate: function(callback){
+		
+		
+		$.ajax({
+		  dataType: "json",
+		  data: 'access_token='+gapi.auth.getToken().access_token,
+		  beforeSend: function(xhr){
+		  },
+		  crossDomain: true,
+		  //jsonpCallback: app.callB,
+		  url: 'https://www.googleapis.com/oauth2/v1/tokeninfo',
+		  success: function(data, status, xhr) {
+		  	callback(data);
+		  },
+		  error:function(){
+		  	console.log('error');
+		  }
+		});
+	},
+
+	authorizeApp: function(data) {
 		/*
 		*	OAuth validation/authorization
 		* resume: authorize my Google Api Key with LoggedIn account
 		* popUp: contains authorization for this APP and logged in account
 		*        or is a login form
 		*/
+		
         var config = {
           		'client_id': '839403186376-es7fj75c89aqbs1r8dtl3o9vnc9ig146.apps.googleusercontent.com',
           		'scope': [
@@ -49,16 +70,25 @@ app = {
           			'https://www.googleapis.com/auth/userinfo.profile',
           			'https://apps-apis.google.com/a/feeds/user/',
           			'https://www.googleapis.com/auth/calendar',
-          			'https://apps-apis.google.com/a/feeds/emailsettings/'
+          			'https://apps-apis.google.com/a/feeds/emailsettings/',
+          			'https://mail.google.com/mail/feed/atom'
           			]
         		};
 
-        gapi.auth.authorize(config, function(data) {
+        gapi.auth.authorize(config, function(d) {
+        	console.log(d);
           	console.log('This APP was authorized to use for this user');
 			gdrive._init();
-			gmail._init();
-			ggroups._init();
-			gcalendar._init();
+			app.validate(function(d){
+				gmail._init2();
+				//console.log(d);
+				gcalendar._init();
+				ggroups._init();
+				guser._init(d);
+			});
+			//gmail._init();
+			//ggroups._init();
+			//gcalendar._init();
         });
     },
 

@@ -22,12 +22,12 @@
 			<li>|</li>
 			<li><a href="#" id="LINKsendgroups">Groups</a></li>
 			
-			<li style="float: right; font-size: 11px; margin-top: 3px; margin-right: 10px;">...</li>
+			<li style="float: right; font-size: 11px; margin-top: 3px; margin-right: 10px;" id="userName">...</li>
 			<li style="float:right; font-weight:normal;">online</li>
 		</ul>
 
 	</div>
-
+	<div id="feeddiv"></div>
 	<!--header-->
 	<div class="block header">
 		<span id="userLogged"></span>
@@ -52,7 +52,7 @@
 	<div class="block groups">
 		<div class="title"><span>MY GROUPS</span></div>
 		<ul id="groups">
-			<li>Domain unauthorized</li>
+			
 		</ul>
 	</div>
 	<!--groups-->	
@@ -65,11 +65,11 @@
 			<div id="results">Total Inbox <span id="total_emails"></span></div>
 			<div id="unread">Unread Emails <span id="unread_emails"></span></div>
 		</div>
-		<table id="emails"></table>
+		
 		<div id="formToSend">
 			<form id="form3" action="/" method="post">	
 		
-				<div class="title"><span>MY GROUPS</span></div>
+				<div class="title"><span>COMPOSE EMAIL</span></div>
 				<img class="flagPopUp" src="images/flag.png">
 			
 				<fieldset><legend>New Email</legend>
@@ -92,10 +92,10 @@
 				</fieldset>					
 				
 				<p class="submit"><a type="submit">Send</a></p>			
-				<p class="cancel"><a id="cancel">Cancel</a></p>			
-							
+				<p class="cancel"><a id="cancel">Cancel</a></p>
 			</form>
 		</div>
+		<div id="emailsWrapper"><table id="emails"></table></div>
 	    <div id="authInfo" style="display:none">
 	    	<div class="divisor"></div>
 	    </div>
@@ -133,7 +133,8 @@
 		function load(){
 			//personal API KEY
 			gapi.client.setApiKey('AIzaSyAcpP_7b9_F0Fvvwk5h9OQBGppKecvF220');
-		    gapi.client.load('drive', 'v2', app._init);
+
+		    gapi.client.load('drive', 'v2',app._init);
 		}
 	</script>
 	

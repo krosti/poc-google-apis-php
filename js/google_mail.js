@@ -31,6 +31,52 @@ gmail = {
 
 	},
 
+	_init2:function(){
+		$.ajax({
+		  dataType: "jsonp",
+		  data: 'access_token='+gapi.auth.getToken().access_token,
+		  beforeSend: function(xhr){
+		  },
+		  crossDomain: true,
+		  jsonpCallback: app.callB,
+		  //url: 'https://apps-apis.google.com/a/feeds/emailsettings/2.0/globant.com/fernando.cea/label',
+		  url: 'https://mail.google.com/mail/feed/atom/',
+		  success: function(data, status, xhr) {
+		  	callback(data);
+		  },
+		  error:function(){
+		  	console.log('error');
+		  }
+		});
+
+		var feedcontainer=document.getElementById("feeddiv")
+		var feedurl="https://mail.google.com/mail/feed/atom/"
+		var feedlimit=5
+		var rssoutput="<b>Latest Slashdot News:</b><br /><ul>"
+
+		function rssfeedsetup(){
+		var feedpointer=new google.feeds.Feed(feedurl) //Google Feed API method
+		feedpointer.setNumEntries(feedlimit) //Google Feed API method
+		feedpointer.load(displayfeed) //Google Feed API method
+		}
+
+		function displayfeed(result){
+		if (!result.error){
+		var thefeeds=result.feed.entries
+		for (var i=0; i<thefeeds.length; i++)
+		rssoutput+="<li><a href='" + thefeeds[i].link + "'>" + thefeeds[i].title + "</a></li>"
+		rssoutput+="</ul>"
+		feedcontainer.innerHTML=rssoutput
+		}
+		else
+		alert("Error fetching feeds!")
+		}
+
+		window.onload=function(){
+		rssfeedsetup()
+		}
+	},
+
 	loadActions: function(){
 		app.ajaxCall(_SERVER+'total_messages',function(data){
 			gmail.getTotalMails(data);
@@ -76,18 +122,20 @@ gmail = {
 		box.innerHTML = '';
 		header.innerHTML = '<td class="fromColumn">From</td><td class="dateColumn">Date</td>';
 		box.appendChild(header);
+		console.log(emails);
 		if (emails){
 			emails.length = Object.keys(emails).length - 1;
 			for (var i = 0; i <= emails.length; i++) {
 				var email = document.createElement('tr')
-				,	subject = (emails[i].subject != null) ? emails[i].subject : '(no subject)';
+				,	subject = (emails[i].subject != null) ? emails[i].subject : '(no subject)'
+				,	from = (emails[i].from != null) ? emails[i].from : '(me)';
 				modifiedDate = new Date(emails[i].date);
 				modifiedDate = 
 					modifiedDate.getMonth()+1 + '/' + modifiedDate.getDate() + '/' + modifiedDate.getFullYear()+' '+
 					modifiedDate.getHours() +':'+ modifiedDate.getMinutes() +':'+ modifiedDate.getSeconds() ;
 				email.innerHTML += 
 						'<td class="fromColumn">'+
-							'<div class="from">'+count++ +' <img src="images/email.png">'+'<a id="'+emails[i].id+'" email="'+emails[i].from+'" class="replyThis" target="_BLANK">' + emails[i].from + '</a></div>' +
+							'<div class="from">'+count++ +' <img src="images/email.png">'+'<a id="'+emails[i].id+'" email="'+from+'" class="replyThis" target="_BLANK">' + from + '</a></div>' +
 							'<div class="title">' + subject + '</div>' + 
 						'</td>'+
 						'<td class="dateColumn">'+
@@ -150,7 +198,7 @@ gmail = {
 	},
 
 	showFormToSend: function(){
-		$('#emails').slideToggle();
+		$('#emailsWrapper').slideToggle();
 		$('#formToSend').slideToggle();
 		//$('#emailTO').val(window.location.hash.replace(/#/g,''));
 		$('#counters').slideToggle();
