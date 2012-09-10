@@ -82,13 +82,16 @@ a:visited, a:hover{ color:#333; text-decoration: none; }
 #emails .from{
 	float: left;
 	margin-right: 10px;
+	width: 180px;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
 }
 #emails .email_date{
 	float:right;
 }
 #formToSend{
 	display: none;
-	margin-top:20px;
 }
 #formToSend input,#formToSend textarea{
 	width:400px;
@@ -118,6 +121,9 @@ a:visited, a:hover{ color:#333; text-decoration: none; }
 	color: white;
 	font-size: 12px;
 	padding: 5px;
+	max-height: 287px;
+	min-height: 200px;
+	overflow: hidden;
 }
 .menu a:link, .menu a:visited{ color:#FFFFFF; text-decoration: none; }
 .menu a:hover{ color:#DDDDDD; text-decoration: underline; }
@@ -140,8 +146,12 @@ a:visited, a:hover{ color:#333; text-decoration: none; }
 }
 .menuRight{
 	position: absolute;
-	margin-left: 647px;
-	margin-top: 435px;
+	margin-left: 610px;
+	margin-top: 55px;
+	width: 160px;
+	height: 300px;
+	background: #F1F1F1;
+	text-align: center;
 }
 
 /*
@@ -197,14 +207,64 @@ a:visited, a:hover{ color:#333; text-decoration: none; }
 	border-radius: 5px;
 	margin-top:10px;
 }
+#form3 .title{
+	background: #E81B71;
+	height:30px;
+	font-size: 16px;
+	font-weight: 100;
+	color: white;
+}
+#form3 .title span{
+	margin-left: 15px;
+	font-weight: 100;
+	margin-top: 4px;
+	float: left;
+}
 
 
 /*
 * CALENDAR
 */
-#googleCalendar{
-	display: none;
+
+.calendar{
+	display:none;
+	margin-top: 60px;
+	margin-left:-168px;
 }
-.animationContainer{
-	margin-left:-155px;
+.calendar .title{
+	background: #E81B71;
+	height:30px;
+	font-size: 16px;
+	font-weight: 100;
+	color: white;
+	margin-bottom: 10px;
+}
+.calendar .title span{
+	margin-left: 15px;
+	font-weight: 100;
+	margin-top: 4px;
+	float: left;
+}
+
+
+/*
+* GROUPS
+*/
+.groups{
+	display: none;
+	margin-top: 45px;
+	width: 600px;
+}
+.groups .title{
+	background: #E81B71;
+	height:30px;
+	font-size: 16px;
+	font-weight: 100;
+	color: white;
+}
+.groups .title span{
+	margin-left: 15px;
+	font-weight: 100;
+	margin-top: 4px;
+	float: left;
 }

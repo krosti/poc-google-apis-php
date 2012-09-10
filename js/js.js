@@ -7,6 +7,8 @@ app = {
 		_SERVER = "http://localhost/k12/xoauth-php/three-legged.php?method=";
 		
 		app.loadActions();
+
+
 	},
 
 	loadActions: function(){
@@ -14,33 +16,79 @@ app = {
 		*	Load Actions
 		* resume: load methods/actions from other objects when api is ok
 		*/
-		app.authorizeApp();
-		
-		app.loadSpin();
-		gmail._init();
 
+		app.authorizeApp();
+
+		app.loadSpin();
+		//gmail._init();
+		//gtalk._init();
+
+		
 		$('#LINKsendemail').on('click',function(){
 			gmail.showFormToSend();
 		});
 
 		app.BTNopenCalendar();
+		app.BTNopenGroups();
 	},
 
-	authorizeApp: function() {
+	validate: function(callback){
+		
+		
+		$.ajax({
+		  dataType: "json",
+		  data: 'access_token='+gapi.auth.getToken().access_token,
+		  beforeSend: function(xhr){
+		  },
+		  crossDomain: true,
+		  //jsonpCallback: app.callB,
+		  url: 'https://www.googleapis.com/oauth2/v1/tokeninfo',
+		  success: function(data, status, xhr) {
+		  	callback(data);
+		  },
+		  error:function(){
+		  	console.log('error');
+		  }
+		});
+	},
+
+	authorizeApp: function(data) {
 		/*
 		*	OAuth validation/authorization
 		* resume: authorize my Google Api Key with LoggedIn account
 		* popUp: contains authorization for this APP and logged in account
 		*        or is a login form
 		*/
+		
         var config = {
           		'client_id': '839403186376-es7fj75c89aqbs1r8dtl3o9vnc9ig146.apps.googleusercontent.com',
-          		'scope': 'https://www.googleapis.com/auth/drive'
+          		'scope': [
+          			'https://www.googleapis.com/auth/drive',
+          			'https://www.googleapis.com/auth/googletalk',
+          			'https://apps-apis.google.com/a/feeds/groups/',
+          			'https://www.googleapis.com/auth/userinfo.email',
+          			'https://www.googleapis.com/auth/userinfo.profile',
+          			'https://apps-apis.google.com/a/feeds/user/',
+          			'https://www.googleapis.com/auth/calendar',
+          			'https://apps-apis.google.com/a/feeds/emailsettings/',
+          			'https://mail.google.com/mail/feed/atom'
+          			]
         		};
 
-        gapi.auth.authorize(config, function() {
+        gapi.auth.authorize(config, function(d) {
+        	console.log(d);
           	console.log('This APP was authorized to use for this user');
 			gdrive._init();
+			app.validate(function(d){
+				gmail._init2();
+				//console.log(d);
+				gcalendar._init();
+				ggroups._init();
+				guser._init(d);
+			});
+			//gmail._init();
+			//ggroups._init();
+			//gcalendar._init();
         });
     },
 
@@ -158,13 +206,20 @@ app = {
 	},
 
 	BTNopenCalendar: function(){
-		$('#LINKcalendar').on('click',function(){
-			$('.container').toggleClass('animationContainer');
+
+		$('#LINKsendcalendar').on('click',function(){
 			$('.menu').toggle();
 			$('.menuLeft').toggle();
-			$('#counters').slideToggle();
-			$('#emails').slideToggle();
-			$('#googleCalendar').slideToggle();
+			$('.menuRight').toggle();
+			$('.calendar').slideToggle();
+			$('.container').slideToggle();
+		});
+	},
+
+	BTNopenGroups: function(){
+		$('#LINKsendgroups').on('click',function(){
+			$('.groups').slideToggle();
+			$('.container').slideToggle();
 		});
 	}
 }

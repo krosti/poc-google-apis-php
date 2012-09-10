@@ -8,7 +8,8 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" >
 	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,300' rel='stylesheet' type='text/css'>
 	<link href="css/style.css" rel="stylesheet" type="text/css" />
-	<script src="js/js.js" type="text/javascript"></script>
+	<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+
 </head>
 <body>
 	<div class="bar">
@@ -17,14 +18,16 @@
 			<li>|</li>
 			<li><a href="#" id="LINKsendemail">Compose</a></li>
 			<li>|</li>
-			<li><a href="#" id="LINKcalendar">Calendar</a></li>
+			<li><a href="#" id="LINKsendcalendar">Calendar</a></li>
+			<li>|</li>
+			<li><a href="#" id="LINKsendgroups">Groups</a></li>
 			
-			<li style="float: right; font-size: 11px; margin-top: 3px; margin-right: 10px;">...</li>
+			<li style="float: right; font-size: 11px; margin-top: 3px; margin-right: 10px;" id="userName">...</li>
 			<li style="float:right; font-weight:normal;">online</li>
 		</ul>
 
 	</div>
-
+	<div id="feeddiv"></div>
 	<!--header-->
 	<div class="block header">
 		<span id="userLogged"></span>
@@ -38,19 +41,35 @@
 	</div>
 	<!--menu-->
 
+	<!--calendar-->
+	<div class="block calendar">
+		<div class="title"><span>MY CALENDARS</span></div>
+		<iframe src="http://www.google.com/calendar/embed?src=fernando.cea%40globant.com&ctz=America/Argentina/Buenos_Aires" style="border: 0" width="960" height="600" frameborder="0" scrolling="no"></iframe>
+	</div>
+	<!--calendar-->	
+
+	<!--groups-->
+	<div class="block groups">
+		<div class="title"><span>MY GROUPS</span></div>
+		<ul id="groups">
+			
+		</ul>
+	</div>
+	<!--groups-->	
+
+	<!--///////////////////////////////////////////////////////////////////////-->	
+
 	<!--container-->
 	<div class="block container">
 		<div id="counters">
 			<div id="results">Total Inbox <span id="total_emails"></span></div>
 			<div id="unread">Unread Emails <span id="unread_emails"></span></div>
 		</div>
-		<table id="emails"></table>
-		
-		<!--new email-->
+
 		<div id="formToSend">
 			<form id="form3" action="/" method="post">	
 		
-				<h3><span>Contact Us</span></h3>
+				<div class="title"><span>COMPOSE EMAIL</span></div>
 				<img class="flagPopUp" src="images/flag.png">
 			
 				<fieldset><legend>New Email</legend>
@@ -73,19 +92,10 @@
 				</fieldset>					
 				
 				<p class="submit"><a type="submit">Send</a></p>			
-				<p class="cancel"><a id="cancel">Cancel</a></p>			
-							
+				<p class="cancel"><a id="cancel">Cancel</a></p>
 			</form>
 		</div>
-		<!--new email-->
-
-		<!--calendar-->
-			<div id="googleCalendar">
-				<iframe src="http://www.google.com/calendar/embed?src=fernando.cea%40globant.com&ctz=America/Argentina/Buenos_Aires" style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
-			</div>
-		<!--calendar-->
-
-
+		<div id="emailsWrapper"><table id="emails"></table></div>
 	    <div id="authInfo" style="display:none">
 	    	<div class="divisor"></div>
 	    </div>
@@ -104,22 +114,45 @@
 		<div id="driveResultsFiles"></div>
 	</div>
 
-	<div id="spin"></div>
+	<div class="block menuRight">
+		<span>Chat</span>
+		<div id="chatStatus"></div>
+		<a id="loginBTN" style="display:none;">Login</a>
 
+		<img id="loadingChat" src="images/loading.gif">
+		<div id="log"></div>
+		<div id="contacts"></div>
+	</div>
+
+	<div id="spin"></div>
+	
 	<script type="text/javascript">
+    	google.load("feeds", "1");
+    	google.load("gdata", "1");
+
 		function load(){
 			//personal API KEY
 			gapi.client.setApiKey('AIzaSyAcpP_7b9_F0Fvvwk5h9OQBGppKecvF220');
-		    gapi.client.load('drive', 'v2', app._init);
+
+		    gapi.client.load('drive', 'v2',app._init);
 		}
 	</script>
+	
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
     <script src="https://apis.google.com/js/client.js?onload=load"></script>
+    
+
+    
+    <!--script src="js/strophe.js"></script-->
     <script src="js/spin.js"></script>
 
     <script src="js/js.js"></script>
     <script src="js/google_mail.js"></script>
     <script src="js/google_drive.js"></script>
+    <script src="js/google_talk.js"></script>
+    <script src="js/google_groups.js"></script>
+    <script src="js/google_calendar.js"></script>
+    <script src="js/google_user.js"></script>
 
 </body>
 </html>
