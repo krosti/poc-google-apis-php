@@ -235,6 +235,9 @@ gmail = {
 				console.log(data);
 				document.getElementById('spin').style.display = 'none';
 				app.showMessageStatus(data);
+				to.val('');
+				subject.val('');
+				message.val('');
 			});
 		});
 	}

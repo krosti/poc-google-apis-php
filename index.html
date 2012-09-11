@@ -30,9 +30,11 @@
 			<li><a href="#" id="LINKsendcalendar">Calendar</a></li>
 			<li>|</li>
 			<li><a href="#" id="LINKsendgroups">Groups</a></li>
+			<li>|</li>
+			<li><a href="#" id="LINKshareFiles">Files</a></li>
 			
-			<li style="float: right; font-size: 11px; margin-top: 3px; margin-right: 10px;" id="userName">...</li>
-			<li style="float:right; font-weight:normal;">online</li>
+			<li style="float: right; font-size: 11px; margin-top: 3px; margin-right: 10px;" id="userName"></li>
+			<!--li style="float:right; font-weight:normal;">online</li-->
 		</ul>
 	</div>
 	<div id="feeddiv"></div>
@@ -110,16 +112,8 @@
 	</div>
 	<!--container-->
 
-	<div class="block menuLeft">
-		<span>Drive Folders</span>
-		[	<span id="ownerDriveFiles"><img src="images/user.png" width="8"></span>
-			/<span id="othersDriveFiles"><img src="images/users.png" width="12"></span>
-			/<span id="allDriveFiles"><a>All</a></span>
-		]
-		<div id="driveResultsFolders"></div>
-		<br>
-		<span>Drive Files</span>
-		<div id="driveResultsFiles"></div>
+	<div class="block menuLeft" style="display:none">
+		
 	</div>
 
 	<div class="block menuRight">
@@ -132,6 +126,28 @@
 		<div id="contacts"></div>
 	</div>
 
+	<div class="block share" style="display:none">
+		<div class="left">
+			<div class="title"><span>MY FILES</span></div>
+			<span>Drive Folders</span>
+			[	<span id="ownerDriveFiles"><img src="images/user.png" width="8"></span>
+				/<span id="othersDriveFiles"><img src="images/users.png" width="12"></span>
+				/<span id="allDriveFiles"><a>All</a></span>
+			]
+			<div id="driveResultsFolders"></div>
+			<br>
+			<span>Drive Files</span>
+			<div id="driveResultsFiles"></div>
+
+		</div>
+		
+		<div class="right">
+			<div class="title"><span>TEACHER DROPBOX</span></div>
+			<div id="teacherFolder"></div>
+		</div>
+		
+	</div>	
+
 	<div id="spin"></div>
 	
 	<script type="text/javascript">
@@ -141,12 +157,12 @@
 		function load(){
 			//personal API KEY
 			gapi.client.setApiKey('AIzaSyAcpP_7b9_F0Fvvwk5h9OQBGppKecvF220');
-
 		    gapi.client.load('drive', 'v2',app._init);
 		}
 	</script>
 
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.23/jquery-ui.min.js"></script>
     <script src="https://apis.google.com/js/client.js?onload=load"></script>
     <script type="text/javascript" src="js/jquery.xmpp.js"></script>
 
@@ -162,6 +178,6 @@
     <script src="js/google_groups.js"></script>
     <script src="js/google_calendar.js"></script>
     <script src="js/google_user.js"></script>
-
+    
 </body>
 </html>

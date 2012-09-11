@@ -30,8 +30,11 @@ display: none;
 height: 20px;
 z-index: 99;
 margin-left: 150px;
-font-size: 14px;
-text-align: center; }
+font-size: 11px;
+text-align: center; 
+font-weight: 100;
+}
+
 
 /*
 * Header Code
@@ -169,8 +172,31 @@ text-align: center; }
 /*
 * DRIVE
 */
+.share{
+	margin-top: 45px;
+	margin-left: -120px;
+	width: 960px;
+}
+.share .left, .share .right{
+	float:left;
+	width:479px;
+	margin-left:1px;
+}
+.share .title{
+	background: #E81B71;
+	height:30px;
+	font-size: 16px;
+	font-weight: 100;
+	color: white;
+}
+.share .title span{
+	margin-left: 15px;
+	font-weight: 100;
+	margin-top: 4px;
+	float: left;
+}
 #driveResultsFiles, #driveResultsFolders{
-	width: 150px;
+	width: 960px;
 	overflow: hidden;
 	min-height: 120px;
 }

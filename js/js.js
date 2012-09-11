@@ -34,17 +34,8 @@ app = {
 
 		app.BTNopenCalendar();
 		app.BTNopenGroups();
+		app.BTNopenShareFiles();
 
-		String.prototype.escapeSpecialChars = function() {
-		    return this.replace(/\\n/g, "\\n")
-		               .replace(/\\'/g, "\\'")
-		               .replace(/\\"/g, '\\"')
-		               .replace(/\\&/g, "\\&")
-		               .replace(/\\r/g, "\\r")
-		               .replace(/\\t/g, "\\t")
-		               .replace(/\\b/g, "\\b")
-		               .replace(/\\f/g, "\\f");
-		};
 	},
 
 	validate: function(callback){
@@ -251,7 +242,16 @@ app = {
 		/**
 		 * public Method show any message to error-handler box
 		*/
-
 		$('#statusMSG').empty().append(message).fadeIn().delay(2000).fadeOut('slow');
+	},
+
+	BTNopenShareFiles: function(){
+		$('#LINKshareFiles').on('click',function(){
+			$('.share').slideToggle();
+			$('.menu').toggle();
+			$('.menuRight').toggle();
+			$('.menuLeft').toggle();
+			$('.container').slideToggle();
+		});
 	}
 }

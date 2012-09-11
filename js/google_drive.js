@@ -3,10 +3,16 @@ gdrive = {
 	_init: function(){
 		gdrive.makeRequest(null);
 		gdrive.loadActions();
+		gdrive._initLoadShareOptions();
 	},
 
 	loadActions: function(){
 		gdrive.BTNviewOptionsFilters();
+	},
+
+	_initLoadShareOptions: function(){
+		//load File Sharing Options
+		gapi.load('drive-share', gdrive.bindShareFiles);
 	},
 
 	makeRequest: function(conditions) {
@@ -173,6 +179,15 @@ gdrive = {
 		};
 		result.items = aResult;
 		return result;
+	},
+
+	bindShareFiles: function(){
+		$('.sendFile').draggable({ 
+			revert: true,
+			stop: function() {
+				app.showMessageStatus($(this).text()+' was moved to the teacher X folder');
+			} 
+		});
 	}
 	
 }
