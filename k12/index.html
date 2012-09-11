@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>K12 - google api's</title>
+	
+	<!-- This header mimics Internet Explorer 7 and uses 
+	     <!DOCTYPE> to determine how to display the webpage -->
+	<!--meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" -->
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,300' rel='stylesheet' type='text/css'>
+	<link href="css/style.css" rel="stylesheet" type="text/css" />
+	<!--script type="text/javascript" src="https://www.google.com/jsapi"></script-->
+	<script type="text/javascript" src="https://apis.google.com/js/api.js"></script>
+	
+
+</head>
+<body>
+	<div id="statusMSG"></div>
+
+	<div class="bar">
+		<ul>
+			<li><a href="#" id="LINKhome">Home</a></li>
+			<li>|</li>
+			<li><a href="#" id="LINKsendemail">Compose</a></li>
+			<li>|</li>
+			<li><a href="#" id="LINKsendcalendar">Calendar</a></li>
+			<li>|</li>
+			<li><a href="#" id="LINKsendgroups">Groups</a></li>
+			
+			<li style="float: right; font-size: 11px; margin-top: 3px; margin-right: 10px;" id="userName">...</li>
+			<li style="float:right; font-weight:normal;">online</li>
+		</ul>
+	</div>
+	<div id="feeddiv"></div>
+	<!--header-->
+	<div class="block header">
+		<span id="userLogged"></span>
+		<span id="error"></span>
+	</div>
+	<!--header-->
+
+	<!--menu-->
+	<div class="block menu">
+		<ul id="foldersBox"></ul>
+	</div>
+	<!--menu-->
+
+	<!--calendar-->
+	<div class="block calendar">
+		<div class="title"><span>MY CALENDARS</span></div>
+		
+	</div>
+	<!--calendar-->	
+
+	<!--groups-->
+	<div class="block groups">
+		<div class="title"><span>MY GROUPS</span></div>
+		<ul id="groups">
+			
+		</ul>
+	</div>
+	<!--groups-->	
+
+	<!--///////////////////////////////////////////////////////////////////////-->	
+
+	<!--container-->
+	<div class="block container">
+		<div id="counters">
+			<div id="results">Total Inbox <span id="total_emails"></span></div>
+			<div id="unread">Unread Emails <span id="unread_emails"></span></div>
+		</div>
+
+		<div id="formToSend">
+			<form id="form3" action="/" method="post">	
+		
+				<div class="title"><span>COMPOSE EMAIL</span></div>
+				<img class="flagPopUp" src="images/flag.png">
+			
+				<fieldset><legend>New Email</legend>
+					
+					<p>
+						<label for="email">To</label>
+						<input type="text" name="email" id="emailTO" size="30" value="">
+					</p>
+					<p>
+						<label for="web">Subject</label>
+						<input type="text" name="subject" id="email_subject" size="30">
+					</p>
+				</fieldset>
+				<fieldset class="last">																					
+					<p>
+						<label for="message">Message</label>
+						<textarea name="message" id="emailMESSAGE" cols="30" rows="10" placeholder="message here"></textarea>
+					</p>					
+								
+				</fieldset>					
+				
+				<p class="submit"><a type="submit">Send</a></p>			
+				<p class="cancel"><a id="cancel">Cancel</a></p>
+			</form>
+		</div>
+		<div id="emailsWrapper"><table id="emails"></table></div>
+	    <div id="authInfo" style="display:none">
+	    	<div class="divisor"></div>
+	    </div>
+	</div>
+	<!--container-->
+
+	<div class="block menuLeft">
+		<span>Drive Folders</span>
+		[	<span id="ownerDriveFiles"><img src="images/user.png" width="8"></span>
+			/<span id="othersDriveFiles"><img src="images/users.png" width="12"></span>
+			/<span id="allDriveFiles"><a>All</a></span>
+		]
+		<div id="driveResultsFolders"></div>
+		<br>
+		<span>Drive Files</span>
+		<div id="driveResultsFiles"></div>
+	</div>
+
+	<div class="block menuRight">
+		<span>Chat</span>
+		<div id="chatStatus"></div>
+		<a id="loginBTN" style="display:block;">Login</a>
+
+		<img id="loadingChat" src="images/loading.gif">
+		<div id="log"></div>
+		<div id="contacts"></div>
+	</div>
+
+	<div id="spin"></div>
+	
+	<script type="text/javascript">
+    	//google.load("feeds", "1");
+    	//google.load("gdata", "2.x");
+
+		function load(){
+			//personal API KEY
+			gapi.client.setApiKey('AIzaSyAcpP_7b9_F0Fvvwk5h9OQBGppKecvF220');
+
+		    gapi.client.load('drive', 'v2',app._init);
+		}
+	</script>
+
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
+    <script src="https://apis.google.com/js/client.js?onload=load"></script>
+    <script type="text/javascript" src="js/jquery.xmpp.js"></script>
+
+    
+    <!--script src="js/strophe.js"></script-->
+    <script src="js/spin.js"></script>
+    
+
+    <script src="js/js.js"></script>
+    <script src="js/google_mail.js"></script>
+    <script src="js/google_drive.js"></script>
+    <script src="js/google_talk.js"></script>
+    <script src="js/google_groups.js"></script>
+    <script src="js/google_calendar.js"></script>
+    <script src="js/google_user.js"></script>
+
+</body>
+</html>
