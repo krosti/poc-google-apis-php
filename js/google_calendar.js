@@ -1,7 +1,8 @@
 gcalendar = {
 	
-	_init:function(){
+	_init:function(userInfo){
 		gcalendar.loadActions();
+		gcalendar.appendCalendar(userInfo);
 	},
 
 	loadActions: function(){
@@ -24,5 +25,14 @@ gcalendar = {
 		  	console.log('error calendar');
 		  }
 		});
+	},
+
+	appendCalendar: function(userInfo){
+		/*
+		* load default calendar of User Authorized (logged in the APP)
+		*/
+		var cal = '<iframe id="customCalendar" src="http://www.google.com/calendar/embed?src='+userInfo.email+'" style="border: 0" width="960" height="600" frameborder="0" scrolling="no"></iframe>';
+		$('#customCalendar').remove();
+		$('.calendar').append(cal);
 	}
 }

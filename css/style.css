@@ -21,7 +21,17 @@ a:visited, a:hover{ color:#333; text-decoration: none; }
 .bar li{ float:left; margin-left: 10px; margin-top: 4px; }
 .bar a:link, .bar a:visited{ color:#AECE33; text-decoration: none; }
 .bar a:hover{ color:#93C029; text-decoration: none; }
-
+#statusMSG{ position: absolute;
+top: 12px;
+margin: auto;
+width: 300px;
+color: red;
+display: none;
+height: 20px;
+z-index: 99;
+margin-left: 150px;
+font-size: 14px;
+text-align: center; }
 
 /*
 * Header Code
@@ -48,6 +58,8 @@ a:visited, a:hover{ color:#333; text-decoration: none; }
 	color:#222;
 }
 #emails { width:600px; }
+.unread{ font-weight: bold; }
+.read{ font-weight: normal; }
 #emails a{ cursor:pointer; margin-left: 5px; }
 #emails tr{
 	float: left;
@@ -67,10 +79,10 @@ a:visited, a:hover{ color:#333; text-decoration: none; }
 }
 #emails td.dateColumn{
 	width:30px;
+	font-size: 9px;
 }
 #emails span:hover{ opacity:0.7; }
 #emails .title{
-	font-weight: normal;
 	color:#333;
 	float:left;
 	overflow: hidden;

@@ -3,81 +3,54 @@
 Ideas:
 [ ] Add update of data when the user moves de mouse pointer (like keep-alive)
 [ ] Update Page Title with unread emails -> "K12 (1)"
-[ ] Parameter for UserName and Password (securely)
+[X] Parameter for UserName and Password (securely)
 [ ] Google Api Contacts: show users k12 stored in user contacts with @gmail account
 [ ] Collapse similar e-mails
 */
 
 gmail = {
 
-	_init: function(){
-		gmail.loadActions();
+	_init: function(userInfo){
+		/*
+		*  IMAP INIT
+		*/
+		gmail.loadActions(userInfo);
 		(document.URL.search('sendForm') != -1 && gmail.showFormToSend() && console.log('asd'))
-		/*$.ajax({
-		  dataType: "json",
-		  //data: 'access_token='+gapi.auth.getToken().access_token,
-		  beforeSend: function(xhr){
-		  },
-		  crossDomain: true,
-		  jsonpCallback: app.callB,
-		  url: 'https://apps-apis.google.com/a/feeds/emailsettings/2.0/globant.com/fernando.cea/label',
-		  success: function(data, status, xhr) {
-		  	callback(data);
-		  },
-		  error:function(){
-		  	console.log('Server is Down :(');
-		  }
-		});*/
-
 	},
 
 	_init2:function(){
-		$.ajax({
-		  dataType: "jsonp",
-		  data: 'access_token='+gapi.auth.getToken().access_token,
-		  beforeSend: function(xhr){
-		  },
-		  crossDomain: true,
-		  jsonpCallback: app.callB,
-		  //url: 'https://apps-apis.google.com/a/feeds/emailsettings/2.0/globant.com/fernando.cea/label',
-		  url: 'https://mail.google.com/mail/feed/atom/',
-		  success: function(data, status, xhr) {
-		  	callback(data);
-		  },
-		  error:function(){
-		  	console.log('error');
-		  }
-		});
+		/*
+		+ feeds INIT
+		*/
 
-		var feedcontainer=document.getElementById("feeddiv")
-		var feedurl="https://mail.google.com/mail/feed/atom/"
-		var feedlimit=5
-		var rssoutput="<b>Latest Slashdot News:</b><br /><ul>"
+		var feedcontainer=document.getElementById("feeddiv");
+		var feedurl="https://mail.google.com/mail/feed/atom"+'access_token='+gapi.auth.getToken().access_token;
+		var feedlimit=5;
+		var rssoutput="<b>Latest Slashdot News:</b><br /><ul>";
 
 		function rssfeedsetup(){
-		var feedpointer=new google.feeds.Feed(feedurl) //Google Feed API method
-		feedpointer.setNumEntries(feedlimit) //Google Feed API method
-		feedpointer.load(displayfeed) //Google Feed API method
+			var feedpointer=new google.feeds.Feed(feedurl) //Google Feed API method
+			feedpointer.setNumEntries(feedlimit) //Google Feed API method
+			feedpointer.load(displayfeed) //Google Feed API method
 		}
 
 		function displayfeed(result){
+			console.log(result);
 		if (!result.error){
-		var thefeeds=result.feed.entries
-		for (var i=0; i<thefeeds.length; i++)
-		rssoutput+="<li><a href='" + thefeeds[i].link + "'>" + thefeeds[i].title + "</a></li>"
-		rssoutput+="</ul>"
-		feedcontainer.innerHTML=rssoutput
+			var thefeeds=result.feed.entries
+			for (var i=0; i<thefeeds.length; i++)
+			rssoutput+="<li><a href='" + thefeeds[i].link + "'>" + thefeeds[i].title + "</a></li>"
+			rssoutput+="</ul>"
+			feedcontainer.innerHTML=rssoutput
 		}
 		else
-		alert("Error fetching feeds!")
+			alert("Error fetching feeds!")
 		}
 
-		window.onload=function(){
 		rssfeedsetup()
-		}
 	},
 
-	loadActions: function(){
+	loadActions: function(userInfo){
 		app.ajaxCall(_SERVER+'total_messages',function(data){
 			gmail.getTotalMails(data);
 		});
@@ -98,6 +71,7 @@ gmail = {
 
 		gmail.BTNflagPopUp();
 		gmail.BTNcancel();
+		gmail.BTNsend(userInfo);
 	},
 
 	showUserLoggedIn: function(data){
@@ -122,24 +96,25 @@ gmail = {
 		box.innerHTML = '';
 		header.innerHTML = '<td class="fromColumn">From</td><td class="dateColumn">Date</td>';
 		box.appendChild(header);
-		console.log(emails);
+		
 		if (emails){
 			emails.length = Object.keys(emails).length - 1;
 			for (var i = 0; i <= emails.length; i++) {
 				var email = document.createElement('tr')
 				,	subject = (emails[i].subject != null) ? emails[i].subject : '(no subject)'
-				,	from = (emails[i].from != null) ? emails[i].from : '(me)';
+				,	from = (emails[i].from != null) ? emails[i].from : '(me)'
+				,	status = (emails[i].status) ? 'read' : 'unread';
 				modifiedDate = new Date(emails[i].date);
 				modifiedDate = 
 					modifiedDate.getMonth()+1 + '/' + modifiedDate.getDate() + '/' + modifiedDate.getFullYear()+' '+
 					modifiedDate.getHours() +':'+ modifiedDate.getMinutes() +':'+ modifiedDate.getSeconds() ;
 				email.innerHTML += 
 						'<td class="fromColumn">'+
-							'<div class="from">'+count++ +' <img src="images/email.png">'+'<a id="'+emails[i].id+'" email="'+from+'" class="replyThis" target="_BLANK">' + from + '</a></div>' +
-							'<div class="title">' + subject + '</div>' + 
+							'<div class="from '+status+'">'+count++ +' <img src="images/email.png">'+'<a id="'+emails[i].id+'" email="'+from.replace(/\"/g, "\'")+'" class="replyThis" target="_BLANK">' + from.replace(/\"/g, "\'") + '</a></div>' +
+							'<div class="title '+status+'">' + subject + '</div>' + 
 						'</td>'+
 						'<td class="dateColumn">'+
-							'<div class="email_date">'+modifiedDate+'</div>'+
+							'<div class="email_date '+status+'">'+modifiedDate+'</div>'+
 						'</td>';
 				email.setAttribute('id',emails[i].id);
 				box.appendChild(email);
@@ -243,6 +218,24 @@ gmail = {
 			to.val('');
 			subject.val('');
 			message.val('');
+		});
+	},
+
+	BTNsend: function(userInfo){
+		/*
+		* send email
+		*/
+		var 	form = $('#form3')
+			,	to = form.find('#emailTO')
+			,	subject = form.find('#email_subject')
+			,	message = form.find('#emailMESSAGE');
+
+		$('.submit').on('click',function(){
+			app.ajaxCall(_SERVER+'send_email&to='+to.val()+'&from='+userInfo.email+'&subject='+subject.val()+'&message='+message.val(),function(data){
+				console.log(data);
+				document.getElementById('spin').style.display = 'none';
+				app.showMessageStatus(data);
+			});
 		});
 	}
 }

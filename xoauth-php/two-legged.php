@@ -1,4 +1,7 @@
 <?php
+  header('Content-Type: text/javascript; charset=UTF-8');
+?>
+<?php
 /**
  * Copyright 2010 Google Inc.
  *
