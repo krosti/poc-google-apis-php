@@ -8,7 +8,7 @@ app = {
 			,	domain 			= document.URL.split('/');
 
 		_SERVER = domain[0]+'//'+domain[2]+'/'+domain[3]+"/xoauth-php/three-legged.php?method=";
-		_CLIENTID = "839403186376-es7fj75c89aqbs1r8dtl3o9vnc9ig146.apps.googleusercontent.com";
+		_CLIENTID = "839403186376-i9cjktapu32p070sd8b22voccr36nsea.apps.googleusercontent.com";
 		
 		app.loadActions();
 

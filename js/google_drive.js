@@ -10,26 +10,29 @@ gdrive = {
 		gdrive.BTNviewOptionsFilters();
 	},
 
-	_initLoadShareOptions: function(){
-		//load File Sharing Options
-		gapi.load('drive-share', gdrive.bindShareFiles);
-	},
-
-	makeRequest: function(conditions) {
+	makeRequest: function(conditions,type,customFolder) {
 		var request = gapi.client.drive.files.list();
-
+		
 		request.execute(function(response) {
-			if (conditions != null) { response = gdrive.applyFilters(response,conditions); }
-			gdrive.updateList(response,'folder',false);
-			gdrive.updateList(response,'file',false);
-			gdrive.BTNupdateFolders();
+			if (conditions != null) { 
+				response = gdrive.applyFilters(response,conditions); 
+			}
+			//for customFolders request
+			if(customFolder == undefined){
+				gdrive.updateList(response,'folder',false, null);
+				gdrive.updateList(response,'file',false, null);
+				gdrive.BTNupdateFolders();
+			}else{
+				gdrive.updateList(response, type, false, customFolder);
+			}
 		});
+		
 	},
 
-	updateList: function(data, type, child){
+	updateList: function(data, type, child, customFolder){
 		var items = data.items
 		, 	name = (type=='file')?'File':'Folder'
-		,	results = document.getElementById('driveResults'+name+'s')
+		,	results = (customFolder == null) ? document.getElementById('driveResults'+name+'s') : document.getElementById(customFolder)
 		,	buttonShare = document.createElement('a');
 
 		results.innerHTML = '';
@@ -61,7 +64,6 @@ gdrive = {
 									'<a id="'+item.id+'" class="sendFile '+fileTypeView+' updateFolderView " href="'+'#'+'">'+' '+'</a>';
 
 						divElement.innerHTML = optional;
-
 						results.appendChild(divElement);
 						n--;
 					}
@@ -144,7 +146,7 @@ gdrive = {
 	    });
 		
 		request.execute(function(response) {
-			gdrive.updateList(response,'file',true);
+			gdrive.updateList(response,'file',true, null);
 		});
 	},
 
@@ -188,6 +190,23 @@ gdrive = {
 				app.showMessageStatus($(this).text()+' was moved to the teacher X folder');
 			} 
 		});
+	},
+
+	_initLoadShareOptions: function(){
+		//load File Sharing Options DialogBox - **need app already installed on the account
+		//gapi.load('drive-share', gdrive.bindShareFiles);
+		//s = new gapi.drive.share.ShareClient('');
+		//s.setItemIds('1YDfCEsf-h_obCHGcutl10Qm0l7lFthlxuacVJRgJHUxIF-O6w-TUFGN3');
+		
+		//update Teachers Folders, for the code simply is all Folders that people shared to the user.
+		gdrive.makeRequest(
+				{'userPermission':
+					{'role' : 'writer'}
+				},
+				'folder',
+				'teacherFolder'
+			);
+		
 	}
 	
 }
