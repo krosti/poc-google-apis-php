@@ -1,7 +1,7 @@
 gtalk = {
 	
 	_init: function(){
-		
+		gtalk.xmppConnection();
 	},
 
 	test2: function(){
@@ -44,7 +44,7 @@ gtalk = {
 			//If you are going to have a production site, you must install your own BOSH server
 			//var url ="http://bosh.metajack.im:5280/xmpp-httpbind";
 			//var url ="http://jabber.hot-chilli.net/";
-			var url ="https://talk.google.com:5222/";
+			var url ="https://talk.google.com:5222/http-bind/";
 			$.xmpp.connect({url:url, jid: jid, password: password,
 				onConnect: function(){
 					logContainer.html("Connected");

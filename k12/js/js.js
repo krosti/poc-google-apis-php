@@ -4,7 +4,11 @@ app = {
 		/*
 		* pre-load methods
 		*/
-		_SERVER = "http://hvm-dev-tc12.k12.int/k12/xoauth-php/three-legged.php?method=";
+		var 	test_domain 	= "http://hvm-dev-tc12.k12.int/k12/xoauth-php/three-legged.php"
+			,	domain 			= document.URL.split('/');
+
+		_SERVER = domain[0]+'//'+domain[2]+'/'+domain[3]+"/xoauth-php/three-legged.php?method=";
+		_CLIENTID = "839403186376-i9cjktapu32p070sd8b22voccr36nsea.apps.googleusercontent.com";
 		
 		app.loadActions();
 
@@ -21,7 +25,7 @@ app = {
 
 		app.loadSpin();
 		//gmail._init();
-		//gtalk._init();
+		gtalk._init();
 
 		
 		$('#LINKsendemail').on('click',function(){
@@ -30,6 +34,17 @@ app = {
 
 		app.BTNopenCalendar();
 		app.BTNopenGroups();
+
+		String.prototype.escapeSpecialChars = function() {
+		    return this.replace(/\\n/g, "\\n")
+		               .replace(/\\'/g, "\\'")
+		               .replace(/\\"/g, '\\"')
+		               .replace(/\\&/g, "\\&")
+		               .replace(/\\r/g, "\\r")
+		               .replace(/\\t/g, "\\t")
+		               .replace(/\\b/g, "\\b")
+		               .replace(/\\f/g, "\\f");
+		};
 	},
 
 	validate: function(callback){
@@ -61,7 +76,7 @@ app = {
 		*/
 		
         var config = {
-          		'client_id': '839403186376-i9cjktapu32p070sd8b22voccr36nsea.apps.googleusercontent.com',
+          		'client_id': _CLIENTID,
           		'scope': [
           			'https://www.googleapis.com/auth/drive',
           			'https://www.googleapis.com/auth/googletalk',
@@ -76,14 +91,16 @@ app = {
         		};
 
         gapi.auth.authorize(config, function(d) {
-        	console.log(d);
+        	//console.log(d);
           	console.log('This APP was authorized to use for this user');
-			gdrive._init();
+			
 			app.validate(function(d){
-				gmail._init2();
+				gdrive._init(d);
+				gmail._init(d);
+				//gmail._init2();
 				//console.log(d);
-				gcalendar._init();
-				ggroups._init();
+				gcalendar._init(d);
+				ggroups._init(d);
 				guser._init(d);
 			});
 			//gmail._init();
@@ -159,13 +176,13 @@ app = {
 		  jsonpCallback: app.callB,
 		  url: url,
 		  success: function(data, status, xhr) {
-		  	callback(data);
+		  	callback( data ) ;
 		  },
 		  error:function(){
 		  	//for service down or use previous call from non secure mode
 		  	//issue: error Unexpected Token in xml_response in 1st call
-		  	console.log('Server is Down :(');
 		  	document.getElementById('spin').style.display = 'none';
+		  	callback ('server error');
 		  }
 		});
 
@@ -173,8 +190,15 @@ app = {
 
 	callB:function(data){
 		//custom Callback
+		console.log(data);
 		return eval('(' + data + ')');
 		//console.log(data);
+	},
+
+	ConvChar: function( str ) {
+	  c = {'<':'&lt;', '>':'&gt;', '&':'&amp;', '"':'&quot;', "'":'&#039;',
+	       '#':'&#035;' };
+	  return str.replace( /[<&>'"#]/g, function(s) { return c[s]; } );
 	},
 
 	loadSpin:function(){
@@ -206,6 +230,7 @@ app = {
 	},
 
 	BTNopenCalendar: function(){
+
 		$('#LINKsendcalendar').on('click',function(){
 			$('.menu').toggle();
 			$('.menuLeft').toggle();
@@ -220,5 +245,13 @@ app = {
 			$('.groups').slideToggle();
 			$('.container').slideToggle();
 		});
+	},
+
+	showMessageStatus:function(message){
+		/**
+		 * public Method show any message to error-handler box
+		*/
+
+		$('#statusMSG').empty().append(message).fadeIn().delay(2000).fadeOut('slow');
 	}
 }

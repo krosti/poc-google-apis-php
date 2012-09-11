@@ -23,6 +23,11 @@ require_once 'Zend/Crypt/Rsa/Key/Private.php';
 require_once 'Zend/Mail/Protocol/Imap.php';
 require_once 'Zend/Mail/Storage/Imap.php';
 
+require_once 'Zend/Loader.php';
+require_once 'Zend/Mail/Transport/Smtp.php';
+require_once 'Zend/Mail.php';
+
+
 function getCurrentUrl($includeQuery = true) {
   if (isset($_SERVER['https']) && $_SERVER['https'] == 'on') {
     $scheme = 'https';
@@ -121,6 +126,9 @@ if (!isset($_SESSION['ACCESS_TOKEN'])) {
   $url = 'https://mail.google.com/mail/b/' .
        $email_address . 
        '/imap/';
+  $url_smtp = 'https://mail.google.com/mail/b/' .
+       $email_address . 
+       '/smtp/';
 
   $httpUtility = new Zend_Oauth_Http_Utility();
   /**
@@ -162,6 +170,12 @@ if (!isset($_SESSION['ACCESS_TOKEN'])) {
    */
   $initClientRequest = 'GET ' . $url . ' ' . $oauthParams;
   $initClientRequestEncoded = base64_encode($initClientRequest);
+
+  /**
+   * SMPT side
+  */
+  $initClientRequestSMTP = 'GET ' . $url_smtp . ' ' . $oauthParams;
+  $initClientRequestEncodedSMTP = base64_encode($initClientRequestSMTP);
   
   /**
    * Make the IMAP connection and send the auth request
@@ -197,11 +211,12 @@ if (!isset($_SESSION['ACCESS_TOKEN'])) {
   function all_messages($storage){
     $mails = array();
     $n = $storage->countMessages();
+    
     for ($i = 0; $i <= $_GET['id']; $i++ ){ 
       $current = $storage->getMessage($n);
       array_push($mails, array(
           'id' => $n,
-          'status' => (isset($current->_flags) /*&& $current->_flags != null*/) ? false : true,
+          'status' => $current->hasFlag(Zend_Mail_Storage::FLAG_SEEN),
           'date' => $current->date,
           'from' => $current->from,
           'subject' => $current->subject
@@ -226,23 +241,45 @@ if (!isset($_SESSION['ACCESS_TOKEN'])) {
     return all_messages($storage);
   }
 
-  function test($storage){
-    $n = $storage->countMessages();
-    echo '<pre>';
-    print_r($storage->getMessage($n));
-    echo '<pre>';
-    return $storage->getMessage($n);
+  function send_email($XoauthClientRequest){
+
+    // Ensure AUTH has not already been initiated.
+    
+    $authenticateParams = array('XOAUTH', $XoauthClientRequest); 
+
+    $smtp = new Zend_Mail_Protocol_Smtp('smtp.gmail.com', 465, array("AUTH" => $authenticateParams, 'ssl' => 'tls')); 
+
+    try {
+       // Create a new mail object
+       $mail = new Zend_Mail();
+
+       $tr = new Zend_Mail_Transport_Smtp('smtp.gmail.com'); 
+
+       $mail->setFrom($_GET['from']);
+       $mail->addTo($_GET['to']);
+       $mail->setSubject($_['subject']);
+
+       $email = $_GET['message'];
+
+       $mail->setBodyText($email);
+       $mail->send($tr);
+       return 'Your Message has been sent';
+    } catch (Exception $e) {
+       return "error sending email";
+    }
   }
 
   function getGroupOfIamMemeber(){
 
-    require_once 'Zend/Loader.php';
+    
     Zend_Loader::loadClass('Zend_Gdata_ClientLogin');
     Zend_Loader::loadClass('Zend_Gdata_Gapps');
  
     $client = Zend_Gdata_ClientLogin::getHttpClient($_GET['usr'], $_GET['pw'], Zend_Gdata_Gapps::AUTH_SERVICE_NAME);
+    print_r($client);
     return $client->retrieveGroup($memberId);
   }
+
 
   switch($_GET['method']){
     case 'total_messages': 
@@ -266,10 +303,15 @@ if (!isset($_SESSION['ACCESS_TOKEN'])) {
     case 'send_form':
        header('Location: '.'http://localhost:8888/k12/sendForm.php?to='.$_GET['to']);
       break;
+    case 'send_email':
+       echo send_email($initClientRequestEncodedSMTP);
+      break;
     case 'test':
-      echo json_encode(test($storage),JSON_FORCE_OBJECT);
+      echo json_encode(test($initClientRequestEncodedSMTP),JSON_FORCE_OBJECT);
       break;
 
   };
+} else{
+  echo 'Disconnect';
 }
 ?>
