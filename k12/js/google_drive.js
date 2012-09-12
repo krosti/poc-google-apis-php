@@ -10,9 +10,16 @@ gdrive = {
 		gdrive.BTNviewOptionsFilters();
 	},
 
-	makeRequest: function(conditions,type,customFolder) {
-		var request = gapi.client.drive.files.list();
-		
+	makeRequest: function(conditions, type, customFolder, customQuery) {
+		var request = (!customQuery)
+			? gapi.client.drive.files.list({'maxResults':8})
+			: gapi.client.drive.files.list({
+				'maxResults':8,
+				'q':customQuery
+			});
+
+		//request.Q = (customQuery) ? "title+contains+'inbox'" : '';
+
 		request.execute(function(response) {
 			if (conditions != null) { 
 				response = gdrive.applyFilters(response,conditions); 
@@ -23,8 +30,9 @@ gdrive = {
 				gdrive.updateList(response,'file',false, null);
 				gdrive.BTNupdateFolders();
 			}else{
-				gdrive.updateList(response, type, false, customFolder);
+				console.log('este');
 				console.log(response);
+				gdrive.updateList(response, type, false, customFolder);
 			}
 		});
 		
@@ -35,7 +43,8 @@ gdrive = {
 		, 	name = (type=='file')?'File':'Folder'
 		,	results = (customFolder == null) ? document.getElementById('driveResults'+name+'s') : document.getElementById(customFolder)
 		,	buttonShare = document.createElement('a');
-
+console.log(results);
+console.log(items);
 		results.innerHTML = '';
 		buttonShare.setAttribute('class','sendFile');
 		buttonShare.innerHTML = 'share';
@@ -95,9 +104,9 @@ gdrive = {
 		}else{
 
 			//error
-			var divElement = document.createElement('span');
-			divElement.innerHTML = 'Google Drive API '+data.message;
-			results.appendChild(divElement);
+			//var divElement = document.createElement('span');
+			//divElement.innerHTML = 'Google Drive API '+data.message;
+			//results.appendChild(divElement);
 		}
 		gdrive.bindShareFiles();
 	},
@@ -189,7 +198,7 @@ gdrive = {
 		$('.sendFile').draggable({ 
 			revert: true,
 			stop: function() {
-				app.showMessageStatus($(this).text()+' was moved to the teacher X folder');
+				//app.showMessageStatus($(this).text()+' was moved to the teacher X folder');
 			},
 			cursor: "move",
 			cursorAt: { top: -1, left: -2 },
@@ -220,12 +229,13 @@ gdrive = {
 		
 		//update Teachers Folders, for the code simply is all Folders that people shared to the user.
 		gdrive.makeRequest(
-				{'userPermission':
-					{'role' : 'writer'}
-				},
-				'folder',
-				'teacherFolder'
-			);
+			{'userPermission':
+				{'role' : 'writer'}
+			},
+			'folder',
+			'teacherFolder',
+			"title contains 'inbox'"
+		);
 		
 		
 	}

@@ -83,7 +83,7 @@ app = {
 
         gapi.auth.authorize(config, function(d) {
         	//console.log(d);
-          	console.log('This APP was authorized to use for this user');
+          	//console.log('This APP was authorized to use for this user');
 			
 			app.validate(function(d){
 				gdrive._init(d);
@@ -156,7 +156,7 @@ app = {
 	},
 
 	ajaxCall: function(url, callback){
-		console.log(url);
+		//console.log(url);
 		//works
 		$.ajax({
 		  dataType: "json",
@@ -172,6 +172,7 @@ app = {
 		  error:function(){
 		  	//for service down or use previous call from non secure mode
 		  	//issue: error Unexpected Token in xml_response in 1st call
+		  	console.log(url);
 		  	document.getElementById('spin').style.display = 'none';
 		  	callback ('server error');
 		  }

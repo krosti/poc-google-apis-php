@@ -178,9 +178,11 @@ font-weight: 100;
 	width: 960px;
 }
 .share .left, .share .right{
-	float:left;
-	width:479px;
-	margin-left:1px;
+	float: left;
+	width: 400px;
+	margin-left: 1px;
+	border-right: 1px solid;
+	padding: 5px;
 }
 .share .title{
 	background: #E81B71;
@@ -212,12 +214,13 @@ font-weight: 100;
 	padding-top:2px;
 }
 .folder{
-	padding:0;
-	
 	border:none;
 	background:url(../images/folder.png) no-repeat 0 0;
 	padding-left: 20px;
-	padding-top:2px;
+	padding-top: 2px;
+	border-bottom: 1px solid;
+	padding-bottom: 5px;
+	margin-top: 2px;
 }
 .folder .fileName{
 
