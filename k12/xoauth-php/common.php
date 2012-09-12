@@ -16,7 +16,7 @@
  */
 
 $TWO_LEGGED_CONSUMER_KEY = '839403186376-i9cjktapu32p070sd8b22voccr36nsea.apps.googleusercontent.com';
-$TWO_LEGGED_CONSUMER_SECRET_HMAC = 'y1IAFO2wOaK5Wc_VGtcHSSzO';
+$TWO_LEGGED_CONSUMER_SECRET_HMAC = 'jjZiO_E0JbuldQ8FcPCaD_27';
 $TWO_LEGGED_EMAIL_ADDRESS = 'fernando.cea@globant.com';
 
 /**
@@ -25,7 +25,7 @@ $TWO_LEGGED_EMAIL_ADDRESS = 'fernando.cea@globant.com';
  */
 $THREE_LEGGED_CONSUMER_KEY = '839403186376-i9cjktapu32p070sd8b22voccr36nsea.apps.googleusercontent.com';
 $THREE_LEGGED_SIGNATURE_METHOD = 'HMAC-SHA1';
-$THREE_LEGGED_CONSUMER_SECRET_HMAC = 'y1IAFO2wOaK5Wc_VGtcHSSzO';
+$THREE_LEGGED_CONSUMER_SECRET_HMAC = 'jjZiO_E0JbuldQ8FcPCaD_27';
 
 /** 
  * Alternatively, use the following for RSA, where the
