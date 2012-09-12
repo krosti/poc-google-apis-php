@@ -24,6 +24,7 @@ gdrive = {
 				gdrive.BTNupdateFolders();
 			}else{
 				gdrive.updateList(response, type, false, customFolder);
+				console.log(response);
 			}
 		});
 		
@@ -64,6 +65,7 @@ gdrive = {
 									'<a id="'+item.id+'" class="sendFile '+fileTypeView+' updateFolderView " href="'+'#'+'">'+' '+'</a>';
 
 						divElement.innerHTML = optional;
+						
 						results.appendChild(divElement);
 						n--;
 					}
@@ -97,7 +99,7 @@ gdrive = {
 			divElement.innerHTML = 'Google Drive API '+data.message;
 			results.appendChild(divElement);
 		}
-		
+		gdrive.bindShareFiles();
 	},
 
 	BTNsendFile: function(){
@@ -188,7 +190,25 @@ gdrive = {
 			revert: true,
 			stop: function() {
 				app.showMessageStatus($(this).text()+' was moved to the teacher X folder');
-			} 
+			},
+			cursor: "move",
+			cursorAt: { top: -1, left: -2 },
+			helper: function( event ) {
+				return $( "<div class='air-file'>File: "+$(this).text()+"</div>" );
+			}
+		});
+
+		$( "#teacherFolder .folder" ).droppable({
+			//accept: ".folder",
+			activeClass: "ui-state-hover",
+			hoverClass: "ui-state-active",
+			drop: function( event, ui ) {
+				console.log($(this));
+				$( this )
+					.addClass( "ui-state-highlight" )
+					.find( "p" )
+						.html( "Dropped!" );
+			}
 		});
 	},
 
@@ -206,6 +226,7 @@ gdrive = {
 				'folder',
 				'teacherFolder'
 			);
+		
 		
 	}
 	

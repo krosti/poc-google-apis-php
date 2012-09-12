@@ -196,7 +196,7 @@ font-weight: 100;
 	float: left;
 }
 #driveResultsFiles, #driveResultsFolders{
-	width: 960px;
+	width: 400px;
 	overflow: hidden;
 	min-height: 120px;
 }
@@ -228,6 +228,11 @@ font-weight: 100;
 	border: none;
 	background: url(../images/view.png) no-repeat 0 0;
 	position: absolute;
+}
+.air-file{
+	background: #93C029;
+	padding:2px;
+	color:#007CC2;
 }
 
 
