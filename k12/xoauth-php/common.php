@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-$TWO_LEGGED_CONSUMER_KEY = '839403186376-es7fj75c89aqbs1r8dtl3o9vnc9ig146.apps.googleusercontent.com';
+$TWO_LEGGED_CONSUMER_KEY = '839403186376-i9cjktapu32p070sd8b22voccr36nsea.apps.googleusercontent.com';
 $TWO_LEGGED_CONSUMER_SECRET_HMAC = 'y1IAFO2wOaK5Wc_VGtcHSSzO';
 $TWO_LEGGED_EMAIL_ADDRESS = 'fernando.cea@globant.com';
 
@@ -23,7 +23,7 @@ $TWO_LEGGED_EMAIL_ADDRESS = 'fernando.cea@globant.com';
  * Use the following for HMAC, where the Consumer
  * Secret looks like 'xABIch2+jddUraCSlrWmKe'
  */
-$THREE_LEGGED_CONSUMER_KEY = '839403186376-es7fj75c89aqbs1r8dtl3o9vnc9ig146.apps.googleusercontent.com';
+$THREE_LEGGED_CONSUMER_KEY = '839403186376-i9cjktapu32p070sd8b22voccr36nsea.apps.googleusercontent.com';
 $THREE_LEGGED_SIGNATURE_METHOD = 'HMAC-SHA1';
 $THREE_LEGGED_CONSUMER_SECRET_HMAC = 'y1IAFO2wOaK5Wc_VGtcHSSzO';
 
