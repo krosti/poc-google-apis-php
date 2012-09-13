@@ -9,6 +9,7 @@ gdrive = {
 	loadActions: function(){
 		gdrive.BTNviewOptionsFilters();
 		gdrive.filePicker();
+		gdrive.addNewTeacherFolder();
 	},
 
 	makeRequest: function(conditions, type, customFolder, customQuery) {
@@ -60,21 +61,23 @@ gdrive = {
 					
 					if(fileType == type){
 						fileIcons.className += ' '+items[i].userPermission.role;
+						fileIcons.setAttribute('title',items[i].userPermission.role);
+
 						modifiedDate = 
 							modifiedDate.getMonth()+1 + '/' + modifiedDate.getDate() + '/' + modifiedDate.getFullYear();
 
 						divElement.setAttribute('class',fileType);
 						
 						var optional = (fileType == 'file') 
-								? 	'<a class="sendFile '+fileTypeView+' '+''+' " href="'+item.alternateLink+'" target="_BLANK">'+ 
+								? 	'<a class="sendFile '+fileTypeView+' '+''+' " href="'+item.alternateLink+'" id="'+items[i].id+'" target="_BLANK">'+ 
 											item.title + ' (' + modifiedDate + ')' +
 									'</a>'
 								: 	item.title + ' (' + modifiedDate + ')' + 
 									'<a id="'+item.id+'" class="sendFile '+fileTypeView+' updateFolderView " href="'+'#'+'">'+' '+'</a>';
 
 						divElement.innerHTML = optional;
-						
-						results.appendChild(fileIcons);
+						divElement.appendChild(fileIcons);
+
 						results.appendChild(divElement);
 						n--;
 					}
@@ -208,16 +211,17 @@ gdrive = {
 			}
 		});
 
-		$( "#teacherFolder .folder" ).droppable({
+		$( "#teachersClouds img" ).droppable({
 			//accept: ".folder",
 			activeClass: "ui-state-hover",
 			hoverClass: "ui-state-active",
 			drop: function( event, ui ) {
-				console.log($(this));
-				$( this )
-					.addClass( "ui-state-highlight" )
-					.find( "p" )
-						.html( "Dropped!" );
+				$(this)
+					.addClass("ui-state-highlight")
+					.delay(1000)
+					.removeClass("ui-state-highlight");
+				
+				gdrive.insertFileIntoFolder( $(this).attr('id') , ui.draggable.context.id );
 			}
 		});
 	},
@@ -235,14 +239,14 @@ gdrive = {
 		//s.setItemIds('1YDfCEsf-h_obCHGcutl10Qm0l7lFthlxuacVJRgJHUxIF-O6w-TUFGN3');
 		
 		//update Teachers Folders, for the code simply is all Folders that people shared to the user.
-		gdrive.makeRequest(
+		/*gdrive.makeRequest(
 			{'userPermission':
 				{'role' : ['writer','owner']}
-			},
+			},												//deprecated because now we have CLOUDS
 			'folder',
 			'teacherFolder',
 			""
-		);
+		);*/
 	},
 
 	filePicker: function(d){
@@ -347,6 +351,45 @@ gdrive = {
           }
           request.execute(callback);
         }
-    }
+    },
+
+    addNewTeacherFolder: function(){
+    	$('#newFolderDialog a').on('click',function(){
+    		$.ajax({
+    			dataType: "json",
+    			crossDomain: true,
+    			data: 'access_token='+gapi.auth.getToken().access_token,
+    			url:$('#newFolderDialog input').val(),
+    			success: function(d){
+    				console.log(d);
+    			}
+    		});
+    	});
+    	$('#newTeacherBox').on('click',function(){
+    		$( "#newFolderDialog" ).dialog({
+    			title: 'Add New Teacher Cloud',
+				height: 140,
+				modal: true
+			});
+    	});
+
+    },
+
+    /**
+	 * Insert a file into a folder.
+	 *
+	 * @param {String} folderId ID of the folder to insert the file into.
+	 * @param {String} fileId ID of the file to insert.
+	 */
+	insertFileIntoFolder: function(folderId, fileId) {
+	  var body = {'id': fileId};
+	  var request = gapi.client.drive.children.insert({
+	    'folderId': folderId,
+	    'resource': body
+	  });
+	  request.execute(function(resp) {
+	  	app.showMessageStatus('<span style="color:green;">File has been moved.</span>');
+	  });
+	}
 	
 }
