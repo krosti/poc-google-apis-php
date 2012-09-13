@@ -8,30 +8,28 @@ gdrive = {
 
 	loadActions: function(){
 		gdrive.BTNviewOptionsFilters();
+		gdrive.filePicker();
 	},
 
 	makeRequest: function(conditions, type, customFolder, customQuery) {
 		var request = (!customQuery)
-			? gapi.client.drive.files.list({'maxResults':8})
-			: gapi.client.drive.files.list({
+			? gapi.client.drive.files.list({'maxResults':8}) //normal call
+			: gapi.client.drive.files.list({                 //with custom query search
 				'maxResults':8,
 				'q':customQuery
 			});
-
-		//request.Q = (customQuery) ? "title+contains+'inbox'" : '';
 
 		request.execute(function(response) {
 			if (conditions != null) { 
 				response = gdrive.applyFilters(response,conditions); 
 			}
+
 			//for customFolders request
 			if(customFolder == undefined){
 				gdrive.updateList(response,'folder',false, null);
 				gdrive.updateList(response,'file',false, null);
 				gdrive.BTNupdateFolders();
 			}else{
-				console.log('este');
-				console.log(response);
 				gdrive.updateList(response, type, false, customFolder);
 			}
 		});
@@ -43,8 +41,6 @@ gdrive = {
 		, 	name = (type=='file')?'File':'Folder'
 		,	results = (customFolder == null) ? document.getElementById('driveResults'+name+'s') : document.getElementById(customFolder)
 		,	buttonShare = document.createElement('a');
-console.log(results);
-console.log(items);
 		results.innerHTML = '';
 		buttonShare.setAttribute('class','sendFile');
 		buttonShare.innerHTML = 'share';
@@ -59,15 +55,18 @@ console.log(items);
 					,	item = items[i]
 					,	fileType = (!child && item.mimeType.search('folder') != -1) ? 'folder' : 'file'
 					,	fileTypeView = ''
+					,	fileIcons = document.createElement('div')
 					,	modifiedDate = (!child && new Date(item.modifiedDate));
 					
 					if(fileType == type){
+						fileIcons.className += ' '+items[i].userPermission.role;
 						modifiedDate = 
 							modifiedDate.getMonth()+1 + '/' + modifiedDate.getDate() + '/' + modifiedDate.getFullYear();
 
 						divElement.setAttribute('class',fileType);
+						
 						var optional = (fileType == 'file') 
-								? 	'<a class="sendFile '+fileTypeView+' " href="'+item.alternateLink+'" target="_BLANK">'+ 
+								? 	'<a class="sendFile '+fileTypeView+' '+''+' " href="'+item.alternateLink+'" target="_BLANK">'+ 
 											item.title + ' (' + modifiedDate + ')' +
 									'</a>'
 								: 	item.title + ' (' + modifiedDate + ')' + 
@@ -75,6 +74,7 @@ console.log(items);
 
 						divElement.innerHTML = optional;
 						
+						results.appendChild(fileIcons);
 						results.appendChild(divElement);
 						n--;
 					}
@@ -127,6 +127,7 @@ console.log(items);
 		/*
 		* Filter if clicked ONLY SHOW MY FILES or ALL FILES
 		*/
+
 		//owner - My Files
 		$('#ownerDriveFiles').on('click',function(){
 			gdrive.makeRequest(
@@ -221,6 +222,12 @@ console.log(items);
 		});
 	},
 
+	shareDialog: function(){
+		console.log('Init Share Dialog:');
+		s = new gapi.drive.share.ShareClient('839403186376');
+		s.setItemIds('1YDfCEsf-h_obCHGcutl10Qm0l7lFthlxuacVJRgJHUxIF-O6w-TUFGN3');
+	},
+
 	_initLoadShareOptions: function(){
 		//load File Sharing Options DialogBox - **need app already installed on the account
 		//gapi.load('drive-share', gdrive.bindShareFiles);
@@ -230,14 +237,116 @@ console.log(items);
 		//update Teachers Folders, for the code simply is all Folders that people shared to the user.
 		gdrive.makeRequest(
 			{'userPermission':
-				{'role' : 'writer'}
+				{'role' : ['writer','owner']}
 			},
 			'folder',
 			'teacherFolder',
-			"title contains 'inbox'"
+			""
 		);
-		
-		
-	}
+	},
+
+	filePicker: function(d){
+		var userInfo = {};
+		app.validate(function(d){
+			userInfo = d;
+		});
+		// Use the Google Loader script to load the google.picker script.
+	    $('#shareGooglePicker').on('click', function(){
+	    	gdrive.createPicker(userInfo);
+	    });
+	},
+    
+    // Create and render a Picker object for searching images.
+    createPicker: function(userInfo) {
+      	var view = new google.picker.View(google.picker.ViewId.FOLDERS);
+      	view.setMimeTypes("image/png,image/jpeg,image/jpg");    
+      	picker = new google.picker.PickerBuilder()
+          //.enableFeature(google.picker.Feature.NAV_HIDDEN)
+          .enableFeature(google.picker.Feature.MULTISELECT_ENABLED)
+          .enableFeature(google.picker.Feature.SIMPLE_UPLOAD_ENABLED)
+          .setAppId('839403186376')
+          .setAuthUser(userInfo.email) //Optional: The user ID or email from the UserInfo API.
+          .addView(view)
+          .addView(new google.picker.DocsUploadView())
+          .setCallback(gdrive.pickerCallback)
+          .build();
+        picker.setVisible(true);
+    },
+
+    // A simple callback implementation.
+    pickerCallback: function(data) {
+      var url = 'nothing';
+      if (data[google.picker.Response.ACTION] == google.picker.Action.PICKED) {
+        var doc = data[google.picker.Response.DOCUMENTS][0];
+        url = doc[google.picker.Document.NAME];
+        app.showMessageStatus('You picked: ' + url);
+        
+        gdrive.uploadFile(doc);
+      }
+      //var message = 'You picked: ' + url;
+      //document.getElementById('googlePicker').innerHTML = message;
+	},
+
+
+	/**
+	* Start the file upload.
+	*
+	* @param {Object} evt Arguments from the file selector.
+	*/
+    uploadFile: function(file) {
+        //gapi.client.load('drive', 'v2', function() {
+          //var file = evt.target.files[0];
+          gdrive.insertFile(file);
+        //});
+    },
+
+	/**
+	* Insert new file.
+	*
+	* @param {File} fileData File object to read data from.
+	* @param {Function} callback Function to call when the request is complete.
+	*/
+    insertFile: function (fileData, callback) {
+        const boundary = '-------314159265358979323846';
+        const delimiter = "\r\n--" + boundary + "\r\n";
+        const close_delim = "\r\n--" + boundary + "--";
+
+        var reader = new FileReader();
+        reader.readAsBinaryString(fileData);
+        reader.onload = function(e) {
+          var contentType = fileData.type || 'application/octet-stream';
+          var metadata = {
+            'title': fileData.name,
+            'mimeType': contentType
+          };
+
+          var base64Data = btoa(reader.result);
+          var multipartRequestBody =
+              delimiter +
+              'Content-Type: application/json\r\n\r\n' +
+              JSON.stringify(metadata) +
+              delimiter +
+              'Content-Type: ' + contentType + '\r\n' +
+              'Content-Transfer-Encoding: base64\r\n' +
+              '\r\n' +
+              base64Data +
+              close_delim;
+
+          var request = gapi.client.request({
+              'path': '/upload/drive/v2/files',
+              'method': 'POST',
+              'params': {'uploadType': 'multipart'},
+              'headers': {
+                'Content-Type': 'multipart/mixed; boundary="' + boundary + '"'
+              },
+              'body': multipartRequestBody});
+          if (!callback) {
+            callback = function(file) {
+              console.log(file)
+            };
+          }
+          request.execute(callback);
+        }
+    }
 	
 }

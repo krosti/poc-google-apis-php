@@ -19,7 +19,7 @@ gcalendar = {
 		  jsonpCallback: app.callB,
 		  url: 'https://www.googleapis.com/calendar/v3/users/me/calendarList',
 		  success: function(data, status, xhr) {
-		  	console.log(data);
+		  	//console.log(data);
 		  },
 		  error:function(){
 		  	console.log('error calendar');

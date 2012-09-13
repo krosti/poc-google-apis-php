@@ -14,7 +14,7 @@
 	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,300' rel='stylesheet' type='text/css'>
 	<link href="css/style.css" rel="stylesheet" type="text/css" />
 	<link href="css/jquery-ui.css" rel="stylesheet" type="text/css" />
-	<!--script type="text/javascript" src="https://www.google.com/jsapi"></script-->
+	<script type="text/javascript" src="https://www.google.com/jsapi"></script>
 	<script type="text/javascript" src="https://apis.google.com/js/api.js"></script>
 	
 
@@ -129,7 +129,10 @@
 
 	<div class="block share" style="display:none">
 		<div class="left">
-			<div class="title"><span>MY FILES</span></div>
+			<div class="title">
+				<span>MY FILES</span>
+				<a id="shareGooglePicker" href="#" style="float: right; margin-top: 0px; margin-left:2px;"><img src="images/upload.png"></a>
+			</div>
 			<span>Drive Folders</span>
 			[	<span id="ownerDriveFiles"><img src="images/user.png" width="8"></span>
 				/<span id="othersDriveFiles"><img src="images/users.png" width="12"></span>
@@ -143,10 +146,14 @@
 		</div>
 		
 		<div class="right">
-			<div class="title"><span>TEACHER DROPBOX</span></div>
+			<div class="title">
+				<span>TEACHER DROPBOX</span>
+				<img src="images/cloud.png" onClick="s.showSettingsDialog()" style="float: right; margin-top: -10px; margin-left:2px;">
+			</div>
 			<div id="teacherFolder"></div>
 		</div>
-		
+
+		<div id="googlePicker"></div>
 	</div>	
 
 	<div id="spin"></div>
@@ -159,6 +166,12 @@
 			//personal API KEY, development APIKEY
 			gapi.client.setApiKey('AIzaSyAcpP_7b9_F0Fvvwk5h9OQBGppKecvF220');
 		    gapi.client.load('drive', 'v2',app._init);
+		    
+		    //google picker loader
+	    	google.load('picker', '1', {'callback':gdrive.filePicker});
+
+	    	//load File Sharing Options DialogBox - **need app already installed on the account
+			gapi.load('drive-share', gdrive.shareDialog);
 		}
 	</script>
 

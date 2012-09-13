@@ -97,7 +97,7 @@ gmail = {
 		header.innerHTML = '<td class="fromColumn">From</td><td class="dateColumn">Date</td>';
 		box.appendChild(header);
 		
-		if (emails){
+		if (emails && emails != 'server error'){
 			emails.length = Object.keys(emails).length - 1;
 			for (var i = 0; i <= emails.length; i++) {
 				var email = document.createElement('tr')
