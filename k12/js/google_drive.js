@@ -354,19 +354,31 @@ gdrive = {
     },
 
     addNewTeacherFolder: function(){
-    	$('#newFolderDialog a').on('click',function(){
-    		$.ajax({
-    			dataType: "json",
-    			crossDomain: true,
-    			data: 'access_token='+gapi.auth.getToken().access_token,
-    			url:$('#newFolderDialog input').val(),
-    			success: function(d){
-    				console.log(d);
-    			}
-    		});
+    	var dialogTeachers = $('#newFolderDialog');
+
+    	dialogTeachers.find('a').on('click',function(){
+    		var 	name 			= dialogTeachers.find('.name').val()
+    			,	url				= dialogTeachers.find('.url').val()
+    			, 	urlFix			= /d\/([^}]+)\//.exec(url)[1]
+    			,	templateCloud 	= '<div>'+
+										'<span class="block">'+name+'</span>'+
+										'<img src="images/cloud-box.jpg" style="float:left; clear:both;" id="'+urlFix+'" width="200">'+
+									'</div>';
+
+    		$('#teachersClouds').append(templateCloud);
+    		gdrive.bindShareFiles();
+
+    		dialogTeachers
+    			.find('.name')
+    			.val(' ');
+    		dialogTeachers
+    			.find('.url')
+    			.val(' ');
+
+    		dialogTeachers.dialog('close');
     	});
     	$('#newTeacherBox').on('click',function(){
-    		$( "#newFolderDialog" ).dialog({
+    		dialogTeachers.dialog({
     			title: 'Add New Teacher Cloud',
 				height: 140,
 				modal: true
@@ -388,7 +400,11 @@ gdrive = {
 	    'resource': body
 	  });
 	  request.execute(function(resp) {
-	  	app.showMessageStatus('<span style="color:green;">File has been moved.</span>');
+	  	switch(resp.code){
+	  		case 403: msg = resp.message; break;
+	  		default: msg = '<span style="color:green;">File has been moved.</span>'; break;
+	  	}
+	  	app.showMessageStatus(msg);
 	  });
 	}
 	
