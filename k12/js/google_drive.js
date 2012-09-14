@@ -221,7 +221,8 @@ gdrive = {
 					.delay(1000)
 					.removeClass("ui-state-highlight");
 				
-				gdrive.insertFileIntoFolder( $(this).attr('id') , ui.draggable.context.id );
+				//gdrive.insertFileIntoFolder( $(this).attr('id') , ui.draggable.context.id );
+				gdrive.printFile(ui.draggable.context.id);
 			}
 		});
 	},
@@ -402,10 +403,51 @@ gdrive = {
 	  request.execute(function(resp) {
 	  	switch(resp.code){
 	  		case 403: msg = resp.message; break;
+	  		case 404: msg = resp.message; break;
 	  		default: msg = '<span style="color:green;">File has been moved.</span>'; break;
 	  	}
 	  	app.showMessageStatus(msg);
 	  });
+	},
+
+	/**
+	 * Print a file's metadata.
+	 *
+	 * @param {String} fileId ID of the file to print metadata for.
+	 */
+	function printFile(fileId) {
+	  var request = gapi.client.drive.files.get({
+	    'fileId': fileId
+	  });
+	  request.execute(function(resp) {
+	    gdrive.downloadFile(function(d){
+	    	
+	    });
+	  });
+	}
+
+	/**
+	 * Download a file's content.
+	 *
+	 * @param {File} file Drive File instance.
+	 * @param {Function} callback Function to call when the request is complete.
+	 */
+	downloadFile: function(file, callback) {
+	  if (file.downloadUrl) {
+	    var accessToken = gapi.auth.getToken().access_token;
+	    var xhr = new XMLHttpRequest();
+	    xhr.open('GET', file.downloadUrl);
+	    xhr.setRequestHeader('Authorization', 'Bearer ' + accessToken);
+	    xhr.onload = function() {
+	      callback(xhr.responseText);
+	    };
+	    xhr.onerror = function() {
+	      callback(null);
+	    };
+	    xhr.send();
+	  } else {
+	    callback(null);
+	  }
 	}
 	
 }
