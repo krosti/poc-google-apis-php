@@ -52,6 +52,7 @@ gdrive = {
 
 			for (var i = 0; i <= items.length - 1 && n>=0; i++) {
 				if(!child){
+					//console.log(items[i]);
 					var divElement = document.createElement('div')
 					,	item = items[i]
 					,	fileType = (!child && item.mimeType.search('folder') != -1) ? 'folder' : 'file'
@@ -216,13 +217,20 @@ gdrive = {
 			activeClass: "ui-state-hover",
 			hoverClass: "ui-state-active",
 			drop: function( event, ui ) {
-				$(this)
+				var e = $(this);
+				e
 					.addClass("ui-state-highlight")
 					.delay(1000)
 					.removeClass("ui-state-highlight");
+
+				gdrive.renameFile(ui.draggable.context.id, 'new title', function(file){
+					console.log(file);
+					gdrive.insertFileIntoFolder( e.attr('id') , file.id );
+				});
 				
-				//gdrive.insertFileIntoFolder( $(this).attr('id') , ui.draggable.context.id );
-				gdrive.printFile(ui.draggable.context.id);
+				
+				
+				//gdrive.printFile(ui.draggable.context.id);
 			}
 		});
 	},
@@ -415,16 +423,20 @@ gdrive = {
 	 *
 	 * @param {String} fileId ID of the file to print metadata for.
 	 */
-	function printFile(fileId) {
+	printFile: function(fileId) {
 	  var request = gapi.client.drive.files.get({
-	    'fileId': fileId
+	    'fileId': fileId,
+	    'updateViewedDate': true
 	  });
 	  request.execute(function(resp) {
-	    gdrive.downloadFile(function(d){
-	    	
+	  	console.log(resp);
+	  	
+	    gdrive.downloadFile(resp,function(d){
+	    	//insert file here into folder with a magic way
+	    	console.log(d);
 	    });
 	  });
-	}
+	},
 
 	/**
 	 * Download a file's content.
@@ -433,10 +445,10 @@ gdrive = {
 	 * @param {Function} callback Function to call when the request is complete.
 	 */
 	downloadFile: function(file, callback) {
-	  if (file.downloadUrl) {
+	  if (file.exportLinks['application/pdf']) {
 	    var accessToken = gapi.auth.getToken().access_token;
 	    var xhr = new XMLHttpRequest();
-	    xhr.open('GET', file.downloadUrl);
+	    xhr.open('GET', file.exportLinks['application/pdf']);
 	    xhr.setRequestHeader('Authorization', 'Bearer ' + accessToken);
 	    xhr.onload = function() {
 	      callback(xhr.responseText);
@@ -448,6 +460,40 @@ gdrive = {
 	  } else {
 	    callback(null);
 	  }
+	},
+
+	/**
+	 * Rename a file.
+	 *
+	 * @param {String} fileId ID of the file to rename.
+	 * @param {String} newTitle New title for the file.
+	 */
+	renameFile: function(fileId, newTitle, callback) {
+	  var body = {'title': newTitle};
+	  var request = gapi.client.drive.files.patch({
+	    'fileId': fileId,
+	    //'resource': body,
+	    //'newRevision': true,
+	    'pinned':true
+	  });
+	  request.execute(function(resp) {
+	  	//console.log(resp);
+	    //console.log('New Title: ' + resp.title);
+	    console.log('file was pinned');
+	    callback(resp);
+	  });
+	},
+
+	localStorage: function(){
+		if(typeof(Storage)!=="undefined")
+		  {
+		  // Yes! localStorage and sessionStorage support!
+		  // Some code.....
+		  }
+		else
+		  {
+		  // Sorry! No web storage support..
+		  }
 	}
 	
 }

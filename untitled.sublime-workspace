@@ -1,0 +1,1339 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"google",
+				"google-drive-sdk-samples"
+			],
+			[
+				"down",
+				"downloadUrl"
+			],
+			[
+				"print",
+				"printFile"
+			],
+			[
+				"dialog",
+				"dialogTeachers"
+			],
+			[
+				"te",
+				"templateCloud"
+			],
+			[
+				"dial",
+				"dialogTeachers"
+			],
+			[
+				"new",
+				"newFolderDialog"
+			],
+			[
+				"user",
+				"userPermission"
+			],
+			[
+				"upla",
+				"uploadFile"
+			],
+			[
+				"share",
+				"shareDialog"
+			],
+			[
+				"custom",
+				"customQuery"
+			],
+			[
+				"ba",
+				"background"
+			],
+			[
+				"div",
+				"divElement"
+			],
+			[
+				"teach",
+				"teacherFolder"
+			],
+			[
+				"di",
+				"divElement"
+			],
+			[
+				"_ini",
+				"_initLoadShareOptions"
+			],
+			[
+				"sh",
+				"shareFilesOpts"
+			],
+			[
+				"call",
+				"callback"
+			],
+			[
+				"me",
+				"message"
+			],
+			[
+				"sho",
+				"showMessage"
+			],
+			[
+				"_",
+				"_GET"
+			],
+			[
+				"init",
+				"initClientRequestSMTP"
+			],
+			[
+				"X",
+				"XoauthClientRequest"
+			],
+			[
+				"xoa",
+				"getXoauthClientRequest"
+			],
+			[
+				"xmpp",
+				"xmppConnection"
+			],
+			[
+				"uer",
+				"userInfo"
+			],
+			[
+				"u",
+				"userInfo"
+			],
+			[
+				"font",
+				"font-weight"
+			],
+			[
+				"PRINT",
+				"print_r"
+			],
+			[
+				"make",
+				"makeCorsRequest"
+			],
+			[
+				"sans",
+				"sans-serif"
+			],
+			[
+				"ar",
+				"array"
+			],
+			[
+				"border",
+				"borderBox"
+			],
+			[
+				"in",
+				"indices"
+			],
+			[
+				"indi",
+				"indicesARG"
+			],
+			[
+				"indices",
+				"indicesUsa"
+			],
+			[
+				"set",
+				"setVal"
+			],
+			[
+				"change",
+				"changeRealTime"
+			],
+			[
+				"box",
+				"box_selector"
+			],
+			[
+				"slid",
+				"slideNum"
+			],
+			[
+				"ana",
+				"analisisTTT"
+			],
+			[
+				"margin-",
+				"margin-bottom"
+			],
+			[
+				"cont",
+				"control"
+			],
+			[
+				"rig",
+				"rightControl2"
+			],
+			[
+				"wi",
+				"width"
+			],
+			[
+				"fb",
+				"fb_user_has_account"
+			],
+			[
+				"c",
+				"color"
+			],
+			[
+				"authori",
+				"authorizedActions"
+			],
+			[
+				"face",
+				"facebook_id"
+			],
+			[
+				"log",
+				"logoutUrl"
+			],
+			[
+				"login",
+				"loginUrl"
+			],
+			[
+				"text",
+				"text-transform"
+			],
+			[
+				"list",
+				"list-style-type"
+			],
+			[
+				"analis",
+				"analisisttt"
+			],
+			[
+				"margin-t",
+				"margin-left"
+			],
+			[
+				"font-",
+				"font-family"
+			],
+			[
+				"margin",
+				"margin-bottom"
+			],
+			[
+				"logo",
+				"logofooter"
+			],
+			[
+				"dis",
+				"display"
+			],
+			[
+				"end",
+				"endif"
+			],
+			[
+				"for",
+				"foreach	foreach …"
+			],
+			[
+				"png",
+				"pngFile"
+			],
+			[
+				"quer",
+				"query"
+			],
+			[
+				"ui",
+				"ui_home"
+			],
+			[
+				"ima",
+				"imageView"
+			],
+			[
+				"gr",
+				"graphicName"
+			],
+			[
+				"selectbo",
+				"selectboxIndices"
+			],
+			[
+				"y",
+				"ymin"
+			],
+			[
+				"low",
+				"low"
+			],
+			[
+				"o",
+				"objt"
+			],
+			[
+				"dat",
+				"dataReady"
+			],
+			[
+				"data",
+				"dataArray"
+			],
+			[
+				"if",
+				"ife	if … else"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "k12/index.html",
+			"settings":
+			{
+				"buffer_size": 7021,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "k12/js/js.js",
+			"settings":
+			{
+				"buffer_size": 7183,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "k12/css/style.css",
+			"settings":
+			{
+				"buffer_size": 6239,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "k12/js/google_drive.js",
+			"settings":
+			{
+				"buffer_size": 14285,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "k12/js/google_mail.js",
+			"settings":
+			{
+				"buffer_size": 7274,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "k12/js/google_calendar.js",
+			"settings":
+			{
+				"buffer_size": 990,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"contents": "yyyy https://docs.google.com/folder/d/0B-CLb-gaWuuZZV9FSHBZWmtOYW8/edit\nxxx  https://docs.google.com/folder/d/0B-CLb-gaWuuZbXFZSEd2SHZFQWc/edit\n\nMath https://docs.google.com/a/labsatk12.com/folder/d/0B6vivFrkxCl3LXh3LTRVZjhiOEU/edit\n\n0AsNfFrUVKBGldGdUNEg1YUp0anJHeUE3dURBd2lKM0E\n\n\n\n\nfileid: 0AsNfFrUVKBGldGdUNEg1YUp0anJHeUE3dURBd2lKM0E\nrevisionid: 1331152822553000",
+			"settings":
+			{
+				"buffer_size": 364,
+				"line_ending": "Unix",
+				"name": "yyyy https://docs.google.com/folder/d/0B-CLb-gaWuu"
+			}
+		}
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 47.0,
+		"selected_items":
+		[
+			[
+				"json",
+				"Set Syntax: JSON"
+			],
+			[
+				"prett",
+				"Pretty JSON: Reformat (Pretty Print) JSON"
+			],
+			[
+				"instal",
+				"Package Control: Install Package"
+			],
+			[
+				"preet",
+				"HTMLPrettify: Prettify"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"ins",
+				"Package Control: Install Package"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"pa",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 494.0
+	},
+	"console":
+	{
+		"height": 125.0
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/Users/ceafernando/Development/k12/k12/xoauth-php/three-legged.php",
+		"/Users/ceafernando/Development/k12/k12/xoauth-php/common.php",
+		"/Users/ceafernando/Development/google-drive-sdk-samples/php/config.php",
+		"/Users/ceafernando/Development/google-api-php-client/src/auth/apiOAuth2.php",
+		"/Users/ceafernando/Development/google-api-php-client/test/general/AuthTest.php",
+		"/Users/ceafernando/Development/google-drive-sdk-samples/php/js/app.js",
+		"/Users/ceafernando/Development/google-drive-sdk-samples/php/drive_handler.php",
+		"/Users/ceafernando/Development/google-drive-sdk-samples/php/js/services.js",
+		"/Users/ceafernando/Development/k12-server/k12-server-test/index.html",
+		"/Users/ceafernando/Development/google-drive-sdk-samples/php/create_db.sql",
+		"/Users/ceafernando/Development/k12/k12/xoauth-php/Zend/Oauth/Http.php",
+		"/Users/ceafernando/Development/k12/k12/js/google_drive.js",
+		"/Users/ceafernando/Development/k12/.gitignore",
+		"/Users/ceafernando/Development/k12/js/google_drive.js",
+		"/Users/ceafernando/Development/k12/js/google_talk.js",
+		"/Users/ceafernando/Development/k12/css/style.css",
+		"/Users/ceafernando/Development/k12/xoauth-php/three-legged.php",
+		"/Users/ceafernando/Development/k12/index.html",
+		"/Users/ceafernando/Development/k12/js/google_mail.js",
+		"/Users/ceafernando/Development/k12/js/google_calendar.js",
+		"/Users/ceafernando/Development/k12/js/google_groups.js",
+		"/Users/ceafernando/Development/k12/js/js.js",
+		"/Users/ceafernando/Development/k12/mail.php",
+		"/Applications/XAMPP/xamppfiles/etc/php.ini",
+		"/Users/ceafernando/Development/k12/xoauth-php/Zend/Oauth.php",
+		"/Users/ceafernando/Development/k12/xoauth-php/Zend/Mail/Protocol/Smtp/Auth/Login.php",
+		"/Users/ceafernando/Development/k12/xoauth-php/two-legged.php",
+		"/Users/ceafernando/Development/ttt_finance/app/Config/routes.php",
+		"/Users/ceafernando/Development/ttt_finance/app/View/Pages/nosotros.ctp",
+		"/Users/ceafernando/Development/ttt_finance/app/View/Administrator/posts.ctp",
+		"/Users/ceafernando/Development/ttt_finance/app/View/Elements/post_home.ctp",
+		"/Users/ceafernando/Development/ttt_finance/app/Controller/AdministratorController.php",
+		"/Users/ceafernando/Development/ttt_finance/app/View/Layouts/backend.ctp",
+		"/Users/ceafernando/Development/ttt_finance/app/View/Elements/posts.ctp",
+		"/Users/ceafernando/Development/ttt_finance/app/View/Elements/indices_box.ctp",
+		"/Users/ceafernando/Development/ttt_finance/app/webroot/css/ttt-clients-samples.css",
+		"/Users/ceafernando/Development/ttt_finance/app/Controller/WidgetController.php",
+		"/Users/ceafernando/Development/ttt_finance/app/View/Elements/usersadd.ctp",
+		"/Users/ceafernando/Development/ttt_finance/app/Controller/UsersController.php",
+		"/Users/ceafernando/Development/ttt_finance/app/Controller/PagesController.php",
+		"/Users/ceafernando/Development/ttt_finance/app/Controller/ArticlesController.php",
+		"/Users/ceafernando/Development/ttt_finance/app/webroot/css/indices_box.css",
+		"/Users/ceafernando/Development/ttt_finance/app/Controller/AppController.php",
+		"/Users/ceafernando/Development/ttt_finance/app/View/Elements/login.ctp",
+		"/Users/ceafernando/Development/ttt_finance/app/Plugin/Facebook/View/Helper/FacebookHelper.php",
+		"/Users/ceafernando/Development/ttt_finance/app/webroot/js/jsTTT/error-handler.js",
+		"/Users/ceafernando/Development/ttt_finance/app/webroot/js/application-site.js",
+		"/Users/ceafernando/Development/ttt_finance/app/webroot/css/slider.css",
+		"/Users/ceafernando/Development/ttt_finance/app/webroot/js/slider.js",
+		"/Users/ceafernando/Development/ttt_finance/app/Config/bootstrap.php",
+		"/Users/ceafernando/Development/ttt_finance/app/Config/facebook.php",
+		"/Users/ceafernando/Development/ttt_finance/app/View/Users/add.ctp",
+		"/Users/ceafernando/Development/ttt_finance/app/webroot/css/users.css",
+		"/Users/ceafernando/Development/ttt_finance/app/View/Layouts/none.ctp",
+		"/Users/ceafernando/Development/ttt_finance/app/View/Pages/home.ctp",
+		"/Users/ceafernando/Development/ttt_finance/app/Model/User.php",
+		"/Users/ceafernando/Development/ttt_finance/app/webroot/css/backend.css",
+		"/Users/ceafernando/Development/ttt_finance/app/Plugin/Facebook/Lib/FacebookInfo.php",
+		"/Users/ceafernando/Development/ttt_finance/app/View/Layouts/default.ctp",
+		"/Users/ceafernando/Development/ttt_finance/app/Plugin/Facebook/readme.markdown",
+		"/Users/ceafernando/Development/ttt_finance/app/Plugin/Facebook/Controller/Component/ConnectComponent.php",
+		"/Users/ceafernando/Development/ttt_finance/lib/Cake/Controller/Component/AuthComponent.php",
+		"/Users/ceafernando/Development/ttt_finance/app/Plugin/Facebook/Vendor/Facebook.php",
+		"/Users/ceafernando/Development/ttt_finance/app/Plugin/Facebook/Vendor/base_facebook.php",
+		"/Users/ceafernando/Development/ttt_finance/app/Plugin/Facebook/Lib/FacebookApi.php",
+		"/Users/ceafernando/Development/ttt_finance/app/View/Users/login.ctp",
+		"/Users/ceafernando/Development/ttt_finance/app/Model/AppModel.php",
+		"/Users/ceafernando/Development/ttt_finance/app/Model/Article.php",
+		"/Users/ceafernando/Development/ttt_finance/app/Model/ArticlesTag.php",
+		"/Users/ceafernando/Development/ttt_finance/app/Model/Post.php",
+		"/Users/ceafernando/Development/ttt_finance/app/Model/Tag.php",
+		"/Users/ceafernando/Development/ttt_finance/app/Model/TagsPost.php",
+		"/Users/ceafernando/Development/ttt_finance/app/Model/Tipo.php",
+		"/Users/ceafernando/Development/ttt_finance/app/Controller/fb/facebook.php",
+		"/Users/ceafernando/Development/ttt_finance/app/Config/core.php",
+		"/Users/ceafernando/Development/ttt_finance/app/View/Elements/loginFB.ctp",
+		"/Users/ceafernando/Development/ttt_finance/lib/Cake/Console/Templates/skel/Controller/PagesController.php",
+		"/Users/ceafernando/Development/ttt_finance/app/Plugin/Facebook/Config/facebook.php",
+		"/Users/ceafernando/Development/ttt_finance/app/Controller/Component/FacebookComponent.php",
+		"/Users/ceafernando/Development/ttt_finance/app/Vendor/fb/facebook.php",
+		"/Users/ceafernando/Development/ttt_finance/app/Vendor/fb/base_facebook.php",
+		"/Users/ceafernando/Development/ttt_finance/app/Controller/PostsController.php",
+		"/Users/ceafernando/Development/ttt_finance/app/webroot/js/mopSlider/mopSlider-2.4.js",
+		"/Users/ceafernando/Desktop/html",
+		"/Users/ceafernando/Development/ttt_finance/app/webroot/extjs-login/app/controller/LoginController.js",
+		"/Users/ceafernando/Development/ttt_finance/app/webroot/css/index.css",
+		"/Users/ceafernando/Development/ttt_finance/app/View/Posts/index.ctp",
+		"/Users/ceafernando/Desktop/{\"yrb_token\" : \"YFT_MARKET_CLOSED\", \"tt\" : \"134417",
+		"/Users/ceafernando/Development/ttt_finance/app/Controller/NoticiasController.php",
+		"/Users/ceafernando/Development/ttt_finance/app/webroot/js/lightbox.js",
+		"/Users/ceafernando/Development/ttt_finance/tttmaqueta/index.html",
+		"/Users/ceafernando/Development/ttt_finance/bootstrap/assets/js/symbols.js",
+		"/Applications/MAMP/htdocs/ttt_finance/app/webroot/js/jsTTT/drawCanvas.js",
+		"/Applications/MAMP/htdocs/ttt_finance/app/webroot/js/jsTTT/rgraph.js",
+		"/Applications/MAMP/htdocs/ttt_finance/app/Controller/AdministratorController.php",
+		"/Applications/MAMP/htdocs/ttt_finance/app/Config/bootstrap.php",
+		"/Applications/XAMPP/xamppfiles/etc/httpd.conf",
+		"/Applications/MAMP/conf/apache/httpd.conf",
+		"/Applications/MAMP/htdocs/ttt_finance/app/webroot/.htaccess",
+		"/Applications/MAMP/htdocs/ttt_finance/app/.htaccess",
+		"/Applications/MAMP/htdocs/ttt_finance/.htaccess",
+		"/Applications/MAMP/htdocs/ttt_finance/app/webroot/js/RGraph/excanvas/HTACCESS-SAMPLE",
+		"/Users/ceafernando/Development/ttt_finance/app/.htaccess",
+		"/Users/ceafernando/Development/ttt_finance/app/webroot/.htaccess",
+		"/Users/ceafernando/Downloads/html",
+		"/Users/ceafernando/Development/index.php",
+		"/Applications/XAMPP/xamppfiles/etc/extra/httpd-vhosts.conf"
+	],
+	"find":
+	{
+		"height": 35.0
+	},
+	"find_in_files":
+	{
+		"height": 93.0,
+		"where_history":
+		[
+			"/Users/ceafernando/Development/google-api-php-client/",
+			"/Users/ceafernando/Development/google-drive-sdk-samples/php/",
+			"/Users/ceafernando/Development/ttt_finance",
+			"/Applications/MAMP/htdocs/ttt_finance"
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"JWT",
+			"+",
+			"'",
+			"dredit",
+			"'+'",
+			"+",
+			"?'+\n",
+			"+",
+			"rename",
+			"printFile",
+			"insertFileIntoFolder",
+			"dialog",
+			"png",
+			"bind",
+			"reader",
+			"left",
+			"folder",
+			"folde",
+			"jjZiO_E0JbuldQ8FcPCaD_27",
+			"839403186376-i9cjktapu32p070sd8b22voccr36nsea.apps.googleusercontent.com",
+			"y1IAFO2wOaK5Wc_VGtcHSSzO",
+			"groups",
+			"showMessage",
+			"send",
+			"peter.rushkin",
+			"auth",
+			"Zend_Mail",
+			"’",
+			"‘",
+			" | JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP | JSON_UNESCAPED_UNICODE),'\\n\\n'",
+			"JSON_FORCE_OBJECT",
+			"uft8_encode",
+			"json_encode",
+			"json",
+			"calendar",
+			"2D4D9F",
+			"89AAF0",
+			"mopSlider",
+			"mopSlider01",
+			"border-radius",
+			"offset",
+			"graphicWrapperExpandCollapse",
+			"yay",
+			"drawToolBoxButton",
+			"registrarseTTT",
+			"class",
+			":",
+			"}",
+			"{",
+			"negative",
+			"positive",
+			"ChangeRealtime",
+			"ChangeRealTime",
+			"ChangeRealtime",
+			"ChangeRealTime",
+			"ChangeRealtime",
+			"changeRealTime",
+			"changeRealtime",
+			"ChangeRealTime",
+			"changeRealTime",
+			".",
+			"Things",
+			"queryYQL",
+			"^MERV",
+			")",
+			"=>)",
+			":",
+			"id",
+			"{",
+			"{'",
+			"}",
+			"475x200",
+			"class=\"slide",
+			"id=\"slidesContainer",
+			"slideshow",
+			".caja_slide{\n				padding-top:20px;\n				float:left;\n			}",
+			"450px",
+			"435px",
+			"2",
+			"#slideshow2 {\n  margin:0px auto;\n  position:relative;\n  width:450px;\n  height:435px;\n}\n#slideshow2 #slidesContainer2 {\n  margin:0 auto;\n  overflow:auto; /* allow scrollbar */\n  position:relative;\n  width:450px;\n  height:435px;\n}\n\n#slideshow2 #slidesContainer2 .slide2 {\n  margin:0 auto;\n  height:435px;\n}\n#leftControl2 {\n  top:435px;\n}",
+			"slideshow",
+			"slider2",
+			"slider",
+			"image",
+			"class",
+			"110px",
+			"facebook_user",
+			"username",
+			"5px",
+			"EEEEEE",
+			"FFFFFF",
+			"e",
+			"red",
+			"background",
+			"registration",
+			"login",
+			"'",
+			"registration",
+			"User",
+			"var",
+			"_setDefaults",
+			"you are not authorized",
+			"var",
+			"		\n",
+			"console",
+			"fad",
+			"panel_header",
+			"login",
+			"box_login",
+			"borealdev",
+			"<?php echo $this->Html->image('tw-share.png'); ?>",
+			"chart",
+			"1000",
+			"#tool1",
+			"boxW",
+			"8px",
+			"cuerpo",
+			"analisis",
+			"analisisttt",
+			"post",
+			"posts",
+			"post",
+			"Post",
+			"			\n",
+			"Things",
+			"rankings",
+			"updateBox",
+			"box"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"noticia",
+			"Noticia"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 6,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "k12/index.html",
+					"settings":
+					{
+						"buffer_size": 7021,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								6360,
+								6360
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 2691.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "k12/js/js.js",
+					"settings":
+					{
+						"buffer_size": 7183,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								793,
+								793
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 316.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "k12/css/style.css",
+					"settings":
+					{
+						"buffer_size": 6239,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								5180,
+								5180
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/CSS/CSS.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 3628.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "k12/js/google_drive.js",
+					"settings":
+					{
+						"buffer_size": 14285,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								6351,
+								6351
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 3109.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "k12/js/google_mail.js",
+					"settings":
+					{
+						"buffer_size": 7274,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2619,
+								2619
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 1250.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "k12/js/google_calendar.js",
+					"settings":
+					{
+						"buffer_size": 990,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								246,
+								302
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"settings":
+					{
+						"buffer_size": 364,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								364,
+								364
+							]
+						],
+						"settings":
+						{
+							"auto_name": "yyyy https://docs.google.com/folder/d/0B-CLb-gaWuu",
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 0.0
+	},
+	"input":
+	{
+		"height": 31.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"replace":
+	{
+		"height": 64.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+			[
+				"common",
+				"k12/k12/xoauth-php/common.php"
+			],
+			[
+				"three",
+				"k12/xoauth-php/three-legged.php"
+			],
+			[
+				"googlecalen",
+				"k12/js/google_calendar.js"
+			],
+			[
+				"google_ma",
+				"k12/js/google_mail.js"
+			],
+			[
+				"google",
+				"k12/js/google_drive.js"
+			],
+			[
+				"style",
+				"k12/css/style.css"
+			],
+			[
+				"http",
+				"k12/xoauth-php/Zend/Oauth/Http.php"
+			],
+			[
+				"commo",
+				"k12/xoauth-php/common.php"
+			],
+			[
+				"js",
+				"k12/js/js.js"
+			],
+			[
+				"drive",
+				"js/google_drive.js"
+			],
+			[
+				"login",
+				"xoauth-php/Zend/Mail/Protocol/Smtp/Auth/Login.php"
+			],
+			[
+				"xoauth",
+				"xoauth-php/Zend/Oauth.php"
+			],
+			[
+				"index",
+				"app/webroot/css/index.css"
+			],
+			[
+				"d",
+				"app/View/Layouts/default.ctp"
+			],
+			[
+				"routes",
+				"app/Config/routes.php"
+			],
+			[
+				"nosotros",
+				"app/View/Pages/nosotros.ctp"
+			],
+			[
+				"indices",
+				"app/webroot/css/indices_box.css"
+			],
+			[
+				"indi",
+				"app/webroot/css/indices_box.css"
+			],
+			[
+				"indice",
+				"app/webroot/css/indices_box.css"
+			],
+			[
+				"posts",
+				"app/View/Administrator/posts.ctp"
+			],
+			[
+				"post_",
+				"app/View/Elements/post_home.ctp"
+			],
+			[
+				"admini",
+				"app/Controller/AdministratorController.php"
+			],
+			[
+				"wid",
+				"app/Controller/WidgetController.php"
+			],
+			[
+				"in",
+				"app/View/Elements/indices_box.ctp"
+			],
+			[
+				"back",
+				"app/View/Layouts/backend.ctp"
+			],
+			[
+				"post",
+				"app/View/Administrator/posts.ctp"
+			],
+			[
+				"post_h",
+				"app/View/Elements/post_home.ctp"
+			],
+			[
+				"widget",
+				"app/Controller/WidgetController.php"
+			],
+			[
+				"userscon",
+				"app/Controller/UsersController.php"
+			],
+			[
+				"pagescon",
+				"app/Controller/PagesController.php"
+			],
+			[
+				"indic",
+				"app/webroot/css/indices_box.css"
+			],
+			[
+				"appl",
+				"app/webroot/js/application-site.js"
+			],
+			[
+				"appli",
+				"app/webroot/js/jsTTT/application.js"
+			],
+			[
+				"error-h",
+				"app/webroot/js/jsTTT/error-handler.js"
+			],
+			[
+				"slid",
+				"app/webroot/js/slider.js"
+			],
+			[
+				"slide",
+				"app/webroot/js/slider.js"
+			],
+			[
+				"face",
+				"app/Config/facebook.php"
+			],
+			[
+				"boot",
+				"app/Config/bootstrap.php"
+			],
+			[
+				"users",
+				"app/webroot/css/users.css"
+			],
+			[
+				"none",
+				"app/View/Layouts/none.ctp"
+			],
+			[
+				"home",
+				"app/View/Pages/home.ctp"
+			],
+			[
+				"user",
+				"app/Model/User.php"
+			],
+			[
+				"backend",
+				"app/webroot/css/backend.css"
+			],
+			[
+				"defa",
+				"app/View/Layouts/default.ctp"
+			],
+			[
+				"rout",
+				"app/Config/routes.php"
+			],
+			[
+				"pages",
+				"app/Controller/PagesController.php"
+			],
+			[
+				"base_",
+				"app/Plugin/Facebook/Vendor/base_facebook.php"
+			],
+			[
+				"fac",
+				"app/Plugin/Facebook/Lib/FacebookApi.php"
+			],
+			[
+				"add",
+				"app/View/Users/add.ctp"
+			],
+			[
+				"connect",
+				"app/Plugin/Facebook/Controller/Component/ConnectComponent.php"
+			],
+			[
+				"facebookhel",
+				"app/Plugin/Facebook/View/Helper/FacebookHelper.php"
+			],
+			[
+				"def",
+				"app/View/Layouts/default.ctp"
+			],
+			[
+				"confic",
+				"app/Config/core.php"
+			],
+			[
+				"connectco",
+				"app/Plugin/Facebook/Controller/Component/ConnectComponent.php"
+			],
+			[
+				"connectcom",
+				"app/Plugin/Facebook/Controller/Component/ConnectComponent.php"
+			],
+			[
+				"elementscontro",
+				"lib/Cake/Console/Templates/skel/Controller/PagesController.php"
+			],
+			[
+				"facebook",
+				"app/Vendor/fb/facebook.php"
+			],
+			[
+				"app",
+				"app/Controller/AppController.php"
+			],
+			[
+				"page",
+				"app/Controller/PagesController.php"
+			],
+			[
+				"backend.css",
+				"app/webroot/css/backend.css"
+			],
+			[
+				"mop",
+				"app/webroot/js/mopSlider/mopSlider-2.4.js"
+			],
+			[
+				"core",
+				"app/Config/core.php"
+			],
+			[
+				"de",
+				"app/View/Layouts/default.ctp"
+			],
+			[
+				"mopslide",
+				"app/webroot/js/mopSlider/mopSlider-2.4.js"
+			],
+			[
+				"appcont",
+				"app/Controller/AppController.php"
+			],
+			[
+				"defau",
+				"app/View/Layouts/default.ctp"
+			],
+			[
+				"backs",
+				"app/webroot/css/backend.css"
+			],
+			[
+				"backen",
+				"app/View/Layouts/backend.ctp"
+			],
+			[
+				"mopsli",
+				"app/webroot/js/mopSlider/mopSlider-2.4.js"
+			],
+			[
+				"ttt-",
+				"app/webroot/css/ttt-clients-samples.css"
+			],
+			[
+				"postscon",
+				"app/Controller/PostsController.php"
+			],
+			[
+				"slider.",
+				"app/webroot/js/slider.js"
+			],
+			[
+				"mopslider-2.4.js",
+				"app/webroot/js/mopSlider/mopSlider-2.4.js"
+			],
+			[
+				"default",
+				"app/View/Layouts/default.ctp"
+			],
+			[
+				"indices_",
+				"app/webroot/css/indices_box.css"
+			],
+			[
+				"slider",
+				"app/webroot/js/slider.js"
+			],
+			[
+				"backe",
+				"app/View/Layouts/backend.ctp"
+			],
+			[
+				"postcont",
+				"app/Controller/PostsController.php"
+			],
+			[
+				"controller",
+				"app/Controller/PostsController.php"
+			],
+			[
+				"dra",
+				"app/webroot/js/jsTTT/drawCanvas.js"
+			],
+			[
+				"noticias",
+				"app/Controller/NoticiasController.php"
+			],
+			[
+				"index.css",
+				"app/webroot/css/index.css"
+			],
+			[
+				"ui-",
+				"app/webroot/js/ui-home.js"
+			],
+			[
+				"home.",
+				"app/View/Pages/home.ctp"
+			],
+			[
+				"webroot/css/in",
+				"app/webroot/css/index.css"
+			],
+			[
+				"maqueta",
+				"tttmaqueta/index.html"
+			],
+			[
+				"tttcss",
+				"app/webroot/css/ttt-clients-samples.css"
+			],
+			[
+				"sym",
+				"app/webroot/js/jsTTT/symbols.js"
+			],
+			[
+				"symbols",
+				"bootstrap/assets/js/symbols.js"
+			],
+			[
+				"craw",
+				"app/webroot/js/jsTTT/crawler-with-yahooquery.js"
+			],
+			[
+				"ui.",
+				"app/webroot/js/jsTTT/ui.js"
+			],
+			[
+				"rgra",
+				"app/webroot/js/jsTTT/rgraph.js"
+			],
+			[
+				"rgr",
+				"app/webroot/js/jsTTT/rgraph.js"
+			],
+			[
+				"draw",
+				"app/webroot/js/jsTTT/drawCanvas.js"
+			],
+			[
+				"htac",
+				".htaccess"
+			],
+			[
+				"htacss",
+				"app/webroot/js/RGraph/excanvas/HTACCESS-SAMPLE"
+			],
+			[
+				"htace",
+				"app/.htaccess"
+			],
+			[
+				"htacc",
+				".htaccess"
+			],
+			[
+				"hta",
+				".htaccess"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 200.0,
+	"status_bar_visible": true
+}

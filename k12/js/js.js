@@ -40,7 +40,6 @@ app = {
 
 	validate: function(callback){
 		
-		
 		$.ajax({
 		  dataType: "json",
 		  data: 'access_token='+gapi.auth.getToken().access_token,
@@ -253,6 +252,17 @@ app = {
 			$('.menuRight').toggle();
 			$('.menuLeft').toggle();
 			$('.container').slideToggle();
+		});
+	},
+
+	secureOAUTH: function(){
+		$.ajax({ url: 'https://accounts.google.com/o/oauth2/auth?'+
+			'scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile&'+
+			'state=%2Fprofile&'+
+			'redirect_uri=https%3A%2F%2Fborealdev.com.ar%2Fcall.php&'+
+			'response_type=code&'+
+			'client_id=839403186376-i9cjktapu32p070sd8b22voccr36nsea.apps.googleusercontent.com&approval_prompt=force', 
+			success:function(d){console.log(d);}
 		});
 	}
 }
