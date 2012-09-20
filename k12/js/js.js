@@ -17,6 +17,7 @@ app = {
 					if(user.val() != '' && pw.val() != ''){
 						__USR = user.val();
 						__PW = pw.val();
+						__DOMAIN = __USR.split('@')[1];
 						app.loadActions();
 						$( this ).dialog( "close" );
 					}
@@ -86,13 +87,14 @@ app = {
           		'scope': [
           			'https://www.googleapis.com/auth/drive',
           			'https://www.googleapis.com/auth/googletalk',
-          			'https://apps-apis.google.com/a/feeds/groups/',
+          			'https://apps-apis.google.com/a/feeds/groups/', //Google Groups Provisioning
           			'https://www.googleapis.com/auth/userinfo.email',
           			'https://www.googleapis.com/auth/userinfo.profile',
           			'https://apps-apis.google.com/a/feeds/user/',
           			'https://www.googleapis.com/auth/calendar',
           			'https://apps-apis.google.com/a/feeds/emailsettings/',
-          			'https://mail.google.com/mail/feed/atom'
+          			'https://mail.google.com/mail/feed/atom',
+          			'https://www.google.com/m8/feeds'
           			]
         		};
 

@@ -26,13 +26,13 @@
 		_SERVER = domain[0]+'//'+domain[2]+'/'+domain[3]+'/'+domain[4]+"/xoauth-php/three-legged.php?method=";
 		_CLIENTID = "839403186376-i9cjktapu32p070sd8b22voccr36nsea.apps.googleusercontent.com";
 		_DEVELOPER_ID = 'AIzaSyAcpP_7b9_F0Fvvwk5h9OQBGppKecvF220';
-		__DOMAIN = 'k12.com';
+		__DOMAIN = '';
 		_URL = document.URL.split('/');
 	</script>
 </head>
 <body>
 
-<?php if(isset($_SESSION['user'])): ?>
+<?php #if(isset($_SESSION['user'])): ?>
 	<div id="statusMSG"></div>
 
 	<div class="bar">
@@ -204,6 +204,11 @@
 
 	<div id="oauth2"></div>
 
+	<!--DATA LOAD-->
+	<!--here google client libraries-->
+	<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+	<script type="text/javascript" src="https://apis.google.com/js/api.js"></script>
+	<!--DATA LOAD-->
 	<script type="text/javascript">
     	//google.load("feeds", "1");
     	google.load("gdata", "2.x");
@@ -220,14 +225,13 @@
 			gapi.load('drive-share', gdrive.shareDialog);
 		}
 	</script>
-	<script type="text/javascript" src="https://www.google.com/jsapi"></script>
-	<script type="text/javascript" src="https://apis.google.com/js/api.js"></script>
     <script src="https://apis.google.com/js/client.js?onload=load"></script>
     <script type="text/javascript" src="js/jquery.xmpp.js"></script>
 
     
     <!--script src="js/strophe.js"></script-->
     <script src="js/spin.js"></script>
+    <script src="js/libs/sha1.js"></script>
 
     <script src="js/js.js"></script>
     <script src="js/google_mail.js"></script>
@@ -236,9 +240,11 @@
     <script src="js/google_groups.js"></script>
     <script src="js/google_calendar.js"></script>
     <script src="js/google_user.js"></script>
+    <script src="js/google_contacts.js"></script>
+    <script src="js/google_provisioning.js"></script>
    
-<?php else: ?>
-	
+<?php #else: ?>
+	<!--iframe src="/k12/k12/xoauth-php/three-legged.php?method=deleteSession" border="0" width="400"></iframe-->
 	<script type="text/javascript">
 		$('#login').dialog({
 			title: 'Login',
@@ -274,6 +280,6 @@
 			}
 		});
 	</script>
-<?php endif; ?>
+<?php #endif; ?>
 </body>
 </html>
