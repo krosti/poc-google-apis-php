@@ -1,25 +1,38 @@
+<?php session_start();  ?>
 <!DOCTYPE html>
 <!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
 <!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
 <!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<title>K12 - google api's</title>
+	<title>K12 - Prototype</title>
 	
 	<!-- This header mimics Internet Explorer 7 and uses 
 	     <!DOCTYPE> to determine how to display the webpage -->
 	<!--meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" -->
 	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,300' rel='stylesheet' type='text/css'>
 	<link href="css/style.css" rel="stylesheet" type="text/css" />
-	<link href="css/jquery-ui.css" rel="stylesheet" type="text/css" />
-	<script type="text/javascript" src="https://www.google.com/jsapi"></script>
-	<script type="text/javascript" src="https://apis.google.com/js/api.js"></script>
-	
+	<link href="css/jquery-ui-1.8.23.custom.css" rel="stylesheet" type="text/css" />
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.23/jquery-ui.min.js"></script>
+	<script type="text/javascript">
+		//global SCOPE
+		var 	test_domain 	= "http://localhost/k12/xoauth-php/three-legged.php"
+			,	domain 			= document.URL.split('/');
 
+		_SERVER = domain[0]+'//'+domain[2]+'/'+domain[3]+'/'+domain[4]+"/xoauth-php/three-legged.php?method=";
+		_CLIENTID = "839403186376-i9cjktapu32p070sd8b22voccr36nsea.apps.googleusercontent.com";
+		_DEVELOPER_ID = 'AIzaSyAcpP_7b9_F0Fvvwk5h9OQBGppKecvF220';
+		__DOMAIN = 'k12.com';
+		_URL = document.URL.split('/');
+	</script>
 </head>
 <body>
+
+<?php if(isset($_SESSION['user'])): ?>
 	<div id="statusMSG"></div>
 
 	<div class="bar">
@@ -180,17 +193,24 @@
 		</div>
 	</div>	
 
+	<!--LOGIN-->
+	<div id="login" style="display:none;">
+		<input class="user" placeholder="user"></input>	
+		<input class="password" placeholder="password" type="password"></input>
+	</div>
+	<!--LOGIN-->
+
 	<div id="spin"></div>
 
 	<div id="oauth2"></div>
-	
+
 	<script type="text/javascript">
     	//google.load("feeds", "1");
     	google.load("gdata", "2.x");
 
 		function load(){
 			//personal API KEY, development APIKEY
-			gapi.client.setApiKey('AIzaSyAcpP_7b9_F0Fvvwk5h9OQBGppKecvF220');
+			gapi.client.setApiKey(_DEVELOPER_ID);
 		    gapi.client.load('drive', 'v2',app._init);
 		    
 		    //google picker loader
@@ -200,16 +220,14 @@
 			gapi.load('drive-share', gdrive.shareDialog);
 		}
 	</script>
-
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.23/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+	<script type="text/javascript" src="https://apis.google.com/js/api.js"></script>
     <script src="https://apis.google.com/js/client.js?onload=load"></script>
     <script type="text/javascript" src="js/jquery.xmpp.js"></script>
 
     
     <!--script src="js/strophe.js"></script-->
     <script src="js/spin.js"></script>
-    
 
     <script src="js/js.js"></script>
     <script src="js/google_mail.js"></script>
@@ -218,6 +236,44 @@
     <script src="js/google_groups.js"></script>
     <script src="js/google_calendar.js"></script>
     <script src="js/google_user.js"></script>
-    
+   
+<?php else: ?>
+	
+	<script type="text/javascript">
+		$('#login').dialog({
+			title: 'Login',
+			height: 150,
+			width:180,
+			modal: true,
+			buttons: {
+				"Ok": function(ui) {
+					var login = $('#login')
+					,	user = login.find('.user')
+					,	pw = login.find('.password');
+					if(user.val() != '' && pw.val() != ''){
+						__USR = user.val();
+						__PW = pw.val();
+						$.ajax({
+							url:_SERVER+'saveSession&user='+__USR+'&pw='+__PW,
+							success: function(data){
+								console.log(data);
+								//if(data){
+									$( this ).dialog( "close" );
+									//location.reload();
+								//}else{
+									//console.log('error to save login session');
+								//}
+							}
+
+						});	
+					}
+				},
+				Cancel: function() {
+					//$( this ).dialog( "close" );
+				}
+			}
+		});
+	</script>
+<?php endif; ?>
 </body>
 </html>

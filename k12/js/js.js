@@ -4,13 +4,29 @@ app = {
 		/*
 		* pre-load methods
 		*/
-		var 	test_domain 	= "http://localhost/k12/xoauth-php/three-legged.php"
-			,	domain 			= document.URL.split('/');
-
-		_SERVER = domain[0]+'//'+domain[2]+'/'+domain[3]+'/'+'k12'+"/xoauth-php/three-legged.php?method=";
-		_CLIENTID = "839403186376-i9cjktapu32p070sd8b22voccr36nsea.apps.googleusercontent.com";
+		$('#login').dialog({
+			title: 'Login',
+			height: 150,
+			width:180,
+			modal: true,
+			buttons: {
+				"Ok": function(ui) {
+					var login = $('#login')
+					,	user = login.find('.user')
+					,	pw = login.find('.password');
+					if(user.val() != '' && pw.val() != ''){
+						__USR = user.val();
+						__PW = pw.val();
+						app.loadActions();
+						$( this ).dialog( "close" );
+					}
+				},
+				Cancel: function() {
+					$( this ).dialog( "close" );
+				}
+			}
+		});
 		
-		app.loadActions();
 
 
 	},
@@ -173,7 +189,7 @@ app = {
 		  	//issue: error Unexpected Token in xml_response in 1st call
 		  	console.log(url);
 		  	document.getElementById('spin').style.display = 'none';
-		  	callback ('server error');
+		  	console.log('server error');
 		  }
 		});
 

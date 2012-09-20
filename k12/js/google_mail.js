@@ -231,14 +231,26 @@ gmail = {
 			,	message = form.find('#emailMESSAGE');
 
 		$('.submit').on('click',function(){
-			app.ajaxCall(_SERVER+'send_email&to='+to.val()+'&from='+userInfo.email+'&subject='+subject.val()+'&message='+message.val(),function(data){
-				console.log(data);
-				document.getElementById('spin').style.display = 'none';
-				app.showMessageStatus(data);
-				to.val('');
-				subject.val('');
-				message.val('');
-			});
+			app.ajaxCall(
+				_URL[0]+'//'+_URL[2]+'/'+_URL[3]+'/'+_URL[4]+'/xoauth-php/sendemail.php?'+
+					'to='+to.val()+
+					'&from='+userInfo.email+
+					'&subject='+subject.val()+
+					'&body='+message.val()+
+					'&domain='+__DOMAIN+
+					'&user='+__USR+
+					'&password='+__PW,
+				function(data){
+					console.log(data);
+					document.getElementById('spin').style.display = 'none';
+					app.showMessageStatus(data.status_message);
+					if (data.status) {
+						to.val('');
+						subject.val('');
+						message.val('');
+					}
+				}
+			);
 		});
 	}
 }

@@ -280,6 +280,18 @@ if (!isset($_SESSION['ACCESS_TOKEN'])) {
     return $client->retrieveGroup($memberId);
   }
 
+  function saveSession(){
+    session_start();
+    $_SESSION['user'] = $_GET['user'];
+    $_SESSION['pw'] = $_GET['pw'];
+    #session_write_close();
+    return true;
+  }
+
+  function deleteSession(){
+    session_destroy();
+  }
+
 
   switch($_GET['method']){
     case 'total_messages': 
@@ -309,9 +321,15 @@ if (!isset($_SESSION['ACCESS_TOKEN'])) {
     case 'test':
       echo json_encode(test($initClientRequestEncodedSMTP),JSON_FORCE_OBJECT);
       break;
+    case 'saveSession':
+      echo saveSession();
+      break;
+    case 'deleteSession':
+      echo deleteSession();
+      break;
 
   };
 } else{
-  echo 'Disconnect';
+  echo 'Disconnect here: '.'<a href="/three-legged.php?method=deleteSession">LogOut</a>';
 }
 ?>
