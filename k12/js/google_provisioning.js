@@ -8,6 +8,10 @@ gprovisioning = {
 
 	},
 
+	validate_code: function(){
+
+	},
+
 	createNewDomainUser: function(userName, password, firstName, lastName){
 		var xml = 
 			'<?xml version="1.0" encoding="UTF-8"?>'+

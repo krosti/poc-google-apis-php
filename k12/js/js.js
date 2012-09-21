@@ -44,6 +44,18 @@ app = {
 		//gmail._init();
 		gtalk._init();
 
+		function gup( name )
+		{
+		  name = name.replace(/[\[]/,"\\\[").replace(/[\]]/,"\\\]");
+		  var regexS = "[\\?&]"+name+"=([^&#]*)";
+		  var regex = new RegExp( regexS );
+		  var results = regex.exec( window.location.href );
+		  if( results == null )
+		    return "";
+		  else
+		    return results[1];
+		}
+
 		
 		$('#LINKsendemail').on('click',function(){
 			gmail.showFormToSend();
@@ -84,6 +96,7 @@ app = {
 		
         var config = {
           		'client_id': _CLIENTID,
+          		'response_type': 'token',
           		'scope': [
           			'https://www.googleapis.com/auth/drive',
           			'https://www.googleapis.com/auth/googletalk',
