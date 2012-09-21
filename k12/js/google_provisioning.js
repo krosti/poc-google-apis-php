@@ -25,16 +25,16 @@ gprovisioning = {
 				'<apps:name familyName="'+lastName+'" givenName="'+firstName+'"/>'+
 				'</atom:entry>';
 		
-		$.ajax({
+		$.post('https://apps-apis.google.com/a/feeds/'+__DOMAIN+'/user/2.0',{
 			dataType:'jsonp',
-            type:'POST',
             data:xml,
 			headers: {
+			    "Access-Control-Allow-Origin": "*",
+			    'Access-Control-Allow-Methods': 'POST',
                 'Authorization':'OAuth '+gapi.auth.getToken().access_token,
                 'GData-Version': '1.0',
                 'Content-Type': 'application/atom+xml'
             },
-			url:'https://apps-apis.google.com/a/feeds/'+__DOMAIN+'/user/2.0',
 			success:function(a){console.log(a);}
 		});
 	}
