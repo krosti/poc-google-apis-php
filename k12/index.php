@@ -74,17 +74,22 @@
 			<span>MY CALENDARS</span>
 			<div id="addCalendar"><img src="images/calendar_add.png"> </div>
 			<div id="addEvent"><img src="images/event_add.png"> </div>
+
 			<div id="addCalendarBox">
 				<input id="calendarName"></input>
-				<button>Save New Calendar</button>
+				<button class="punch">Save New Calendar</button>
 			</div>
 			<div id="addEventBox">
 				<label>Event:</label> <input id="eventName"></input><br>
 				<label>Start</label><input id="date_start"></input><br>
 				<label>End:</label><input id="date_end"></input><br>
-				<select id="calendarsList"></select>
-				<button>Save New Event</button>
-			</div>	
+				<select class="select" id="calendarsList"></select>
+				<button class="punch">Save New Event</button>
+			</div>
+
+			<!--custom lists-->
+			<div id="eventList"></div>
+			<!--custom lists-->
 		</div>
 		
 	</div>

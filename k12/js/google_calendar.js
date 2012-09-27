@@ -5,6 +5,7 @@ gcalendar = {
 		gcalendar.appendCalendar(userInfo);
 		gcalendar.bindCalendarSaveButton();
 		gcalendar.bindEventSaveButton();
+		gcalendar.showEventList('labsatk12.com_hl3thlmmmcenp6je8t9gtdicbc@group.calendar.google.com'); //K12 - special lessons
 	},
 
 	loadActions: function(){
@@ -108,6 +109,18 @@ gcalendar = {
 		var addEventBox = $('#addEventBox')
 		,	eventName = addEventBox.find('#eventName');
 
+		/* use a function for the exact format desired... */
+		function ISODateString(d){
+		 function pad(n){return n<10 ? '0'+n : n}
+		 return d.getUTCFullYear()+'-'
+		      + pad(d.getUTCMonth()+1)+'-'
+		      + pad(d.getUTCDate())+'T'
+		      + pad(d.getUTCHours())+':'
+		      + pad(d.getUTCMinutes())+':'
+		      + pad(d.getUTCSeconds())+'Z'
+		  }
+
+
 		/*
 		* bindDateTimePickers
 		*/
@@ -135,42 +148,29 @@ gcalendar = {
 			*/
 			addEventBox.dialog({
     			title: 'Add New Event',
-				height: 200,
+				height: 220,
 				modal: true
 			});	
 		});
 
 		addEventBox.find('button').on('click',function(){
-			/*CORS + XHR2*/
-			/*var xhr = new XMLHttpRequest()
-			,	data = "{'summary':'"+eventName.val()+"'}"
-			,	oauthToken = gapi.auth.getToken();
-			xhr.open('POST', 'https://www.googleapis.com/calendar/v3/calendars/'+$('#calendarsList option:selected').attr('id')+'/events',true);
-
-			xhr.setRequestHeader('Content-type', 'application/json');
-			xhr.setRequestHeader('content-length', data.length);
-			xhr.setRequestHeader('Authorization',
-			  'OAuth ' + oauthToken.access_token);
 			
-			xhr.responseType = 'text';
-			  xhr.onload = function(e) {
-			    if (this.status == 200) {
-				    eventName.val('');
-					addEventBox.dialog('close');
-					app.showMessageStatus('Event created!');
-			    }
-			  };
-			xhr.send(data);*/
 			document.getElementById('spin').style.display = 'block';
+
+			var start_date = $('#date_start').val()
+			,	end_date = $('#date_end').val();
+
+			start_date = new Date(start_date);
+			end_date = new Date(end_date);
 
 			var resource = {
 					"summary": eventName.val(),
 					"location": "Somewhere",
 					"start": {
-						"dateTime": "2012-12-16T10:00:00.000-07:00"
+						"dateTime": ISODateString(start_date)
 				},
 					"end": {
-						"dateTime": "2012-12-16T10:25:00.000-07:00"
+						"dateTime": ISODateString(end_date)
 				}
 			};
 			var request = gapi.client.calendar.events.insert({
@@ -178,11 +178,18 @@ gcalendar = {
 			  'resource': resource
 			});
 			request.execute(function(resp) {
-			  if (resp.status == 'confirm') {
+			  if (resp.result) {
+			  	$('#date_start').val('');
+			  	$('#date_end').val('');
 			  	eventName.val('');
 				addEventBox.dialog('close');
 				app.showMessageStatus('<span style="color:green">Event created!</span>');
-			  };
+				document.getElementById('spin').style.display = 'none';
+			  }else{
+			  	app.showMessageStatus('Invalid Calendar');
+			  	document.getElementById('spin').style.display = 'none';
+
+			  }
 			});
 			
 		});
@@ -224,5 +231,9 @@ gcalendar = {
 				startDateTextBox.datetimepicker('option', 'maxDate', endDateTextBox.datetimepicker('getDate') );
 			}
 		});
+	},
+
+	showEventList: function(calendarId){
+		//IN PROGRESS
 	}
 }

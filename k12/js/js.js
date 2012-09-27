@@ -64,7 +64,7 @@ app = {
 		app.BTNopenCalendar();
 		app.BTNopenGroups();
 		app.BTNopenShareFiles();
-
+		app.BTNopenUsers();
 	},
 
 	validate: function(callback){
@@ -303,6 +303,13 @@ app = {
 	BTNopenGroups: function(){
 		$('#LINKsendgroups').on('click',function(){
 			$('.groups').slideToggle();
+			$('.container').slideToggle();
+		});
+	},
+
+	BTNopenUsers: function(){
+		$('#LINKsendusers').on('click',function(){
+			$('.users').slideToggle();
 			$('.container').slideToggle();
 			gprovisioning.createNewDomainUser('EinsteinRock','mypass123','Julio','Cesar');
 		});
