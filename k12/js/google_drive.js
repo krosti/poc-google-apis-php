@@ -236,9 +236,9 @@ gdrive = {
 	},
 
 	shareDialog: function(){
-		console.log('Init Share Dialog:');
-		s = new gapi.drive.share.ShareClient('839403186376');
-		s.setItemIds('1YDfCEsf-h_obCHGcutl10Qm0l7lFthlxuacVJRgJHUxIF-O6w-TUFGN3');
+		//console.log('Init Share Dialog:');
+		//s = new gapi.drive.share.ShareClient('839403186376');
+		//s.setItemIds('1YDfCEsf-h_obCHGcutl10Qm0l7lFthlxuacVJRgJHUxIF-O6w-TUFGN3');
 	},
 
 	_initLoadShareOptions: function(){

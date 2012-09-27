@@ -18,6 +18,8 @@
 	<link href="css/jquery-ui-1.8.23.custom.css" rel="stylesheet" type="text/css" />
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.23/jquery-ui.min.js"></script>
+	<script src="js/libs/datetimepicker/jquery-ui-timepicker-addon.js"></script>
+
 	<script type="text/javascript">
 		//global SCOPE
 		var 	test_domain 	= "http://localhost/k12/xoauth-php/three-legged.php"
@@ -25,6 +27,7 @@
 
 		_SERVER = domain[0]+'//'+domain[2]+'/'+domain[3]+'/'+domain[4]+"/xoauth-php/three-legged.php?method=";
 		_CLIENTID = "839403186376-i9cjktapu32p070sd8b22voccr36nsea.apps.googleusercontent.com";
+		_CLIENTSECRET = 'jjZiO_E0JbuldQ8FcPCaD_27';
 		_DEVELOPER_ID = 'AIzaSyAcpP_7b9_F0Fvvwk5h9OQBGppKecvF220';
 		__DOMAIN = '';
 		_URL = document.URL.split('/');
@@ -67,7 +70,22 @@
 
 	<!--calendar-->
 	<div class="block calendar">
-		<div class="title"><span>MY CALENDARS</span></div>
+		<div class="title">
+			<span>MY CALENDARS</span>
+			<div id="addCalendar"><img src="images/calendar_add.png"> </div>
+			<div id="addEvent"><img src="images/event_add.png"> </div>
+			<div id="addCalendarBox">
+				<input id="calendarName"></input>
+				<button>Save New Calendar</button>
+			</div>
+			<div id="addEventBox">
+				<label>Event:</label> <input id="eventName"></input><br>
+				<label>Start</label><input id="date_start"></input><br>
+				<label>End:</label><input id="date_end"></input><br>
+				<select id="calendarsList"></select>
+				<button>Save New Event</button>
+			</div>	
+		</div>
 		
 	</div>
 	<!--calendar-->	
@@ -208,6 +226,7 @@
 	<!--here google client libraries-->
 	<script type="text/javascript" src="https://www.google.com/jsapi"></script>
 	<script type="text/javascript" src="https://apis.google.com/js/api.js"></script>
+	<script src="https://apis.google.com/js/api.js"></script>
 	<!--DATA LOAD-->
 	<script type="text/javascript">
     	//google.load("feeds", "1");
@@ -217,6 +236,7 @@
 			//personal API KEY, development APIKEY
 			gapi.client.setApiKey(_DEVELOPER_ID);
 		    gapi.client.load('drive', 'v2',app._init);
+		    gapi.client.load('calendar', 'v3');
 		    
 		    //google picker loader
 	    	google.load('picker', '1', {'callback':gdrive.filePicker});
@@ -231,7 +251,7 @@
     
     <!--script src="js/strophe.js"></script-->
     <script src="js/spin.js"></script>
-    <script src="js/libs/sha1.js"></script>
+    <script src="js/libs/sha1.js"></script>    
 
     <script src="js/js.js"></script>
     <script src="js/google_mail.js"></script>

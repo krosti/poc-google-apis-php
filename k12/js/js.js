@@ -6,7 +6,7 @@ app = {
 		*/
 		$('#login').dialog({
 			title: 'Login',
-			height: 150,
+			height: 160,
 			width:180,
 			modal: true,
 			buttons: {
@@ -70,6 +70,7 @@ app = {
 	validate: function(callback){
 		
 		$.ajax({
+		  type: 'POST',
 		  dataType: "json",
 		  data: 'access_token='+gapi.auth.getToken().access_token,
 		  beforeSend: function(xhr){
@@ -127,6 +128,43 @@ app = {
 			//gmail._init();
 			//ggroups._init();
 			//gcalendar._init();
+        });
+    },
+
+    customAuthorizeApp: function(scope, object, callback) {
+		/*
+		*	OAuth validation/authorization
+		* resume: authorize my Google Api Key with LoggedIn account
+		* popUp: contains authorization for this APP and logged in account
+		*        or is a login form
+		*/
+		
+        var config = {
+          		'client_id': _CLIENTID,
+          		'response_type': 'token',
+          		'scope': [
+          			scope
+          			]
+        		};
+
+        /*gapi.auth.authorize(config, function(d) {
+          	//console.log('This APP was authorized to use for this user');
+			app.validate(function(){
+				callback(d);
+			});
+        });*/
+
+        $.ajax({
+        	url:'https://accounts.google.com/o/oauth2/auth?'+
+				'scope='+scope+'&'+
+				'state=%2Fcalendar&'+
+				'redirect_uri=http%3A%2F%2Flocalhost%2Foauthcallback&'+
+				'response_type=token&'+
+				'client_id='+_CLIENTID,
+			success: function(a){
+				console.log(a);
+			}
+
         });
     },
 
@@ -266,6 +304,7 @@ app = {
 		$('#LINKsendgroups').on('click',function(){
 			$('.groups').slideToggle();
 			$('.container').slideToggle();
+			gprovisioning.createNewDomainUser('EinsteinRock','mypass123','Julio','Cesar');
 		});
 	},
 

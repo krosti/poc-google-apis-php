@@ -15,7 +15,7 @@ gcontacts = {
 	},
 
 	addUserContact: function(){
-
+		
 	}
 
 }

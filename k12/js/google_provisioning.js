@@ -28,18 +28,27 @@ gprovisioning = {
 				'<apps:quota limit="2048"/>'+
 				'<apps:name familyName="'+lastName+'" givenName="'+firstName+'"/>'+
 				'</atom:entry>';
+
+		document.getElementById('spin').style.display = 'block';
+		var xhr = new XMLHttpRequest()
+		,	oauthToken = gapi.auth.getToken();
+		xhr.open('GET', 'https://apps-apis.google.com/a/feeds/'+__DOMAIN+'/user/2.0');
+
+		xhr.setRequestHeader('Content-type', 'application/atom+xml');
+		xhr.setRequestHeader('content-length', data.length);
+		xhr.setRequestHeader('Authorization',
+		  'OAuth ' + oauthToken.access_token);
 		
-		$.post('https://apps-apis.google.com/a/feeds/'+__DOMAIN+'/user/2.0',{
-			dataType:'jsonp',
-            data:xml,
-			headers: {
-			    "Access-Control-Allow-Origin": "*",
-			    'Access-Control-Allow-Methods': 'POST',
-                'Authorization':'OAuth '+gapi.auth.getToken().access_token,
-                'GData-Version': '1.0',
-                'Content-Type': 'application/atom+xml'
-            },
-			success:function(a){console.log(a);}
-		});
+		xhr.responseType = 'text';
+		  xhr.onload = function(e) {
+		    if (this.status == 200) {
+			    
+				document.getElementById('spin').style.display = 'none';
+		    }
+		  };
+		xhr.send(data);
+		
+		
+		
 	}
 }
