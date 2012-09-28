@@ -5,11 +5,11 @@ gcalendar = {
 		gcalendar.appendCalendar(userInfo);
 		gcalendar.bindCalendarSaveButton();
 		gcalendar.bindEventSaveButton();
-		gcalendar.showEventList('labsatk12.com_hl3thlmmmcenp6je8t9gtdicbc@group.calendar.google.com'); //K12 - special lessons
+		gcalendar.showEventList('ceafernando@gmail.com'); //K12 - special lessons
 	},
 
 	loadActions: function(){
-		
+		gcalendar.refreshButton();
 	},
 
 	getMyCalendar: function(callback){
@@ -233,7 +233,47 @@ gcalendar = {
 		});
 	},
 
+	refreshButton: function(){
+		$('#refreshButton').on('click',function(){
+			gcalendar.showEventList('ceafernando@gmail.com'); //K12 - special lessons
+		});
+	},
+
 	showEventList: function(calendarId){
-		//IN PROGRESS
+		var eventList = document.getElementById('eventList');
+		eventList.innerHTML = '';
+
+		var request = gapi.client.calendar.events.list({
+			  'calendarId': calendarId,
+			  'maxResults': 10,
+			  'orderBy': 'updated',
+			  'showDeleted': false,
+			  'updatedMin': '2012-09-27T01:00:00.000Z'
+			});
+			request.execute(function(resp) {
+			  if (resp.result) {
+			  	console.log(resp);
+			  	var events = resp.items;
+			  	for (var i = events.length - 1; i >= 0; i--) {
+			  		if(events[i].status != 'cancelled'){
+			  			var e = document.createElement('li')
+			  			,	end = new Date(events[i].end.datetime)
+			  			,	start = new Date(events[i].start.datetime)
+						,	endHours = end.getHours() - start.getHours()
+						,	endMinutes = end.getMinutes() - start.getMinutes()
+						,	remainTime = '('+endHours.toString()+':'+endMinutes.toString()+')';
+
+				  		e.innerHTML = events[i].summary;
+				  		eventList.appendChild(e);	
+			  		}
+			  		
+			  	};
+				document.getElementById('spin').style.display = 'none';
+			  }else{
+			  	app.showMessageStatus('Invalid resp - events list');
+			  	document.getElementById('spin').style.display = 'none';
+
+			  }
+			});
 	}
 }

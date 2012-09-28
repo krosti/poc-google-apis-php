@@ -211,9 +211,10 @@ if (!isset($_SESSION['ACCESS_TOKEN'])) {
   function all_messages($storage){
     $mails = array();
     $n = $storage->countMessages();
-    
+    //echo '<pre>';
     for ($i = 0; $i <= $_GET['id']; $i++ ){ 
       $current = $storage->getMessage($n);
+      //print_r($current);
       array_push($mails, array(
           'id' => $n,
           'status' => $current->hasFlag(Zend_Mail_Storage::FLAG_SEEN),
@@ -223,6 +224,7 @@ if (!isset($_SESSION['ACCESS_TOKEN'])) {
         ));
       $n--;
     }
+    //echo '</pre>';
     return $mails;
   }
 

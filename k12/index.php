@@ -72,6 +72,7 @@
 	<div class="block calendar">
 		<div class="title">
 			<span>MY CALENDARS</span>
+			<span><a id="refreshButton">refresh></a> </span>
 			<div id="addCalendar"><img src="images/calendar_add.png"> </div>
 			<div id="addEvent"><img src="images/event_add.png"> </div>
 
@@ -87,10 +88,16 @@
 				<button class="punch">Save New Event</button>
 			</div>
 
-			<!--custom lists-->
-			<div id="eventList"></div>
-			<!--custom lists-->
 		</div>
+
+
+		<!--custom lists-->
+		<div class="eventList">
+			<h1>Today Events</h1>
+			<ul id="eventList">
+			</ul>	
+		</div>
+		<!--custom lists-->
 		
 	</div>
 	<!--calendar-->	
@@ -235,7 +242,7 @@
 	<!--DATA LOAD-->
 	<script type="text/javascript">
     	//google.load("feeds", "1");
-    	google.load("gdata", "2.x");
+    	//google.load("gdata", "2.x");
 
 		function load(){
 			//personal API KEY, development APIKEY

@@ -325,6 +325,28 @@ font-weight: 100;
 	display: none;
 }
 
+.eventList{
+	padding: 10px;
+	background: #F1F1F1;
+	color: #333;
+	margin-bottom: 10px;
+	width: 140px;
+	position: fixed;
+	left: 0;
+}
+.eventList h1{
+	margin: 0px;
+	font-weight: 100;
+}
+.eventList ul{
+	list-style-type: none;
+	padding-left: 0;
+}
+.eventList li{
+	background: url(../images/event_time.png) no-repeat;
+	padding-left: 20px;
+	margin-top:2px;
+}
 
 /*
 * GROUPS

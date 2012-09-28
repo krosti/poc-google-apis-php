@@ -30,9 +30,12 @@ gdrive = {
 				gdrive.updateList(response,'folder',false, null);
 				gdrive.updateList(response,'file',false, null);
 				gdrive.BTNupdateFolders();
+				document.getElementById('spin').style.display = 'none';
 			}else{
 				gdrive.updateList(response, type, false, customFolder);
+				document.getElementById('spin').style.display = 'none';
 			}
+
 		});
 		
 	},
@@ -47,6 +50,7 @@ gdrive = {
 		buttonShare.innerHTML = 'share';
 
 		if(!data.message){
+
 			var n = 8; //number of results
 			items.length = (items != 'undefined' && items.length && items.length > 0) ? items.length : 1;
 
@@ -134,6 +138,7 @@ gdrive = {
 
 		//owner - My Files
 		$('#ownerDriveFiles').on('click',function(){
+			document.getElementById('spin').style.display = 'block';
 			gdrive.makeRequest(
 				{'userPermission':
 					{'role' : 'owner'}
@@ -142,6 +147,7 @@ gdrive = {
 		});
 		//all files - Others
 		$('#othersDriveFiles').on('click',function(){
+			document.getElementById('spin').style.display = 'block';
 			gdrive.makeRequest(
 				{'userPermission':
 					{'role' : 'writer'}
@@ -150,6 +156,7 @@ gdrive = {
 		});
 		//all files - all
 		$('#allDriveFiles').on('click',function(){
+			document.getElementById('spin').style.display = 'block';
 			gdrive.makeRequest();
 		});
 		

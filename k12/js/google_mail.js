@@ -24,7 +24,7 @@ gmail = {
 		*/
 
 		var feedcontainer=document.getElementById("feeddiv");
-		var feedurl="https://mail.google.com/mail/feed/atom"+'access_token='+gapi.auth.getToken().access_token;
+		var feedurl="https://mail.google.com/mail/feed/atom"+'?access_token='+gapi.auth.getToken().access_token;
 		var feedlimit=5;
 		var rssoutput="<b>Latest Slashdot News:</b><br /><ul>";
 
