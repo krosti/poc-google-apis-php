@@ -8,11 +8,12 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<title>K12 - Prototype</title>
+	<title>K12 | Prototype</title>
 	
 	<!-- This header mimics Internet Explorer 7 and uses 
 	     <!DOCTYPE> to determine how to display the webpage -->
 	<!--meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" -->
+	<link rel="shortcut icon" href="http://www.k12.com/sites/default/files/k12_favicon_0.ico" type="image/x-icon" />
 	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,300' rel='stylesheet' type='text/css'>
 	<link href="css/style.css" rel="stylesheet" type="text/css" />
 	<link href="css/jquery-ui-1.8.23.custom.css" rel="stylesheet" type="text/css" />
@@ -41,6 +42,8 @@
 	<div class="bar">
 		<ul>
 			<li><a href="#" id="LINKhome">Home</a></li>
+			<li>|</li>
+			<li><a href="#" id="LINKviewcontacts">Contacts</a></li>
 			<li>|</li>
 			<li><a href="#" id="LINKsendemail">Compose</a></li>
 			<li>|</li>
@@ -110,6 +113,16 @@
 		</ul>
 	</div>
 	<!--groups-->	
+
+
+	<!--contacts-->
+	<div class="block contacts">
+		<div class="title"><span>MY CONTACTS</span></div>
+		<ul id="contacts"></ul>
+		<h2>Directory</h2>
+		<ul id="contactsDirectory"></ul>
+	</div>
+	<!--contacts-->	
 
 	<!--///////////////////////////////////////////////////////////////////////-->	
 
@@ -264,6 +277,7 @@
     <!--script src="js/strophe.js"></script-->
     <script src="js/spin.js"></script>
     <script src="js/libs/sha1.js"></script>    
+    <script src="js/libs/xml2json.js"></script>    
 
     <script src="js/js.js"></script>
     <script src="js/google_mail.js"></script>

@@ -252,7 +252,7 @@ gcalendar = {
 			});
 			request.execute(function(resp) {
 			  if (resp.result) {
-			  	console.log(resp);
+			  	//console.log(resp);
 			  	var events = resp.items;
 			  	for (var i = events.length - 1; i >= 0; i--) {
 			  		if(events[i].status != 'cancelled'){

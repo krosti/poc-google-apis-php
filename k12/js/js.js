@@ -65,6 +65,7 @@ app = {
 		app.BTNopenGroups();
 		app.BTNopenShareFiles();
 		app.BTNopenUsers();
+		app.BTNopenViewContacts();
 	},
 
 	validate: function(callback){
@@ -104,11 +105,12 @@ app = {
           			'https://apps-apis.google.com/a/feeds/groups/', //Google Groups Provisioning
           			'https://www.googleapis.com/auth/userinfo.email',
           			'https://www.googleapis.com/auth/userinfo.profile',
-          			'https://apps-apis.google.com/a/feeds/user/',
+          			'https://apps-apis.google.com/a/feeds/user/', //Google User Provisioning
           			'https://www.googleapis.com/auth/calendar',
           			'https://apps-apis.google.com/a/feeds/emailsettings/',
           			'https://mail.google.com/mail/feed/atom',
-          			'https://www.google.com/m8/feeds'
+          			'https://www.google.com/m8/feeds', //Google Contacts API
+          			'https://www.google.com/m8/feeds/profiles' //Google User Profile - https://developers.google.com/google-apps/profiles/
           			]
         		};
 
@@ -124,6 +126,7 @@ app = {
 				gcalendar._init(d);
 				ggroups._init(d);
 				guser._init(d);
+				gcontacts._init(d);
 			});
 			//gmail._init();
 			//ggroups._init();
@@ -332,6 +335,16 @@ app = {
 		});
 	},
 
+	BTNopenViewContacts: function(){
+		$('#LINKviewcontacts').on('click',function(){
+			$('.contacts').slideToggle();
+			/*$('.menu').toggle();
+			$('.menuRight').toggle();
+			$('.menuLeft').toggle();*/
+			$('.container').slideToggle();
+		});
+	},
+
 	secureOAUTH: function(){
 		$.ajax({ url: 'https://accounts.google.com/o/oauth2/auth?'+
 			'scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile&'+
@@ -341,5 +354,28 @@ app = {
 			'client_id=839403186376-i9cjktapu32p070sd8b22voccr36nsea.apps.googleusercontent.com&approval_prompt=force', 
 			success:function(d){console.log(d);}
 		});
+	},
+
+	parseXml: function(xml) {
+	   var dom = null;
+	   if (window.DOMParser) {
+	      try { 
+	         dom = (new DOMParser()).parseFromString(xml, "text/xml"); 
+	      } 
+	      catch (e) { dom = null; }
+	   }
+	   else if (window.ActiveXObject) {
+	      try {
+	         dom = new ActiveXObject('Microsoft.XMLDOM');
+	         dom.async = false;
+	         if (!dom.loadXML(xml)) // parse error ..
+
+	            window.alert(dom.parseError.reason + dom.parseError.srcText);
+	      } 
+	      catch (e) { dom = null; }
+	   }
+	   else
+	      alert("cannot parse xml string!");
+	   return dom;
 	}
 }
