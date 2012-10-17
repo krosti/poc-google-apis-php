@@ -110,27 +110,26 @@ app = {
           			'https://apps-apis.google.com/a/feeds/emailsettings/',
           			'https://mail.google.com/mail/feed/atom',
           			'https://www.google.com/m8/feeds', //Google Contacts API
-          			'https://www.google.com/m8/feeds/profiles' //Google User Profile - https://developers.google.com/google-apps/profiles/
+          			'https://www.google.com/m8/feeds/profiles/' //Google User Profile - https://developers.google.com/google-apps/profiles/
           			]
         		};
 
         gapi.auth.authorize(config, function(d) {
-        	//console.log(d);
           	//console.log('This APP was authorized to use for this user');
 			
 			app.validate(function(d){
+				//extra
+				__DOMAIN = d.email.split('@')[1];
+
+				//process
 				gdrive._init(d);
 				gmail._init(d);
-				//gmail._init2();
-				//console.log(d);
+				//gmail._init2(); //different approach
 				gcalendar._init(d);
 				ggroups._init(d);
 				guser._init(d);
 				gcontacts._init(d);
 			});
-			//gmail._init();
-			//ggroups._init();
-			//gcalendar._init();
         });
     },
 

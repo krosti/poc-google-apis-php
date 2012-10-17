@@ -1,0 +1,122 @@
+@base: #f938ab;
+@color: #777;
+@colorHover: #333;
+@font: Helvetica;
+@k12Purple: #410066;
+@k12green: #CF6;
+
+.box-shadow(@style, @c) when (iscolor(@c)) {
+  box-shadow:         @style @c;
+  -webkit-box-shadow: @style @c;
+  -moz-box-shadow:    @style @c;
+}
+.box-shadow(@style, @alpha: 50%) when (isnumber(@alpha)) {
+  .box-shadow(@style, rgba(0, 0, 0, @alpha));
+}
+.box { 
+  color: saturate(@base, 5%);
+  border-color: lighten(@base, 30%);
+  div { .box-shadow(0 0 5px, 30%) }
+}
+
+body{ font-family: @font; font-size: 12px; background: #dfdfdf; }
+a:link, a:visited{ color: @color; text-decoration: none; }
+a:hover{ color:@colorHover; }
+li{
+	list-style-type: none;
+	float: left;
+	margin-left: 10px;
+	font-size: 11px;
+}
+h1{ font-size: 18px; font-weight: normal; display: inline; }
+h2{ color: @color; }
+
+#header {
+  color: @color;
+  padding: 20px;
+  background: white;
+  height: 30px;
+  margin:10px;
+  .logo{
+  	width: 50px;
+	height: 50px;
+	float: left;
+	font-size: 45px;
+	font-family: Times New Roman;
+	text-transform: lowercase;
+	margin-top: -10px;
+  	.u{
+  		font-size: 17px;
+		position: absolute;
+		margin-top: -46px;
+		margin-left: 21px;
+		font-family: @font;
+  	}
+  }
+  .logo:hover{
+  		color:@k12Purple;
+  		.u{color:@k12green;}
+  	}
+  .top{
+  	.left{
+  		margin-top: -5px;
+		position: absolute;
+		margin-left: 50px;
+		font-size: 15px;
+		color: #666;
+  	}
+  	.right{
+  		float: right;
+  		div{float:left; margin-right: 5px; font-size: 11px;	}
+  	}
+  }
+  ul{
+  	border-top: 1px solid @color;
+  	padding-top:5px;
+  	float:left;
+  	padding-left: 0;
+  	li{
+  		font-size: 16px;
+  		margin-left: 55px;
+  	}
+  	li:first-child{
+  		margin-left: 0px;
+  	}
+  }
+}
+#container{
+	color: @color;
+	padding: 10px;
+	background: white;
+	height: 900px;
+	margin:10px;
+	.bar{
+		height: 20px;
+		width: 100%;
+		background: #555;
+		color: white;
+		box-shadow: 2px 2px 6px #CCC;
+		padding: 10px;
+		margin-top: 10px;
+		margin-left: -10px;
+	}
+	.content{
+		float:left;
+		width:60%;
+		margin-left: -10px;
+		min-width: 600px;
+	}
+	.options{
+		float: right;
+		width: 20%;
+		background: #CCC;
+		height: 90%;
+		min-height: 300px;
+		margin-right: -10px;
+		min-width: 200px;
+		box-shadow:inset 0px 2px 4px -1px #777;
+		h1{
+			margin:10px;
+		}
+	}
+}
