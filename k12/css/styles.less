@@ -14,9 +14,24 @@
   .box-shadow(@style, rgba(0, 0, 0, @alpha));
 }
 .box { 
-  color: saturate(@base, 5%);
-  border-color: lighten(@base, 30%);
-  div { .box-shadow(0 0 5px, 30%) }
+	color: #555;
+	border: 1px solid #999;
+	width: 82px;
+	border-radius: 5px;
+	padding:5px;
+	background: #DDD;
+	float: left;
+	margin: 20px;
+	text-align: center;
+}
+.clear{
+	clear:both;
+}
+.air-top{
+	margin-top: 30px;
+}
+.click{
+	cursor:pointer;
 }
 
 body{ font-family: @font; font-size: 12px; background: #dfdfdf; }
@@ -28,7 +43,7 @@ li{
 	margin-left: 10px;
 	font-size: 11px;
 }
-h1{ font-size: 18px; font-weight: normal; display: inline; }
+h1{ font-size: 18px; font-weight: normal; display: inline; font-weight: 100; }
 h2{ color: @color; }
 
 #header {
@@ -37,6 +52,7 @@ h2{ color: @color; }
   background: white;
   height: 30px;
   margin:10px;
+  box-sizing: content-box;
   .logo{
   	width: 50px;
 	height: 50px;
@@ -75,6 +91,7 @@ h2{ color: @color; }
   	padding-top:5px;
   	float:left;
   	padding-left: 0;
+  	margin-top: 13px;
   	li{
   		font-size: 16px;
   		margin-left: 55px;
@@ -99,17 +116,27 @@ h2{ color: @color; }
 		padding: 10px;
 		margin-top: 10px;
 		margin-left: -10px;
+		box-sizing: content-box;
 	}
 	.content{
 		float:left;
 		width:60%;
-		margin-left: -10px;
+		margin-top:20px;
+		margin-left: 0px;
 		min-width: 600px;
+		h1{
+			display: block;
+			color:#555;
+		}
+		span{
+			font-weight: 100;
+			font-size: 15px;
+		}
 	}
 	.options{
 		float: right;
 		width: 20%;
-		background: #CCC;
+		background: #dfdfdf;
 		height: 90%;
 		min-height: 300px;
 		margin-right: -10px;
@@ -117,6 +144,92 @@ h2{ color: @color; }
 		box-shadow:inset 0px 2px 4px -1px #777;
 		h1{
 			margin:10px;
+			color:#555;
+			clear: both;
 		}
+		a:link, a:visited{
+			color:#06B3E7;
+			font-size: 15px;
+			margin-left: 10px;
+			font-weight: 100;
+		}
+		a:hover{
+			color:#058EB8;
+		}
+		button{
+			border:none;
+			background: none;
+			padding: 0;
+			margin:0;
+		}
+		a#add_reminder{
+			float:left;
+			font-size: 13px;
+			margin-top: 5px;
+		}
+		.divisor{
+			width: 90%;
+			height: 1px;
+			border-top: 2px dotted #CCC;
+			margin-left: 10px;
+			margin-top: 10px;
+			margin-bottom: 10px;
+			float:left;
+		}
+		.dateBox{
+			float:left;
+			border: none;
+			background: #DFDFDF;
+			width: 90px;
+		}
+		.dateBox, .pointsBox{
+			margin-left: 10px;
+			font-size: 14px;
+			margin-top: 5px;
+			color:#777;
+		}
+		.teacher{
+			font-size: 14px;
+			margin-top: 5px;
+			float: left;
+			color: #777;
+			font-weight: 100;
+			span,div,img{float:left;}
+			img{ margin-left:10px;}
+			a{float: left;}
+			input{
+				border:none;
+				background: white;
+				border-radius: 6px;
+				float:left;			
+				padding: 5px;
+				margin-left: 10px;
+				font-size: 14px;
+				font-variant: italic;
+				width: 200px;
+			}
+			#teacher_status{
+				color:green;
+			}
+		}
+	}
+}
+
+.composing_dialog{
+	font-family: Helvetica;
+	h1{
+		color:#555;
+		font-size: 18px;
+		font-weight: 200;
+		margin-bottom: 5px;
+	}
+	iframe{
+		width:100%;
+		border:none;
+	}
+	.question{
+		margin-bottom: 10px;
+		font-weight: 100;
+		color:#777;
 	}
 }
