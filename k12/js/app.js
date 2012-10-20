@@ -12,10 +12,6 @@ $(function(){
   });*/
 });
 
-var AnswerComposition = '<h1>Answer Composition</h1>'+
-      '<div class="clear"></div>'+
-      '<iframe src="http://idning-gdrive-test.appspot.com/" height="400"></iframe>';
-
 Ext.define('K12.controller.Drive', {
     extend: 'Ext.app.Controller',
 
@@ -26,7 +22,7 @@ Ext.define('K12.controller.Drive', {
 
 Ext.onReady(function () {
 
-  composingButton = Ext.get('compose_online');
+  var composingButton = Ext.get('compose_online');
   composingButton.on('click', 
     function(e,t){
       dialog.show();
